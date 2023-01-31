@@ -1,0 +1,108 @@
+<body>
+    <div class="container">
+        <header>
+            <h1>Partidos HOY en VIVO</h1>
+        </header>
+        <section>
+            <h2>Liga Argentina</h2>
+            <table class="table table-striped table-hover table-dark">
+                <thead>
+                    <tr>
+                        <th scope="col">Locales</th>
+                        <th scope="col">Resultado</th>
+                        <th scope="col">Visitantes</th>
+                        <th scope="col">Tiempo</th>
+                        <th scope="col">Goles</th>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let partido of ligaArgentinaLocales; let i = index" [attr.data-index]="i">
+                    <tr>
+                        <td><img src="{{ligaArgentinaLocalesLogos[i]}}" alt="" style="height: 50px;">
+                            {{ligaArgentinaLocales[i]}}</td>
+                        <td>{{ligaArgentinaResultados[i]}}</td>
+                        <td> <img src="{{ligaArgentinaVisitantesLogos[i]}}" alt="" style="height: 50px;">
+                            {{ligaArgentinaVisitantes[i]}}</td>
+                        <td>{{ligaArgentinaTiempo[i]}}'</td>
+                        <td>
+                            <ng-container *ngFor="let goles of ligaArgentinaGoleadores">
+                                <ng-container *ngIf="goles.id == i">
+                                    <ng-container *ngIf="goles.time != '' && goles.jugadorL != '' ">
+                                        {{goles.time}}' Local: {{goles.jugadorL}},
+                                    </ng-container>
+                                    <ng-container *ngIf="goles.time != '' && goles.jugadorV != '' ">
+                                        {{goles.time}}' Visitante: {{goles.jugadorV}},
+                                    </ng-container>
+                                </ng-container>
+                            </ng-container>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </section>
+        <div class="container" *ngIf="copaArgentinaLocales.length > 0">
+                    <h2>Copa Argentina</h2>
+                    <table class="table table-striped table-hover table-light">
+                        <thead>
+                            <tr>
+                                <th scope="col">Locales</th>
+                                <th scope="col">Resultado</th>
+                                <th scope="col">Visitantes</th>
+                                <th scope="col">Tiempo</th>
+                                <th scope="col">Goles</th>
+                            </tr>
+                        </thead>
+                        <tbody *ngFor="let partido of copaArgentinaLocales; let i = index" [attr.data-index]="i">
+                            <tr>
+                                <td><img src="{{copaArgentinaLocalesLogos[i]}}" alt="" style="height: 50px;">
+                                    {{copaArgentinaLocales[i]}}</td>
+                                <td>{{copaArgentinaResultados[i]}}</td>
+                                <td> <img src="{{copaArgentinaVisitantesLogos[i]}}" alt="" style="height: 50px;">
+                                    {{copaArgentinaVisitantes[i]}}</td>
+                                <td>{{copaArgentinaTiempo[i]}}'</td>
+                                <td>
+                                    <ng-container *ngFor="let goles of copaArgentinaGoleadores">
+                                        <ng-container *ngIf="goles.id == i">
+                                            <ng-container *ngIf="goles.time != '' && goles.jugadorL != '' ">
+                                                {{goles.time}}' Local: {{goles.jugadorL}},
+                                            </ng-container>
+                                            <ng-container *ngIf="goles.time != '' && goles.jugadorV != '' ">
+                                                {{goles.time}}' Visitante: {{goles.jugadorV}},
+                                            </ng-container>
+                                        </ng-container>
+                                    </ng-container>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+        </div>
+    </div>
+
+
+    <footer class="bg-dark text-center text-white">
+        <div class="container p-4">
+            <!-- Section: Social media -->
+            <section class="mb-4">
+                <!-- Facebook -->
+                <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
+                        class="fab fa-facebook-f"></i></a>
+                <!-- Twitter -->
+                <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
+                        class="fab fa-twitter"></i></a>
+                <!-- Google -->
+                <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
+                        class="fab fa-google"></i></a>
+                <!-- Instagram -->
+                <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
+                        class="fab fa-instagram"></i></a>
+                <!-- Linkedin -->
+                <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
+                        class="fab fa-linkedin-in"></i></a>
+                <!-- Github -->
+                <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
+                        class="fab fa-github"></i></a>
+            </section>
+            Copyright JMR 2023 ©
+        </div>
+    </footer>
+</body>

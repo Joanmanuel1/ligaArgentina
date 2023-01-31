@@ -1,0 +1,19 @@
+body{
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 16px;
+
+  background-image: url("../../assets/futbol.jpg");
+  background-color: #cccccc; /* Used if the image is unavailable */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
+}
+
+h1{
+  text-align: center;
+  color: aliceblue;
+}
+
+h2{
+  color: aliceblue;
+}
