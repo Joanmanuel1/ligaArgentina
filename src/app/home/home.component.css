@@ -24,8 +24,17 @@ tr{
   font-size: 40px;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   color: blanchedalmond !important;
+  padding-top: 4%;
 }
 
 span{
   display: flex;
+}
+
+.hora{
+  font-size: 20px;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  color: rgb(236, 175, 83) !important;
+  text-align: center;
+  padding-top: 5%;
 }

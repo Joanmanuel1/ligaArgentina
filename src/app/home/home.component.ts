@@ -63,7 +63,7 @@ export class HomeComponent implements OnInit {
             home_team_logo: equipos.result[i].home_team_logo, away_team_logo: equipos.result[i].away_team_logo,
             event_away_team: equipos.result[i].event_away_team, event_home_team: equipos.result[i].event_home_team,
             event_final_result: equipos.result[i].event_final_result,
-            event_status: equipos.result[i].event_status, goalscorers: equipos.result[i].goalscorers
+            event_status: equipos.result[i].event_status, event_time: equipos.result[i].event_time, goalscorers: equipos.result[i].goalscorers
           });
           equipos.result[i].goalscorers.forEach((goalscorers: { id: any; time: any; home_scorer: any; away_scorer: any }) =>
             this.cArgentina.concat({ time: goalscorers.time, home_scorer: goalscorers.home_scorer, away_scorer: goalscorers.away_scorer }));
