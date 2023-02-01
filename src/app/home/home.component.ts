@@ -40,10 +40,10 @@ export class HomeComponent implements OnInit {
   ligaArgentinaTiempo: any = [];
   ligaArgentinaGoleadores: any = [
     {
-      id: 256, 
+      id: -1, 
       time: "",
-      jugadorL: [],
-      jugadorV: []
+      jugadorL: "",
+      jugadorV: ""
     }
   ];
 
@@ -101,7 +101,8 @@ export class HomeComponent implements OnInit {
 
   copaArgentina() {
     const key = "8af162c9850412c02adc53c461b40766844cead095f67960231f658949a3db65";
-    //fetch(`https://apiv2.allsportsapi.com/football/?met=Livescore&APIkey=${key}&timezone=America/Buenos_Aires`)
+    var fecha = this.fechaDeHoy();
+    //fetch(`https://apiv2.allsportsapi.com/football/?met=Fixtures&APIkey=${key}&from=${fecha}&to=${fecha}&timezone=America/Buenos_Aires&leagueId=515`)
     fetch(`https://apiv2.allsportsapi.com/football/?met=Fixtures&APIkey=${key}&from=2023-02-01&to=2023-02-01&timezone=America/Buenos_Aires&leagueId=515`)
       .then(response => response.json())
       .then((equipos) => {

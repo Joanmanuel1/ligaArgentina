@@ -1,11 +1,69 @@
 <body>
+    <h1>Partidos HOY en VIVO</h1>
     <div class="container">
         <header>
-            <h1>Partidos HOY en VIVO</h1>
         </header>
-        <section>
+        <section *ngIf="copaArgentinaLocales.length > 0">
             <h2>Liga Argentina</h2>
             <table class="table table-striped table-hover table-dark">
+                <thead class="table-light">
+                    <tr>
+                        <th class="col-3">Locales</th>
+                        <th class="col-2">Resultado</th>
+                        <th class="col-3">Visitantes</th>
+                        <th class="col-1">Tiempo</th>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let partido of ligaArgentinaLocales; let i = index" [attr.data-index]="i">
+                    <tr>
+                        <td><img src="{{ligaArgentinaLocalesLogos[i]}}" alt="" style="height: 50px;"><br>
+                            {{ligaArgentinaLocales[i]}} <br>
+                            <a class="btn btn-primary" data-toggle="collapse" href="#collapseE1" role="button"
+                                aria-expanded="false" aria-controls="collapseExample">
+                                Goles
+                            </a>
+                            <div class="collapse" id="collapseE1">
+                                <div class="card card-body" style="color: black;">
+                                    <ng-container *ngFor="let goles of ligaArgentinaGoleadores">
+                                        <ng-container *ngIf="goles.id == i">
+                                            <ng-container *ngIf="goles.time != '' && goles.jugadorL != '' ">
+                                                {{goles.time}}' - {{goles.jugadorL}},
+                                            </ng-container>
+                                        </ng-container>
+                                    </ng-container>
+                                </div>
+                            </div>
+                        </td>
+                        <td>{{ligaArgentinaResultados[i]}}</td>
+                        <td> <img src="{{ligaArgentinaVisitantesLogos[i]}}" alt="" style="height: 50px;"><br>
+                            {{ligaArgentinaVisitantes[i]}} <br>
+
+                            <a class="btn btn-primary" data-toggle="collapse" href="#collapseE2" role="button"
+                                aria-expanded="false" aria-controls="collapseExample2">
+                                Goles
+                            </a>
+                            <div class="collapse" id="collapseE2">
+                                <div class="card card-body" style="color: black;">
+                                    <ng-container *ngFor="let goles of ligaArgentinaGoleadores">
+                                        <ng-container *ngIf="goles.id == i">
+                                            <ng-container *ngIf="goles.time != '' && goles.jugadorV != '' ">
+                                                {{goles.time}}' - {{goles.jugadorV}},
+                                            </ng-container>
+                                        </ng-container>
+                                    </ng-container>
+                                </div>
+                            </div>
+
+                        </td>
+                        <td>{{ligaArgentinaTiempo[i]}}'</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </section>
+        <div class="container" *ngIf="copaArgentinaLocales.length > 0">
+            <h2>Copa Argentina</h2>
+            <table class="table table-striped table-hover table-light">
                 <thead>
                     <tr>
                         <th scope="col">Locales</th>
@@ -15,16 +73,16 @@
                         <th scope="col">Goles</th>
                     </tr>
                 </thead>
-                <tbody *ngFor="let partido of ligaArgentinaLocales; let i = index" [attr.data-index]="i">
+                <tbody *ngFor="let partido of copaArgentinaLocales; let i = index" [attr.data-index]="i">
                     <tr>
-                        <td><img src="{{ligaArgentinaLocalesLogos[i]}}" alt="" style="height: 50px;">
-                            {{ligaArgentinaLocales[i]}}</td>
-                        <td>{{ligaArgentinaResultados[i]}}</td>
-                        <td> <img src="{{ligaArgentinaVisitantesLogos[i]}}" alt="" style="height: 50px;">
-                            {{ligaArgentinaVisitantes[i]}}</td>
-                        <td>{{ligaArgentinaTiempo[i]}}'</td>
+                        <td><img src="{{copaArgentinaLocalesLogos[i]}}" alt="" style="height: 50px;">
+                            {{copaArgentinaLocales[i]}}</td>
+                        <td>{{copaArgentinaResultados[i]}}</td>
+                        <td> <img src="{{copaArgentinaVisitantesLogos[i]}}" alt="" style="height: 50px;">
+                            {{copaArgentinaVisitantes[i]}}</td>
+                        <td>{{copaArgentinaTiempo[i]}}'</td>
                         <td>
-                            <ng-container *ngFor="let goles of ligaArgentinaGoleadores">
+                            <ng-container *ngFor="let goles of copaArgentinaGoleadores">
                                 <ng-container *ngIf="goles.id == i">
                                     <ng-container *ngIf="goles.time != '' && goles.jugadorL != '' ">
                                         {{goles.time}}' Local: {{goles.jugadorL}},
@@ -38,46 +96,8 @@
                     </tr>
                 </tbody>
             </table>
-
-        </section>
-        <div class="container" *ngIf="copaArgentinaLocales.length > 0">
-                    <h2>Copa Argentina</h2>
-                    <table class="table table-striped table-hover table-light">
-                        <thead>
-                            <tr>
-                                <th scope="col">Locales</th>
-                                <th scope="col">Resultado</th>
-                                <th scope="col">Visitantes</th>
-                                <th scope="col">Tiempo</th>
-                                <th scope="col">Goles</th>
-                            </tr>
-                        </thead>
-                        <tbody *ngFor="let partido of copaArgentinaLocales; let i = index" [attr.data-index]="i">
-                            <tr>
-                                <td><img src="{{copaArgentinaLocalesLogos[i]}}" alt="" style="height: 50px;">
-                                    {{copaArgentinaLocales[i]}}</td>
-                                <td>{{copaArgentinaResultados[i]}}</td>
-                                <td> <img src="{{copaArgentinaVisitantesLogos[i]}}" alt="" style="height: 50px;">
-                                    {{copaArgentinaVisitantes[i]}}</td>
-                                <td>{{copaArgentinaTiempo[i]}}'</td>
-                                <td>
-                                    <ng-container *ngFor="let goles of copaArgentinaGoleadores">
-                                        <ng-container *ngIf="goles.id == i">
-                                            <ng-container *ngIf="goles.time != '' && goles.jugadorL != '' ">
-                                                {{goles.time}}' Local: {{goles.jugadorL}},
-                                            </ng-container>
-                                            <ng-container *ngIf="goles.time != '' && goles.jugadorV != '' ">
-                                                {{goles.time}}' Visitante: {{goles.jugadorV}},
-                                            </ng-container>
-                                        </ng-container>
-                                    </ng-container>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
         </div>
     </div>
-
 
     <footer class="bg-dark text-center text-white">
         <div class="container p-4">
@@ -105,4 +125,5 @@
             Copyright JMR 2023 ©
         </div>
     </footer>
+
 </body>
