@@ -1,12 +1,8 @@
 body{
   font-family: Georgia, 'Times New Roman', Times, serif;
-  font-size: 16px;
-
+  font-size: 18px;
   background-image: url("../../assets/futbol.jpg");
-  background-color: #cccccc; /* Used if the image is unavailable */
-  background-position: center; /* Center the image */
-  background-repeat: no-repeat; /* Do not repeat the image */
-  background-size: cover; /* Resize the background image to cover the entire container */
+
 }
 
 h1{
@@ -16,8 +12,20 @@ h1{
 
 h2{
   color: aliceblue;
+  background-color: black;
+  text-align: center;
 }
 
 tr{
   text-align: center;
+}
+
+.resultado{
+  font-size: 40px;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  color: blanchedalmond !important;
+}
+
+span{
+  display: flex;
 }

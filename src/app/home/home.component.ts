@@ -5,64 +5,15 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
+
 export class HomeComponent implements OnInit {
 
   constructor() { }
   // B METROPOLITANA league_key: 40
   ligas: any = [];
-  
-  // Otras ligas
-  locales: any = [];
-  visitantes: any = [];
-  resultados: any = [];
 
-/* No funciono, pone el array en el indice 1 y el 0 lo deja vacio
-  partidos: any = [
-    {
-      id: 0,
-      localNombre: "",
-      localLogo: "",
-      visitanteNombre: "",
-      visitanteLogo: "",
-      resultado: "",
-      tiempo: "",
-    }
-  ]
-
-  */
- 
-
-  ligaArgentinaLocales: any = [];
-  ligaArgentinaVisitantes: any = [];
-  ligaArgentinaLocalesLogos: any = [];
-  ligaArgentinaVisitantesLogos: any = [];
-  ligaArgentinaResultados: any = [];
-  ligaArgentinaTiempo: any = [];
-  ligaArgentinaGoleadores: any = [
-    {
-      id: -1, 
-      time: "",
-      jugadorL: "",
-      jugadorV: ""
-    }
-  ];
-
-
-  copaArgentinaLocales: any = [];
-  copaArgentinaVisitantes: any = [];
-  copaArgentinaLocalesLogos: any = [];
-  copaArgentinaVisitantesLogos: any = [];
-  copaArgentinaResultados: any = [];
-  copaArgentinaTiempo: any = [];
-  copaArgentinaGoleadores: any = [
-   {
-     id: 256, 
-     time: "",
-     jugadorL: [],
-     jugadorV: []
-   }
- ];
-
+  result: any = [];
+  cArgentina: any = [];
 
   ngOnInit(): void {
     this.primeraA();
@@ -77,16 +28,17 @@ export class HomeComponent implements OnInit {
       .then(response => response.json())
       .then((equipos) => {
         for (let i = 0; i < equipos.result.length; i++) {
-         equipos.result[i].goalscorers.forEach((goalscorers: { id: any; time: any; home_scorer: any; away_scorer: any }) =>
-         this.ligaArgentinaGoleadores.push({ id: i, time: goalscorers.time, jugadorL: goalscorers.home_scorer, jugadorV: goalscorers.away_scorer }));
-         this.ligaArgentinaLocales.push(equipos.result[i].event_home_team);
-         this.ligaArgentinaLocalesLogos.push(equipos.result[i].home_team_logo);
-         this.ligaArgentinaVisitantesLogos.push(equipos.result[i].away_team_logo);
-         this.ligaArgentinaVisitantes.push(equipos.result[i].event_away_team);
-         this.ligaArgentinaResultados.push(equipos.result[i].event_final_result);
-         this.ligaArgentinaTiempo.push(equipos.result[i].event_status);
+          this.result.push({
+            home_team_logo: equipos.result[i].home_team_logo, away_team_logo: equipos.result[i].away_team_logo,
+            event_away_team: equipos.result[i].event_away_team, event_home_team: equipos.result[i].event_home_team,
+            event_final_result: equipos.result[i].event_final_result,
+            event_status: equipos.result[i].event_status, goalscorers: equipos.result[i].goalscorers
+          });
+          equipos.result[i].goalscorers.forEach((goalscorers: { id: any; time: any; home_scorer: any; away_scorer: any }) =>
+            this.result.concat({ time: goalscorers.time, home_scorer: goalscorers.home_scorer, away_scorer: goalscorers.away_scorer }));
         }
       });
+
   }
 
   fechaDeHoy() {
@@ -107,9 +59,30 @@ export class HomeComponent implements OnInit {
       .then(response => response.json())
       .then((equipos) => {
         for (let i = 0; i < equipos.result.length; i++) {
+          this.cArgentina.push({
+            home_team_logo: equipos.result[i].home_team_logo, away_team_logo: equipos.result[i].away_team_logo,
+            event_away_team: equipos.result[i].event_away_team, event_home_team: equipos.result[i].event_home_team,
+            event_final_result: equipos.result[i].event_final_result,
+            event_status: equipos.result[i].event_status, goalscorers: equipos.result[i].goalscorers
+          });
           equipos.result[i].goalscorers.forEach((goalscorers: { id: any; time: any; home_scorer: any; away_scorer: any }) =>
-          this.copaArgentinaGoleadores.push({ id: i, time: goalscorers.time, jugadorL: goalscorers.home_scorer, jugadorV: goalscorers.away_scorer }))
-         
+            this.cArgentina.concat({ time: goalscorers.time, home_scorer: goalscorers.home_scorer, away_scorer: goalscorers.away_scorer }));
+        }
+      });
+  }
+
+  /*
+  copaArgentina() {
+    const key = "8af162c9850412c02adc53c461b40766844cead095f67960231f658949a3db65";
+    var fecha = this.fechaDeHoy();
+    //fetch(`https://apiv2.allsportsapi.com/football/?met=Fixtures&APIkey=${key}&from=${fecha}&to=${fecha}&timezone=America/Buenos_Aires&leagueId=515`)
+    fetch(`https://apiv2.allsportsapi.com/football/?met=Fixtures&APIkey=${key}&from=2023-02-01&to=2023-02-01&timezone=America/Buenos_Aires&leagueId=515`)
+      .then(response => response.json())
+      .then((equipos) => {
+        for (let i = 0; i < equipos.result.length; i++) {
+          equipos.result[i].goalscorers.forEach((goalscorers: { id: any; time: any; home_scorer: any; away_scorer: any }) =>
+            this.copaArgentinaGoleadores.push({ id: i, time: goalscorers.time, jugadorL: goalscorers.home_scorer, jugadorV: goalscorers.away_scorer }))
+
           this.copaArgentinaLocales.push(equipos.result[i].event_home_team);
           this.copaArgentinaLocalesLogos.push(equipos.result[i].home_team_logo);
           this.copaArgentinaVisitantesLogos.push(equipos.result[i].away_team_logo);
@@ -120,6 +93,7 @@ export class HomeComponent implements OnInit {
         }
       });
   }
+  */
 
 }
 
