@@ -14,48 +14,37 @@ export class HomeComponent implements OnInit {
 
   result: any = [];
   cArgentina: any = [];
+  fecha: any = [];
 
   ngOnInit(): void {
-    this.primeraA();
-    this.copaArgentina();
-  }
-
-  primeraA() {
-    const key = "8af162c9850412c02adc53c461b40766844cead095f67960231f658949a3db65";
-    var fecha = this.fechaDeHoy();
-    //fetch(`https://apiv2.allsportsapi.com/football/?met=Fixtures&APIkey=${key}&from=${fecha}&to=${fecha}&timezone=America/Buenos_Aires&leagueId=44`)
-    fetch(`https://apiv2.allsportsapi.com/football/?met=Fixtures&APIkey=${key}&from=2023-01-30&to=2023-01-30&timezone=America/Buenos_Aires&leagueId=44`)
-      .then(response => response.json())
-      .then((equipos) => {
-        for (let i = 0; i < equipos.result.length; i++) {
-          this.result.push({
-            home_team_logo: equipos.result[i].home_team_logo, away_team_logo: equipos.result[i].away_team_logo,
-            event_away_team: equipos.result[i].event_away_team, event_home_team: equipos.result[i].event_home_team,
-            event_final_result: equipos.result[i].event_final_result,
-            event_status: equipos.result[i].event_status, goalscorers: equipos.result[i].goalscorers
-          });
-          equipos.result[i].goalscorers.forEach((goalscorers: { id: any; time: any; home_scorer: any; away_scorer: any }) =>
-            this.result.concat({ time: goalscorers.time, home_scorer: goalscorers.home_scorer, away_scorer: goalscorers.away_scorer }));
-        }
-      });
-
+    this.premierLeagueGhana();
   }
 
   fechaDeHoy() {
-    const diaActual = new Date();
-    var day = diaActual.getDate();
-    var month = diaActual.getMonth() + 1;
-    var year = diaActual.getFullYear();
+    const today = new Date();
+    var day = today.getDate();
+    var month = today.getMonth() + 1;
+    var year = today.getFullYear();
     var fecha = year + '-' + month + '-' + day;
     return fecha;
   }
+  
+  fechaDeAyer(){
+    const yesterday = new Date();
+    yesterday.setDate(yesterday.getDate() - 1)
+    var day = yesterday.getDate();
+    var month = yesterday.getMonth() + 1;
+    var year = yesterday.getFullYear();
+    var fecha = year + '-' + month + '-' + day;
+    return fecha;
+  }
+  
 
-
-  copaArgentina() {
+  premierLeagueGhana() {
     const key = "8af162c9850412c02adc53c461b40766844cead095f67960231f658949a3db65";
-    var fecha = this.fechaDeHoy();
-    //fetch(`https://apiv2.allsportsapi.com/football/?met=Fixtures&APIkey=${key}&from=${fecha}&to=${fecha}&timezone=America/Buenos_Aires&leagueId=515`)
-    fetch(`https://apiv2.allsportsapi.com/football/?met=Fixtures&APIkey=${key}&from=2023-02-01&to=2023-02-01&timezone=America/Buenos_Aires&leagueId=515`)
+    var today = this.fechaDeHoy();
+    fetch(`https://apiv2.allsportsapi.com/football/?met=Fixtures&APIkey=${key}&from=${today}&to=${today}&timezone=America/Buenos_Aires&leagueId=177`)
+    //fetch(`https://apiv2.allsportsapi.com/football/?met=Fixtures&APIkey=${key}&from=2023-02-01&to=2023-02-01&timezone=America/Buenos_Aires&leagueId=515`)
       .then(response => response.json())
       .then((equipos) => {
         for (let i = 0; i < equipos.result.length; i++) {
@@ -71,29 +60,26 @@ export class HomeComponent implements OnInit {
       });
   }
 
-  /*
-  copaArgentina() {
+  primeraA() {
     const key = "8af162c9850412c02adc53c461b40766844cead095f67960231f658949a3db65";
-    var fecha = this.fechaDeHoy();
-    //fetch(`https://apiv2.allsportsapi.com/football/?met=Fixtures&APIkey=${key}&from=${fecha}&to=${fecha}&timezone=America/Buenos_Aires&leagueId=515`)
-    fetch(`https://apiv2.allsportsapi.com/football/?met=Fixtures&APIkey=${key}&from=2023-02-01&to=2023-02-01&timezone=America/Buenos_Aires&leagueId=515`)
+    var today = this.fechaDeHoy();
+    fetch(`https://apiv2.allsportsapi.com/football/?met=Fixtures&APIkey=${key}&from=${today}&to=${today}&timezone=America/Buenos_Aires`)
+    //fetch(`https://apiv2.allsportsapi.com/football/?met=Fixtures&APIkey=${key}&from=2023-2-1&to=2023-2-3&timezone=America/Buenos_Aires`)
       .then(response => response.json())
       .then((equipos) => {
         for (let i = 0; i < equipos.result.length; i++) {
+          this.result.push({
+            home_team_logo: equipos.result[i].home_team_logo, away_team_logo: equipos.result[i].away_team_logo,
+            event_away_team: equipos.result[i].event_away_team, event_home_team: equipos.result[i].event_home_team,
+            event_final_result: equipos.result[i].event_final_result,
+            event_status: equipos.result[i].event_status, goalscorers: equipos.result[i].goalscorers
+          });
           equipos.result[i].goalscorers.forEach((goalscorers: { id: any; time: any; home_scorer: any; away_scorer: any }) =>
-            this.copaArgentinaGoleadores.push({ id: i, time: goalscorers.time, jugadorL: goalscorers.home_scorer, jugadorV: goalscorers.away_scorer }))
-
-          this.copaArgentinaLocales.push(equipos.result[i].event_home_team);
-          this.copaArgentinaLocalesLogos.push(equipos.result[i].home_team_logo);
-          this.copaArgentinaVisitantesLogos.push(equipos.result[i].away_team_logo);
-          this.copaArgentinaVisitantes.push(equipos.result[i].event_away_team);
-          this.copaArgentinaResultados.push(equipos.result[i].event_final_result);
-          this.copaArgentinaTiempo.push(equipos.result[i].event_status);
-
+            this.result.concat({ time: goalscorers.time, home_scorer: goalscorers.home_scorer, away_scorer: goalscorers.away_scorer }));
         }
       });
+  
   }
-  */
 
 }
 
