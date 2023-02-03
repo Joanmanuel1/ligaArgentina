@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-tomorrow',
@@ -9,7 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class TomorrowComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: RouterModule) { }
 
 // B METROPOLITANA league_key: 40
 ligas: any = [];

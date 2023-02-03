@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private route: RouterModule) { }
   // B METROPOLITANA league_key: 40
   ligas: any = [];
 
@@ -18,6 +19,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.premierLeagueGhana();
+    console.log(this.cArgentina);
   }
 
   fechaDeHoy() {
@@ -29,16 +31,7 @@ export class HomeComponent implements OnInit {
     return fecha;
   }
   
-  fechaDeAyer(){
-    const yesterday = new Date();
-    yesterday.setDate(yesterday.getDate() - 1)
-    var day = yesterday.getDate();
-    var month = yesterday.getMonth() + 1;
-    var year = yesterday.getFullYear();
-    var fecha = year + '-' + month + '-' + day;
-    return fecha;
-  }
-  
+
 
   premierLeagueGhana() {
     const key = "8af162c9850412c02adc53c461b40766844cead095f67960231f658949a3db65";

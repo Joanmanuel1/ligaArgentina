@@ -6,26 +6,27 @@ import { HomeComponent } from './home/home.component';
 import { FormsModule } from '@angular/forms';
 import { TomorrowComponent } from './tomorrow/tomorrow.component';
 import { RouterModule } from '@angular/router';
+import { FooterComponent } from './footer/footer.component';
+import { YesterdayComponent } from './yesterday/yesterday.component';
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    TomorrowComponent
+    TomorrowComponent,
+    FooterComponent,
+    YesterdayComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     RouterModule.forRoot([
-      {
-        path: 'home', component: HomeComponent
-      },
-      {
-        path: 'tomorrow', component: TomorrowComponent
-      }
-
-    ])
+      {path: '', component: HomeComponent},
+      {path: 'tomorrow', component: TomorrowComponent},
+      {path: 'yesterday', component: YesterdayComponent},
+    ]),
   ],
   providers: [],
   bootstrap: [AppComponent]
