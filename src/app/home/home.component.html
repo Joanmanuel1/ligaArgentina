@@ -12,67 +12,65 @@
                 <li class="nav-item">
                     <a class="nav-link" routerLink="tomorrow">Mañana</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="standings">Posiciones</a>
+                </li>
             </ul>
         </header>
-        <section>
-            <div *ngIf="cArgentina.length > 0; else sinResultados">
-                <h2>Premier League - Ghana</h2>
-                <table class="table table-striped table-hover table-dark">
-                    <thead class="table-light">
-                        <tr>
-                            <th class="col-1">Hora</th>
-                            <th class="col-3">Locales</th>
-                            <th class="col-2">Resultado</th>
-                            <th class="col-3">Visitantes</th>
-                            <th class="col-1">Tiempo</th>
-                        </tr>
-                    </thead>
-                    <tbody *ngFor="let partido of cArgentina; let i = index" [attr.data-index]="i">
-                        <tr>
-                            <td class="hora">{{partido.event_time}} hs</td>
-                            <td><img src="{{partido.home_team_logo}}" alt="" style="height: 50px;"><br>
-                                {{partido.event_home_team}} <br>
-                                <ng-container *ngFor="let gol of partido.goalscorers">
-                                    <ng-container *ngIf="gol.home_scorer != '' ">
-                                        <a class="btn btn-primary" data-toggle="collapse" href="#local{{i}}"
-                                            role="button" aria-expanded="false" aria-controls="collapseExample">
-                                            Goles</a>
-                                        <div class="collapse" id="local{{i}}">
-                                            <div class="card card-body" style="color: black;">
-                                                {{gol.time}}' - {{gol.home_scorer}}
-                                            </div>
-                                        </div>
+        <div *ngIf="cArgentina.length > 0; else sinResultados">
+            <h2>Premier League - Ghana</h2>
+            <table class="table table-striped table-hover table-dark">
+                <thead class="table-light">
+                    <tr>
+                        <th class="col-1">Hora</th>
+                        <th class="col-3">Locales</th>
+                        <th class="col-2">Resultado</th>
+                        <th class="col-3">Visitantes</th>
+                        <th class="col-1">Tiempo</th>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let partido of cArgentina; let i = index" [attr.data-index]="i">
+                    <tr>
+                        <td class="hora">{{partido.event_time}} hs</td>
+                        <td><img src="{{partido.home_team_logo}}" alt="" style="height: 50px;"><br>
+                            {{partido.event_home_team}} <br>
+                            <a class="btn btn-primary" data-toggle="collapse" href="#local{{i}}" role="button"
+                                aria-expanded="false" aria-controls="collapseExample">
+                                Goles</a>
+                            <div class="collapse" id="local{{i}}">
+                                <div class="card card-body" style="color: black;">
+                                    <ng-container *ngFor="let gol of partido.goalscorers">
+                                        <ng-container *ngIf="gol.home_scorer != '' ">
+                                            {{gol.time}}' - {{gol.home_scorer}}
+                                        </ng-container>
                                     </ng-container>
-                                </ng-container>
-                            </td>
-                            <td>{{partido.event_final_result}}</td>
-                            <td> <img src="{{partido.away_team_logo}}" alt="" style="height: 50px;"><br>
-                                {{partido.event_away_team}} <br>
-                                <ng-container *ngFor="let gol of partido.goalscorers">
-                                    <ng-container *ngIf="gol.away_scorer != '' ">
-                                        <a class="btn btn-primary" data-toggle="collapse" href="#visitante{{i}}"
-                                            role="button" aria-expanded="false" aria-controls="collapseExample"> Goles
-                                        </a>
-                                        <div class="collapse" id="visitante{{i}}">
-                                            <div class="card card-body" style="color: black;">
-                                                {{gol.time}}' - {{gol.away_scorer}}
-                                            </div>
-                                        </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>{{partido.event_final_result}}</td>
+                        <td> <img src="{{partido.away_team_logo}}" alt="" style="height: 50px;"><br>
+                            {{partido.event_away_team}} <br>
+                            <a class="btn btn-primary" data-toggle="collapse" href="#visitante{{i}}" role="button"
+                                aria-expanded="false" aria-controls="collapseExample"> Goles
+                            </a>
+                            <div class="collapse" id="visitante{{i}}">
+                                <div class="card card-body" style="color: black;">
+                                    <ng-container *ngFor="let gol of partido.goalscorers">
+                                        <ng-container *ngIf="gol.away_scorer != '' ">
+                                            {{gol.time}}' - {{gol.away_scorer}}
+                                        </ng-container>
                                     </ng-container>
-                                </ng-container>
-                            </td>
-                            <td>{{partido.event_status}}'</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <ng-template #sinResultados>
-                <h2> NO HAY PARTIDOS </h2>
-            </ng-template>
-
-        </section>
-
-
+                                </div>
+                            </div>
+                        </td>
+                        <td>{{partido.event_status}}'</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <ng-template #sinResultados>
+            <h2> NO HAY PARTIDOS </h2>
+        </ng-template>
     </div>
 
 </body>

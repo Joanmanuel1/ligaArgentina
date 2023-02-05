@@ -11,6 +11,7 @@ export class HomeComponent implements OnInit {
 
   constructor(private route: RouterModule) { }
   // B METROPOLITANA league_key: 40
+  // 1° division league_key: 44
   ligas: any = [];
 
   result: any = [];

@@ -1,0 +1,65 @@
+<body>
+    <div class="container">
+        <a routerLink="">Partidos en VIVO</a>
+        <h1>Premier League - Ghana</h1>
+        <h2>Tabla de posiciones</h2>
+        <section>
+        <table class="table table-striped table-hover table-dark table-bordered">
+            <thead class="table-light">
+                <tr>
+                    <th class="col-1" >#</th>
+                    <th class="col-4">Equipo</th>
+                    <th class="col-1">Puntos</th>
+                    <th class="col-1 ">Jugados</th>
+                    <th class="col-1">Ganados</th>
+                    <th class="col-1">Empatados</th>
+                    <th class="col-1">Perdidos</th>
+                    <th class="col-1">G/Favor</th>
+                    <th class="col-1">G/Contra</th>
+
+                </tr>
+            </thead>
+            <tbody *ngFor="let team of standings; let i = index" [attr.data-index]="i">
+                <tr>
+                    <td class="">{{team.standing_place}}</td>
+                    <td scope="">{{team.standing_team}}</td>
+                    <td class="">{{team.standing_PTS}}</td>
+                    <td class="" >{{team.standing_P}}</td>
+                    <td class="" style="color: green">{{team.standing_W}}</td>
+                    <td class="" style="color: blanchedalmond">{{team.standing_D}}</td>
+                    <td class="" style="color: red">{{team.standing_L}}</td>
+                    <td class="" style="color: rgb(111, 252, 111)">{{team.standing_F}}</td>
+                    <td class="" style="color: rgb(255, 138, 138)">{{team.standing_A}}</td>
+                </tr>
+            </tbody>
+        </table>
+            
+    </section>
+    <h2>Tabla de Goleadores de la Serie A (Porque la de ghana no esta)</h2>
+    <section>
+        <table class="table table-striped table-hover table-dark table-bordered">
+            <thead class="table-light">
+                <tr>
+                    <th class="col-1" >#</th>
+                    <th class="col-4">Jugador</th>
+                    <th class="col-4">Equipo</th>
+                    <th class="col-1">Goles</th>
+                    <th class="col-1 ">Penal</th>
+                    <th class="col-1">Asistencias</th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let jugador of goleadores; let i = index" [attr.data-index]="i">
+                <tr>
+                    <td class="">{{jugador.player_place}}</td>
+                    <td scope="">{{jugador.player_name}}</td>
+                    <td class="">{{jugador.team_name}}</td>
+                    <td class="" >{{jugador.goals}}</td>
+                    <td class="" style="color: green">{{jugador.penalty_goals}}</td>
+                    <td class="" style="color: blanchedalmond">{{jugador.assists}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    </div>
+</body>

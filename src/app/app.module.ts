@@ -8,6 +8,7 @@ import { TomorrowComponent } from './tomorrow/tomorrow.component';
 import { RouterModule } from '@angular/router';
 import { FooterComponent } from './footer/footer.component';
 import { YesterdayComponent } from './yesterday/yesterday.component';
+import { StandingsComponent } from './standings/standings.component';
 
 
 
@@ -17,7 +18,8 @@ import { YesterdayComponent } from './yesterday/yesterday.component';
     HomeComponent,
     TomorrowComponent,
     FooterComponent,
-    YesterdayComponent
+    YesterdayComponent,
+    StandingsComponent
   ],
   imports: [
     BrowserModule,
@@ -26,6 +28,7 @@ import { YesterdayComponent } from './yesterday/yesterday.component';
       {path: '', component: HomeComponent},
       {path: 'tomorrow', component: TomorrowComponent},
       {path: 'yesterday', component: YesterdayComponent},
+      {path: 'standings', component: StandingsComponent},
     ]),
   ],
   providers: [],
