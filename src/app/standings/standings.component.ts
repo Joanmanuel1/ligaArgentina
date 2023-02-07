@@ -14,6 +14,7 @@ export class StandingsComponent implements OnInit {
   standings: any = [];
   goleadores: any = [];
   fecha: any = [];
+  apifutbol: any = [];
 
   ngOnInit(): void {
     this.premierLeagueGhana();
@@ -35,7 +36,7 @@ export class StandingsComponent implements OnInit {
     fetch(`https://apiv2.allsportsapi.com/football/?&met=Standings&leagueId=177&APIkey=${key}`)
       .then(response => response.json())
       .then((equipos) => {
-        console.log(equipos);
+        console.log("Posiciones", equipos);
         for (let i = 0; i < equipos.result.total.length; i++) {
           this.standings.push({
             standing_place: equipos.result.total[i].standing_place, standing_team: equipos.result.total[i].standing_team,
@@ -46,25 +47,69 @@ export class StandingsComponent implements OnInit {
           });
         }
       });
-      fetch(`https://apiv2.allsportsapi.com/football/?&met=Topscorers&leagueId=207&APIkey=${key}`)
-        .then(response => response.json())
-        .then((equipos) => {
-          console.log("jugadores", equipos);
-          for (let i = 0; i < equipos.result.length; i++) {
-            this.goleadores.push({
-              player_place: equipos.result[i].player_place, player_name: equipos.result[i].player_name,
-              team_name: equipos.result[i].team_name, goals: equipos.result[i].goals,
-              assists: equipos.result[i].assists, penalty_goals: equipos.result[i].penalty_goals,
-            });
-          }
-          console.log("arg golead", equipos);
-        });
+    fetch(`https://apiv2.allsportsapi.com/football/?&met=Topscorers&leagueId=207&APIkey=${key}`)
+      .then(response => response.json())
+      .then((equipos) => {
+        console.log("jugadores", equipos);
+        for (let i = 0; i < equipos.result.length; i++) {
+          this.goleadores.push({
+            player_place: equipos.result[i].player_place, player_name: equipos.result[i].player_name,
+            team_name: equipos.result[i].team_name, goals: equipos.result[i].goals,
+            assists: equipos.result[i].assists, penalty_goals: equipos.result[i].penalty_goals,
+          });
+        }
+        console.log("arg golead", equipos);
+      });
 
     fetch(`https://apiv2.allsportsapi.com/football/?met=Leagues&APIkey=${key}`)
       .then(response => response.json())
       .then((equipos) => {
         console.log("ligas", equipos);
       });
+
+
+    fetch("https://v3.football.api-sports.io/standings?league=39&season=2022", {
+      "method": "GET",
+      "headers": {
+        "x-rapidapi-host": "v3.football.api-sports.io",
+        "x-rapidapi-key": "2a4d321e462a454968098ab7e12fc3af"
+      }
+    })
+      .then(response => response.json())
+      .then((equipos) => {
+        console.log(equipos)
+        for (let i = 0; i < equipos.response[0].league.standings[0].length; i++) {
+          this.apifutbol.push({
+            name: equipos.response[0].league.standings[0][i].team.name,
+            points: equipos.response[0].league.standings[0][i].points,
+            win: equipos.response[0].league.standings[0][i].all.win,
+          });
+        }
+        console.log("api", this.apifutbol)
+      })
+
+      .catch(err => {
+        console.log(err);
+      });
+
+    fetch("https://v3.football.api-sports.io/fixtures?live=all", {
+      "method": "GET",
+      "headers": {
+        "x-rapidapi-host": "v3.football.api-sports.io",
+        "x-rapidapi-key": "2a4d321e462a454968098ab7e12fc3af"
+      }
+    })
+      .then(response => response.json())
+      .then(response => {
+
+        console.log("live", response);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+
+
+
   }
 
 
