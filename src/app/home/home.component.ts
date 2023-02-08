@@ -12,33 +12,22 @@ export class HomeComponent implements OnInit {
   constructor(private route: RouterModule) { }
   // B METROPOLITANA league_key: 40
   // 1° division league_key: 44
-  ligas: any = [];
 
-  result: any = [];
   cArgentina: any = [];
   fecha: any = [];
+  apifutbol: any = [];
 
   ngOnInit(): void {
+    this.faCup();
     this.premierLeagueGhana();
-    console.log(this.cArgentina);
   }
-
-  fechaDeHoy() {
-    const today = new Date();
-    var day = today.getDate();
-    var month = today.getMonth() + 1;
-    var year = today.getFullYear();
-    var fecha = year + '-' + month + '-' + day;
-    return fecha;
-  }
-  
 
 
   premierLeagueGhana() {
     const key = "8af162c9850412c02adc53c461b40766844cead095f67960231f658949a3db65";
     var today = this.fechaDeHoy();
     fetch(`https://apiv2.allsportsapi.com/football/?met=Fixtures&APIkey=${key}&from=${today}&to=${today}&timezone=America/Buenos_Aires&leagueId=177`)
-    //fetch(`https://apiv2.allsportsapi.com/football/?met=Fixtures&APIkey=${key}&from=2023-02-01&to=2023-02-01&timezone=America/Buenos_Aires&leagueId=515`)
+      //fetch(`https://apiv2.allsportsapi.com/football/?met=Fixtures&APIkey=${key}&from=2023-02-01&to=2023-02-01&timezone=America/Buenos_Aires&leagueId=515`)
       .then(response => response.json())
       .then((equipos) => {
         for (let i = 0; i < equipos.result.length; i++) {
@@ -54,26 +43,57 @@ export class HomeComponent implements OnInit {
       });
   }
 
-  primeraA() {
-    const key = "8af162c9850412c02adc53c461b40766844cead095f67960231f658949a3db65";
+  faCup() {
     var today = this.fechaDeHoy();
-    fetch(`https://apiv2.allsportsapi.com/football/?met=Fixtures&APIkey=${key}&from=${today}&to=${today}&timezone=America/Buenos_Aires`)
-    //fetch(`https://apiv2.allsportsapi.com/football/?met=Fixtures&APIkey=${key}&from=2023-2-1&to=2023-2-3&timezone=America/Buenos_Aires`)
+    fetch(`https://v3.football.api-sports.io/fixtures?league=130&season=2023&from=${today}&to=${today}`, {
+      "method": "GET",
+      "headers": {
+        "x-rapidapi-host": "v3.football.api-sports.io",
+        "x-rapidapi-key": "2a4d321e462a454968098ab7e12fc3af"
+      }
+    })
       .then(response => response.json())
       .then((equipos) => {
-        for (let i = 0; i < equipos.result.length; i++) {
-          this.result.push({
-            home_team_logo: equipos.result[i].home_team_logo, away_team_logo: equipos.result[i].away_team_logo,
-            event_away_team: equipos.result[i].event_away_team, event_home_team: equipos.result[i].event_home_team,
-            event_final_result: equipos.result[i].event_final_result,
-            event_status: equipos.result[i].event_status, goalscorers: equipos.result[i].goalscorers
-          });
-          equipos.result[i].goalscorers.forEach((goalscorers: { id: any; time: any; home_scorer: any; away_scorer: any }) =>
-            this.result.concat({ time: goalscorers.time, home_scorer: goalscorers.home_scorer, away_scorer: goalscorers.away_scorer }));
-        }
+        console.log("equipos", equipos)
+      })
+
+      .catch(err => {
+        console.log(err);
       });
-  
   }
+
+  fechaDeHoy() {
+    const today = new Date();
+    var day = today.getDate();
+    var month = today.getMonth() + 1;
+    var year = today.getFullYear();
+    var dia;
+    var mes;
+
+    if (day < 10 && month < 10) {
+      dia = "0" + day;
+      mes = "0" + month;
+      var fecha = year + '-' + mes + '-' + dia;
+      return fecha;
+    }
+    else if(month < 10) {
+      mes = "0" + month;
+      var fecha = year + '-' + mes + '-' + day;
+      return fecha;
+    }
+
+    else if(day < 10){
+      dia = "0" + day;
+      var fecha = year + '-' + month + '-' + dia;
+      return fecha;
+    }
+
+    else {
+      var fecha = year + '-' + month + '-' + day;
+      return fecha;
+    }
+  }
+
 
 }
 
