@@ -9,6 +9,7 @@ import { RouterModule } from '@angular/router';
 import { FooterComponent } from './footer/footer.component';
 import { YesterdayComponent } from './yesterday/yesterday.component';
 import { StandingsComponent } from './standings/standings.component';
+import { FixtureComponent } from './fixture/fixture.component';
 
 
 
@@ -19,7 +20,8 @@ import { StandingsComponent } from './standings/standings.component';
     TomorrowComponent,
     FooterComponent,
     YesterdayComponent,
-    StandingsComponent
+    StandingsComponent,
+    FixtureComponent
   ],
   imports: [
     BrowserModule,
@@ -29,6 +31,7 @@ import { StandingsComponent } from './standings/standings.component';
       {path: 'tomorrow', component: TomorrowComponent},
       {path: 'yesterday', component: YesterdayComponent},
       {path: 'standings', component: StandingsComponent},
+      {path: 'fixture', component: FixtureComponent},
     ]),
   ],
   providers: [],
