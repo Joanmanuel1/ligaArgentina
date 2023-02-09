@@ -15,11 +15,11 @@ export class HomeComponent implements OnInit {
 
   cArgentina: any = [];
   fecha: any = [];
-  apifutbol: any = [];
+  copaArgentina: any = [];
 
   ngOnInit(): void {
     this.faCup();
-    this.premierLeagueGhana();
+    //this.premierLeagueGhana();
   }
 
 
@@ -45,7 +45,7 @@ export class HomeComponent implements OnInit {
 
   faCup() {
     var today = this.fechaDeHoy();
-    fetch(`https://v3.football.api-sports.io/fixtures?league=130&season=2023&from=${today}&to=${today}`, {
+    fetch(`https://v3.football.api-sports.io/fixtures?league=130&season=2023&from=${today}&to=${today}&timezone=America/Argentina/Buenos_Aires`, {
       "method": "GET",
       "headers": {
         "x-rapidapi-host": "v3.football.api-sports.io",
@@ -55,6 +55,21 @@ export class HomeComponent implements OnInit {
       .then(response => response.json())
       .then((equipos) => {
         console.log("equipos", equipos)
+        for (let i = 0; i < equipos.response.length; i++) {
+          this.copaArgentina.push({
+            home_name: equipos.response[i].teams.home.name,
+            home_logo: equipos.response[i].teams.home.logo,
+            away_name: equipos.response[i].teams.away.name,
+            away_logo: equipos.response[i].teams.away.logo,
+            home_goals:equipos.response[i].goals.home,
+            away_goals: equipos.response[i].goals.away,
+            date: equipos.response[i].fixture.date,
+            time: equipos.response[i].fixture.status.elapsed,
+            cup_logo: equipos.response[i].league.logo,
+            cup_name: equipos.response[i].league.name,
+            round: equipos.response[i].league.round,
+          });
+        }
       })
 
       .catch(err => {
