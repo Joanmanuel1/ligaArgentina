@@ -12,7 +12,6 @@ export class FixtureComponent implements OnInit {
 
   fixture_b_metropolitana: any = [];
   fecha = 1;
-
   ngOnInit(): void {
     this.fixtureBMetropolitana();
   }
@@ -28,6 +27,7 @@ export class FixtureComponent implements OnInit {
     })
       .then(response => response.json())
       .then((equipos) => {
+        console.log("eq", equipos);
         for (let i = 0; i < equipos.response.length; i++) {
           this.fixture_b_metropolitana.push({
             date: equipos.response[i].fixture.date,
@@ -39,25 +39,28 @@ export class FixtureComponent implements OnInit {
             home_logo: equipos.response[i].teams.home.logo,
             away_name: equipos.response[i].teams.away.name,
             away_logo: equipos.response[i].teams.away.logo,
-            home_goals:equipos.response[i].goals.home,
+            home_goals: equipos.response[i].goals.home,
             away_goals: equipos.response[i].goals.away,
           });
         }
 
+        this.fixture_b_metropolitana.sort((x: any, y: any) => {
+          x = new Date(x.date),
+            y = new Date(y.date);
+          return x - y;
+        });
       })
-
       .catch(err => {
         console.log(err);
       });
   }
 
-
-  fechaAnterior(){
-    this.fecha = this.fecha -1;
+  fechaAnterior() {
+    this.fecha = this.fecha - 1;
   }
 
-  fechaSiguiente(){
-    this.fecha = this.fecha +1;
+  fechaSiguiente() {
+    this.fecha = this.fecha + 1;
   }
 
 }

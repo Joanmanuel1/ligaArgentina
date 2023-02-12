@@ -15,10 +15,13 @@
                 <li class="nav-item">
                     <a class="nav-link" routerLink="standings">Posiciones</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="fixture">Fixture</a>
+                </li>
             </ul>
         </header>
-        <div *ngIf="copaArgentina.length > 0; else sinResultados">
-            <h2>{{copaArgentina[0].cup_name}}</h2>
+        <div *ngIf="b_metropolitana.length > 0; else sinResultados">
+            <h2>{{b_metropolitana[0].cup_name}}</h2>
             <table class="table table-striped table-hover table-dark">
                 <thead class="table-light">
                     <tr>
@@ -29,39 +32,15 @@
                         <th class="col-1">Tiempo</th>
                     </tr>
                 </thead>
-                <tbody *ngFor="let partido of copaArgentina; let i = index" [attr.data-index]="i">
+                <tbody *ngFor="let partido of b_metropolitana; let i = index" [attr.data-index]="i">
                     <tr>
                         <td class="hora">{{partido.date  | date:"HH:mm" }} hs</td>
                         <td><img src="{{partido.home_logo}}" alt="" style="height: 50px;"><br>
                             {{partido.home_name}} <br>
-                            <a class="btn btn-primary" data-toggle="collapse" href="#local{{i}}" role="button"
-                                aria-expanded="false" aria-controls="collapseExample">
-                                Goles</a>
-                            <div class="collapse" id="local{{i}}">
-                                <div class="card card-body" style="color: black;">
-                                    <ng-container *ngFor="let gol of partido.goalscorers">
-                                        <ng-container *ngIf="gol.home_scorer != '' ">
-                                            {{gol.time}}' - {{gol.home_scorer}}
-                                        </ng-container>
-                                    </ng-container>
-                                </div>
-                            </div>
                         </td>
                         <td>{{partido.home_goals}} - {{partido.away_goals}}</td>
                         <td> <img src="{{partido.away_logo}}" alt="" style="height: 50px;"><br>
                             {{partido.away_name}} <br>
-                            <a class="btn btn-primary" data-toggle="collapse" href="#visitante{{i}}" role="button"
-                                aria-expanded="false" aria-controls="collapseExample"> Goles
-                            </a>
-                            <div class="collapse" id="visitante{{i}}">
-                                <div class="card card-body" style="color: black;">
-                                    <ng-container *ngFor="let gol of partido.goalscorers">
-                                        <ng-container *ngIf="gol.away_scorer != '' ">
-                                            {{gol.time}}' - {{gol.away_scorer}}
-                                        </ng-container>
-                                    </ng-container>
-                                </div>
-                            </div>
                         </td>
                         <td>{{partido.time}}</td>
                     </tr>

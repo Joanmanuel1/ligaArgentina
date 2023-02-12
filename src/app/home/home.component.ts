@@ -8,44 +8,17 @@ import { RouterModule } from '@angular/router';
 })
 
 export class HomeComponent implements OnInit {
-
   constructor(private route: RouterModule) { }
-  // B METROPOLITANA league_key: 40
-  // 1° division league_key: 44
 
-  cArgentina: any = [];
-  fecha: any = [];
-  copaArgentina: any = [];
+  b_metropolitana: any = [];
 
   ngOnInit(): void {
-    this.faCup();
-    //this.premierLeagueGhana();
+    this.bMetropolitana();
   }
 
-
-  premierLeagueGhana() {
-    const key = "8af162c9850412c02adc53c461b40766844cead095f67960231f658949a3db65";
+  bMetropolitana() {
     var today = this.fechaDeHoy();
-    fetch(`https://apiv2.allsportsapi.com/football/?met=Fixtures&APIkey=${key}&from=${today}&to=${today}&timezone=America/Buenos_Aires&leagueId=177`)
-      //fetch(`https://apiv2.allsportsapi.com/football/?met=Fixtures&APIkey=${key}&from=2023-02-01&to=2023-02-01&timezone=America/Buenos_Aires&leagueId=515`)
-      .then(response => response.json())
-      .then((equipos) => {
-        for (let i = 0; i < equipos.result.length; i++) {
-          this.cArgentina.push({
-            home_team_logo: equipos.result[i].home_team_logo, away_team_logo: equipos.result[i].away_team_logo,
-            event_away_team: equipos.result[i].event_away_team, event_home_team: equipos.result[i].event_home_team,
-            event_final_result: equipos.result[i].event_final_result,
-            event_status: equipos.result[i].event_status, event_time: equipos.result[i].event_time, goalscorers: equipos.result[i].goalscorers
-          });
-          equipos.result[i].goalscorers.forEach((goalscorers: { id: any; time: any; home_scorer: any; away_scorer: any }) =>
-            this.cArgentina.concat({ time: goalscorers.time, home_scorer: goalscorers.home_scorer, away_scorer: goalscorers.away_scorer }));
-        }
-      });
-  }
-
-  faCup() {
-    var today = this.fechaDeHoy();
-    fetch(`https://v3.football.api-sports.io/fixtures?league=130&season=2023&from=${today}&to=${today}&timezone=America/Argentina/Buenos_Aires`, {
+    fetch(`https://v3.football.api-sports.io/fixtures?league=131&season=2023&from=${today}&to=${today}&timezone=America/Argentina/Buenos_Aires`, {
       "method": "GET",
       "headers": {
         "x-rapidapi-host": "v3.football.api-sports.io",
@@ -56,7 +29,7 @@ export class HomeComponent implements OnInit {
       .then((equipos) => {
         console.log("equipos", equipos)
         for (let i = 0; i < equipos.response.length; i++) {
-          this.copaArgentina.push({
+          this.b_metropolitana.push({
             home_name: equipos.response[i].teams.home.name,
             home_logo: equipos.response[i].teams.home.logo,
             away_name: equipos.response[i].teams.away.name,
