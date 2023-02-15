@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
@@ -11,7 +11,9 @@ import { YesterdayComponent } from './yesterday/yesterday.component';
 import { StandingsComponent } from './standings/standings.component';
 import { FixtureComponent } from './fixture/fixture.component';
 
-
+import localePy from '@angular/common/locales/es-AR'
+import { registerLocaleData } from '@angular/common';
+registerLocaleData(localePy, 'es');
 
 @NgModule({
   declarations: [
@@ -34,7 +36,11 @@ import { FixtureComponent } from './fixture/fixture.component';
       {path: 'fixture', component: FixtureComponent},
     ]),
   ],
-  providers: [],
+  providers: [
+    {
+      provide: LOCALE_ID, useValue: 'es'
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
