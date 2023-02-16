@@ -17,7 +17,6 @@
                 <a class="nav-link active" routerLink="../fixture">Fixture</a>
             </li>
         </ul>
-
         <h1> <img src="{{fixture_b_metropolitana[0].logo}}" alt=""
                 style="width: 300px !important; height: 150px !important; margin-top: 5%;"></h1>
         <header>
@@ -33,13 +32,14 @@
                 </li>
             </ul>
         </header>
-
         <table class="table table-hover table-dark">
             <tbody *ngFor="let partido of fixture_b_metropolitana; let i = index" [attr.data-index]="i">
                 <ng-container *ngIf="partido.round == 'Apertura - ' + fecha">
-                    <ng-container *ngIf="fixture_b_metropolitana[i].date == fixture_b_metropolitana[0].date ; else otros;">
+                    <ng-container
+                        *ngIf="fixture_b_metropolitana[i].date == fixture_b_metropolitana[0].date ; else otros;">
                         <tr *ngIf="i == 0">
-                            <th COLSPAN="5" class="table-info">{{partido.date | date:"EEEE d 'de' MMMM" | titlecase }}</th>
+                            <th COLSPAN="5" class="table-info">{{partido.date | date:"EEEE d 'de' MMMM" | titlecase }}
+                            </th>
                         </tr>
                         <tr>
                             <td class="hora">{{partido.date | date:"HH:mm" }} hs</td>
@@ -54,7 +54,8 @@
                     </ng-container>
                     <ng-template #otros>
                         <tr *ngIf="fixture_b_metropolitana[i].date != fixture_b_metropolitana[i-1].date">
-                            <th COLSPAN="5" class="table-info">{{partido.date | date:"EEEE d 'de' MMMM" | titlecase }}</th>
+                            <th COLSPAN="5" class="table-info">{{partido.date | date:"EEEE d 'de' MMMM" | titlecase }}
+                            </th>
                         </tr>
                         <tr>
                             <td class="hora">{{partido.date | date:"HH:mm" }} hs</td>
