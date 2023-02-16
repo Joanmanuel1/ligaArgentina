@@ -11,9 +11,13 @@ export class FixtureComponent implements OnInit {
   constructor(private route: RouterModule) { }
 
   fixture_b_metropolitana: any = [];
-  fecha = 1;
+  fecha: any;
+
+  b_metropolitana: any = [];
+
   ngOnInit(): void {
     this.fixtureBMetropolitana();
+    this.bMetropolitana();
   }
 
 
@@ -27,10 +31,9 @@ export class FixtureComponent implements OnInit {
     })
       .then(response => response.json())
       .then((equipos) => {
-        console.log("eq", equipos);
         for (let i = 0; i < equipos.response.length; i++) {
           this.fixture_b_metropolitana.push({
-            date: equipos.response[i].fixture.date,
+            date: equipos.response[i].fixture.date.split('T'),
             start: equipos.response[i].fixture.status.long,
             start_time: equipos.response[i].fixture.status.elapsed,
             round: equipos.response[i].league.round,
@@ -43,12 +46,21 @@ export class FixtureComponent implements OnInit {
             away_goals: equipos.response[i].goals.away,
           });
         }
-
         this.fixture_b_metropolitana.sort((x: any, y: any) => {
           x = new Date(x.date),
             y = new Date(y.date);
           return x - y;
         });
+
+        for (let i = 0; i < this.fixture_b_metropolitana.length; i++) {
+          var hoy = this.fechaDeHoy();
+          if (this.fixture_b_metropolitana[i].date > hoy) {
+            var numeroFecha = this.fixture_b_metropolitana[i].round.split('- ')
+            this.fecha = numeroFecha[1]
+            return numeroFecha;
+          }
+        }
+
       })
       .catch(err => {
         console.log(err);
@@ -56,11 +68,77 @@ export class FixtureComponent implements OnInit {
   }
 
   fechaAnterior() {
-    this.fecha = this.fecha - 1;
+    this.fecha = parseInt(this.fecha) - 1;
   }
 
   fechaSiguiente() {
-    this.fecha = this.fecha + 1;
+    this.fecha = parseInt(this.fecha) + 1;
   }
+
+  fechaDeHoy() {
+    const today = new Date();
+    var day = today.getDate();
+    var month = today.getMonth() + 1;
+    var year = today.getFullYear();
+    var dia;
+    var mes;
+
+    if (day < 10 && month < 10) {
+      dia = "0" + day;
+      mes = "0" + month;
+      var fecha = year + '-' + mes + '-' + dia;
+      return fecha;
+    }
+    else if (month < 10) {
+      mes = "0" + month;
+      var fecha = year + '-' + mes + '-' + day;
+      return fecha;
+    }
+
+    else if (day < 10) {
+      dia = "0" + day;
+      var fecha = year + '-' + month + '-' + dia;
+      return fecha;
+    }
+
+    else {
+      var fecha = year + '-' + month + '-' + day;
+      return fecha;
+    }
+  }
+
+
+
+
+  bMetropolitana() {
+    // Para la B Metro el id es el 131 y la posicion de standings es [0]
+    fetch("https://v3.football.api-sports.io/standings?league=131&season=2023", {
+      "method": "GET",
+      "headers": {
+        "x-rapidapi-host": "v3.football.api-sports.io",
+        "x-rapidapi-key": "2a4d321e462a454968098ab7e12fc3af"
+      }
+    })
+      .then(response => response.json())
+      .then((equipos) => {
+        for (let i = 0; i < equipos.response[0].league.standings[0].length; i++) {
+          this.b_metropolitana.push({
+            name: equipos.response[0].league.standings[0][i].team.name,
+            logo: equipos.response[0].league.standings[0][i].team.logo,
+            points: equipos.response[0].league.standings[0][i].points,
+            win: equipos.response[0].league.standings[0][i].all.win,
+            draw: equipos.response[0].league.standings[0][i].all.draw,
+            lose: equipos.response[0].league.standings[0][i].all.lose,
+            against: equipos.response[0].league.standings[0][i].all.goals.against,
+            for: equipos.response[0].league.standings[0][i].all.goals.for,
+            league_logo: equipos.response[0].league.logo,
+          });
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+
 
 }
