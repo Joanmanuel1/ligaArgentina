@@ -13,6 +13,12 @@ import { FixtureComponent } from './fixture/fixture.component';
 
 import localePy from '@angular/common/locales/es-AR'
 import { registerLocaleData } from '@angular/common';
+import { NavbarComponent } from './navbar/navbar.component';
+import { PrimeraAComponent } from './primera-a/primera-a.component';
+import { PrimeraNacionalComponent } from './primera-nacional/primera-nacional.component';
+import { PrimeraBComponent } from './primera-b/primera-b.component';
+import { LibertadoresComponent } from './libertadores/libertadores.component';
+import { ChampionsLeagueComponent } from './champions-league/champions-league.component';
 registerLocaleData(localePy, 'es');
 
 @NgModule({
@@ -23,7 +29,13 @@ registerLocaleData(localePy, 'es');
     FooterComponent,
     YesterdayComponent,
     StandingsComponent,
-    FixtureComponent
+    FixtureComponent,
+    NavbarComponent,
+    PrimeraAComponent,
+    PrimeraNacionalComponent,
+    PrimeraBComponent,
+    LibertadoresComponent,
+    ChampionsLeagueComponent
   ],
   imports: [
     BrowserModule,
@@ -34,6 +46,11 @@ registerLocaleData(localePy, 'es');
       {path: 'yesterday', component: YesterdayComponent},
       {path: 'standings', component: StandingsComponent},
       {path: 'fixture', component: FixtureComponent},
+      {path: 'primera', component: PrimeraAComponent},
+      {path: 'nacional', component: PrimeraNacionalComponent},
+      {path: 'bmetro', component: PrimeraBComponent},
+      {path: 'libertadores', component: LibertadoresComponent},
+      {path: 'championsleague', component: ChampionsLeagueComponent},
     ]),
   ],
   providers: [

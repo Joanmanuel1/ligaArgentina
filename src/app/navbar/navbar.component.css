@@ -1,0 +1,8 @@
+img{
+    height: 30px;
+    width: 30px;
+}
+a:hover{
+    color: blue;
+    outline: 1px solid darkcyan;   
+}

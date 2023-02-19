@@ -1,0 +1,38 @@
+<p>primera-a works!</p>
+<div class="container">
+    <div id="wg-api-football-standings" data-host="v3.football.api-sports.io"
+        data-key="2a4d321e462a454968098ab7e12fc3af" data-league="128" data-team="" data-season="2023" data-theme=""
+        data-show-errors="false" data-show-logos="true" class="wg_loader">
+    </div>
+</div>
+    <h2>Tabla de Posiciones</h2>
+    <table class="table table-striped table-hover table-dark table-bordered">
+        <thead class="table-light">
+            <tr>
+                <th class="col-1">#</th>
+                <th class="col-3">Equipo</th>
+                <th class="col-1">Pts</th>
+                <th class="col-1">PJ</th>
+                <th class="col-1" style="color: green">G</th>
+                <th class="col-1" style="color: gray">E</th>
+                <th class="col-1" style="color: red">P</th>
+                <th class="col-1" style="color:darkgreen">G/F</th>
+                <th class="col-1" style="color: darkred">G/C</th>
+                <th class="col-1" style="color: lightseagreen">DIF</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let equipos of primera_a; let i = index" [attr.data-index]="i">
+            <tr>
+                <td class="">{{i+1}}</td>
+                <td scope=""><img src="{{equipos.logo}}" alt=""> <br> {{equipos.name}} </td>
+                <td class="">{{equipos.points}}</td>
+                <td class="" style="color: rgb(129, 240, 129)">{{equipos.win}}</td>
+                <td class="" style="color: rgb(173, 171, 171)">{{equipos.draw}}</td>
+                <td class="" style="color: red">{{equipos.lose}}</td>
+                <td class="" style="color:rgb(194, 253, 194)">{{equipos.for}}</td>
+                <td class="" style="color: rgb(247, 185, 185)">{{equipos.against}}</td>
+                <td class="" style="color: lightseagreen">{{equipos.for - equipos.against}}</td>
+
+            </tr>
+        </tbody>
+    </table>
