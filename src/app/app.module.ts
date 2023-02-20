@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { TomorrowComponent } from './tomorrow/tomorrow.component';
 import { RouterModule } from '@angular/router';
 import { FooterComponent } from './footer/footer.component';
@@ -21,6 +21,8 @@ import { LibertadoresComponent } from './libertadores/libertadores.component';
 import { ChampionsLeagueComponent } from './champions-league/champions-league.component';
 registerLocaleData(localePy, 'es');
 
+import { CommonModule } from '@angular/common';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,11 +37,14 @@ registerLocaleData(localePy, 'es');
     PrimeraNacionalComponent,
     PrimeraBComponent,
     LibertadoresComponent,
-    ChampionsLeagueComponent
+    ChampionsLeagueComponent,
+
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    CommonModule,
+    ReactiveFormsModule,
     RouterModule.forRoot([
       {path: '', component: HomeComponent},
       {path: 'tomorrow', component: TomorrowComponent},

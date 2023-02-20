@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit  } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 @Component({
@@ -7,10 +7,12 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./home.component.css']
 })
 
+
 export class HomeComponent implements OnInit {
   constructor(private route: RouterModule) { }
 
   b_metropolitana: any = [];
+  goles: any = [];
   ayer: any = [];
   hoy: any = [];
   manana: any = [];
@@ -37,17 +39,56 @@ export class HomeComponent implements OnInit {
         console.log("equipos", equipos)
         for (let i = 0; i < equipos.response.length; i++) {
           this.b_metropolitana.push({
+            home_id: equipos.response[i].teams.home.id,
             home_name: equipos.response[i].teams.home.name,
             home_logo: equipos.response[i].teams.home.logo,
+            away_id: equipos.response[i].teams.away.id,
             away_name: equipos.response[i].teams.away.name,
             away_logo: equipos.response[i].teams.away.logo,
             home_goals:equipos.response[i].goals.home,
             away_goals: equipos.response[i].goals.away,
             date: equipos.response[i].fixture.date.split('T'),
             time: equipos.response[i].fixture.status.elapsed,
+            fixture_id: equipos.response[i].fixture.id,
+            stadium: equipos.response[i].fixture.venue.name,
             cup_logo: equipos.response[i].league.logo,
             cup_name: equipos.response[i].league.name,
             round: equipos.response[i].league.round,
+            season: equipos.response[i].league.season,
+
+          });
+        }
+        console.log("lista", this.b_metropolitana)
+      })
+
+      .catch(err => {
+        console.log(err);
+      });
+  }
+
+
+  matchEvent(id:any){
+    fetch(`https://v3.football.api-sports.io/fixtures/events?fixture=${id}`, {
+      "method": "GET",
+      "headers": {
+        "x-rapidapi-host": "v3.football.api-sports.io",
+        "x-rapidapi-key": "2a4d321e462a454968098ab7e12fc3af"
+      }
+    })
+      .then(response => response.json())
+      .then((match) => {
+        console.log("Partido", match)
+        for (let i = 0; i < match.response.length; i++) {
+          this.goles.push({
+            fixture_id:id,
+            time: match.response[i].time.elapsed,
+            extra: match.response[i].time.extra,
+            id: match.response[i].team.id,
+            team_name: match.response[i].team.name,
+            team_logo: match.response[i].team.logo,
+            player: match.response[i].player.name,
+            type: match.response[i].player.type,
+            detail: match.response[i].player.detail,
           });
         }
       })
