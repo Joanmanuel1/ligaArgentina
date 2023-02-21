@@ -18,13 +18,12 @@ h2{
 
 tr{
   text-align: center;
+
 }
 
 .resultado{
-  font-size: 40px;
+  font-size: 28px;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  color: blanchedalmond !important;
-  padding-top: 4%;
 }
 
 span{
@@ -35,16 +34,14 @@ span{
   font-size: 20px;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   color: rgb(236, 175, 83) !important;
-  text-align: center;
-  padding-top: 5%;
 }
 
 .match{
   font-family:cursive;
-  font-size: 16px;
+  font-size: 12px;
   text-align: center;
   color: rgb(2, 85, 85);
-  padding: 5px;
+  padding: 3px;
 }
 
 .fa-soccer-ball-o{
@@ -52,3 +49,4 @@ span{
   font-size: 22px;
   padding-right: 5px;
 }
+

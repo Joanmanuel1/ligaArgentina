@@ -34,13 +34,9 @@
                             <tbody *ngFor="let partido of b_metropolitana; let i = index" [attr.data-index]="i">
                                 <tr *ngIf="partido.date[0] == ayer">
                                     <td class="hora">{{partido.date | date:"HH:mm" }} hs</td>
-                                    <td><img src="{{partido.home_logo}}" alt="" style="height: 50px;"><br>
-                                        {{partido.home_name}} <br>
-                                    </td>
+                                    <td style="text-align: right;"> {{partido.home_name}} <img src="{{partido.home_logo}}" alt="" style="height: 30px;"> </td>
                                     <td class="resultado">{{partido.home_goals}} - {{partido.away_goals}}</td>
-                                    <td> <img src="{{partido.away_logo}}" alt="" style="height: 50px;"><br>
-                                        {{partido.away_name}} <br>
-                                    </td>
+                                    <td style="text-align: left;"> <img src="{{partido.away_logo}}" alt="" style="height: 30px;"> {{partido.away_name}} </td>
                                     <td>{{partido.time}}</td>
                                     <td>
                                         <!-- Button trigger modal -->
@@ -68,16 +64,20 @@
                                                                     style="height: 50px;"><br>
                                                                 {{partido.home_name}}
                                                             </div>
-                                                            <div class="col resultado">
-                                                                {{partido.home_goals}} - {{partido.away_goals}} <br>
-                                                                <p>Partido Finalizado</p><br>
-                                                                {{partido.stadium}}
-
+                                                            <div class="col" style="font-size: 32px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; padding-top: 10%;">
+                                                               {{partido.home_goals}} - {{partido.away_goals}}
                                                             </div>
                                                             <div class="col">
                                                                 <img src="{{partido.away_logo}}" alt=""
                                                                     style="height: 50px;"><br>
                                                                 {{partido.away_name}}
+                                                            </div>
+                                                        </div>
+                                                        <div class="row align-items-start">
+                                                            <div class="col" style="text-align: center;">
+                                                               <b>Partido Finalizado</b> <br>
+                                                                {{partido.stadium}}
+
                                                             </div>
                                                         </div>
                                                         <ng-container *ngFor="let goleadores of goles">
@@ -128,8 +128,8 @@
                                                         </ng-container>
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="button" class="btn btn-success"
-                                                            data-bs-dismiss="modal">Close</button>
+                                                        <button type="button" class="btn btn-primary"
+                                                            data-bs-dismiss="modal">Cerrar</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -159,13 +159,9 @@
                             <tbody *ngFor="let partido of b_metropolitana; let i = index" [attr.data-index]="i">
                                 <tr *ngIf="partido.date[0] == hoy">
                                     <td class="hora">{{partido.date | date:"HH:mm" }} hs</td>
-                                    <td><img src="{{partido.home_logo}}" alt="" style="height: 50px;"><br>
-                                        {{partido.home_name}} <br>
-                                    </td>
+                                    <td style="text-align: right;"> {{partido.home_name}} <img src="{{partido.home_logo}}" alt="" style="height: 30px;"> </td>
                                     <td class="resultado">{{partido.home_goals}} - {{partido.away_goals}}</td>
-                                    <td> <img src="{{partido.away_logo}}" alt="" style="height: 50px;"><br>
-                                        {{partido.away_name}} <br>
-                                    </td>
+                                    <td style="text-align: left;"> <img src="{{partido.away_logo}}" alt="" style="height: 30px;"> {{partido.away_name}} </td>
                                     <td>{{partido.time}}</td>
                                 </tr>
                             </tbody>
@@ -191,13 +187,9 @@
                             <tbody *ngFor="let partido of b_metropolitana; let i = index" [attr.data-index]="i">
                                 <tr *ngIf="partido.date[0] == manana">
                                     <td class="hora">{{partido.date | date:"HH:mm" }} hs</td>
-                                    <td><img src="{{partido.home_logo}}" alt="" style="height: 50px;"><br>
-                                        {{partido.home_name}} <br>
-                                    </td>
+                                    <td style="text-align: right;"> {{partido.home_name}} <img src="{{partido.home_logo}}" alt="" style="height: 30px;"> </td>
                                     <td class="resultado">{{partido.home_goals}} - {{partido.away_goals}}</td>
-                                    <td> <img src="{{partido.away_logo}}" alt="" style="height: 50px;"><br>
-                                        {{partido.away_name}} <br>
-                                    </td>
+                                    <td style="text-align: left;"> <img src="{{partido.away_logo}}" alt="" style="height: 30px;"> {{partido.away_name}} </td>
                                     <td>{{partido.time}}</td>
                                 </tr>
                             </tbody>
