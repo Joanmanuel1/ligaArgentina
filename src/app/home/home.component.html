@@ -2,7 +2,7 @@
     <h1>Partidos HOY en VIVO</h1>
     <div class="container">
         <header>
-            <ul class="nav nav-tabs mx-auto" id="myTab" role="tablist">
+            <ul class="nav nav-tabs" id="myTab" role="tablist" style="text-align: center;">
                 <li class="nav-item" role="presentation">
                     <button class="nav-link" id="ayer-tab" data-bs-toggle="tab" data-bs-target="#ayer" type="button"
                         role="tab" aria-controls="ayer" aria-selected="false">Ayer</button>
@@ -24,9 +24,9 @@
                             <thead class="table-light">
                                 <tr>
                                     <th class="col-1">Hora</th>
-                                    <th class="col-3">Locales</th>
-                                    <th class="col-3">Resultado</th>
-                                    <th class="col-3">Visitantes</th>
+                                    <th class="col-4" style="text-align: right;">Locales</th>
+                                    <th class="col-1">Resultado</th>
+                                    <th class="col-4" style="text-align: left;">Visitantes</th>
                                     <th class="col-1">Tiempo</th>
                                     <th class="col-1">Goles</th>
                                 </tr>
@@ -49,14 +49,12 @@
                                             aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h1 class="modal-title fs-5" id="exampleModalLabel"
-                                                            style="color: black;">{{partido.cup_name}}</h1>
-
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                            aria-label="Close"></button>
+                                                    <div class="modal-header bg-dark text-white">
+                                                        <h1 class="modal-title fs-5" id="exampleModalLabel"> {{partido.cup_name}}</h1>
+                                                        <button type="button" class="btn-close bg-danger text-white" data-bs-dismiss="modal"
+                                                            aria-label="Close" ></button>
                                                     </div>
-                                                    <div class="modal-body" style="color: black;">
+                                                    <div class="modal-body bg-light text-dark">
                                                         <h3>{{partido.round}}</h3>
                                                         <div class="row align-items-start">
                                                             <div class="col">
@@ -128,7 +126,7 @@
                                                         </ng-container>
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="button" class="btn btn-primary"
+                                                        <button type="button" class="btn btn-danger"
                                                             data-bs-dismiss="modal">Cerrar</button>
                                                     </div>
                                                 </div>
@@ -140,20 +138,143 @@
                         </table>
                     </div>
                     <ng-template #sinResultados>
-                        <h2> No hubo partidos en el dia de ayer</h2>
+                        <p> No hubo partidos en el dia de ayer b metro</p>
+                    </ng-template>
+                    <div *ngIf="primera_a.length > 0; else sinResultados">
+                        <h2>{{primera_a[0].cup_name}}</h2>
+                        <table class="table table-striped table-hover table-dark">
+                            <thead class="table-light">
+                                <tr>
+                                    <th class="col-1">Hora</th>
+                                    <th class="col-4" style="text-align: right;">Locales</th>
+                                    <th class="col-1">Resultado</th>
+                                    <th class="col-4" style="text-align: left;">Visitantes</th>
+                                    <th class="col-1">Tiempo</th>
+                                    <th class="col-1">Goles</th>
+                                </tr>
+                            </thead>
+                            <tbody *ngFor="let partido of primera_a; let i = index" [attr.data-index]="i">
+                                <tr *ngIf="partido.date[0] == ayer">
+                                    <td class="hora">{{partido.date | date:"HH:mm" }} hs</td>
+                                    <td style="text-align: right;"> {{partido.home_name}} <img src="{{partido.home_logo}}" alt="" style="height: 30px;"> </td>
+                                    <td class="resultado">{{partido.home_goals}} - {{partido.away_goals}}</td>
+                                    <td style="text-align: left;"> <img src="{{partido.away_logo}}" alt="" style="height: 30px;"> {{partido.away_name}} </td>
+                                    <td>{{partido.time}}</td>
+                                    <td>
+                                        <!-- Button trigger modal -->
+                                        <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                                            [attr.data-bs-target]="'#exampleModal'+partido.fixture_id"
+                                            (click)="matchEvent(partido.fixture_id)"> <i class="fa fa-plus-circle"></i>
+                                        </button>
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="exampleModal{{partido.fixture_id}}" tabindex="-1"
+                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header bg-dark text-white">
+                                                        <h1 class="modal-title fs-5" id="exampleModalLabel"> {{partido.cup_name}}</h1>
+                                                        <button type="button" class="btn-close bg-danger text-white" data-bs-dismiss="modal"
+                                                            aria-label="Close" ></button>
+                                                    </div>
+                                                    <div class="modal-body bg-light text-dark">
+                                                        <h3>{{partido.round}}</h3>
+                                                        <div class="row align-items-start">
+                                                            <div class="col">
+                                                                <img src="{{partido.home_logo}}" alt=""
+                                                                    style="height: 50px;"><br>
+                                                                {{partido.home_name}}
+                                                            </div>
+                                                            <div class="col" style="font-size: 32px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; padding-top: 10%;">
+                                                               {{partido.home_goals}} - {{partido.away_goals}}
+                                                            </div>
+                                                            <div class="col">
+                                                                <img src="{{partido.away_logo}}" alt=""
+                                                                    style="height: 50px;"><br>
+                                                                {{partido.away_name}}
+                                                            </div>
+                                                        </div>
+                                                        <div class="row align-items-start">
+                                                            <div class="col" style="text-align: center;">
+                                                               <b>Partido Finalizado</b> <br>
+                                                                {{partido.stadium}}
+
+                                                            </div>
+                                                        </div>
+                                                        <ng-container *ngFor="let goleadores of goles">
+                                                            <ng-container
+                                                                *ngIf="partido.fixture_id == goleadores.fixture_id">
+                                                                <ng-container
+                                                                    *ngIf="goleadores.team_name == partido.home_name; else visitante">
+                                                                    <div class="row align-items-start"
+                                                                        style="border: solid 2px darkcyan">
+                                                                        <div class="col">
+                                                                            <span class="match">
+                                                                                <i class="fa fa-soccer-ball-o"></i>
+                                                                                {{goleadores.player}} -
+                                                                                <span
+                                                                                    style="color: red; padding-left: 5px; padding-right: 5px;">
+                                                                                    <b> {{goleadores.time}}'
+                                                                                        {{goleadores.extra}}</b>
+                                                                                </span>
+                                                                                {{goleadores.type}}
+                                                                                {{goleadores.detail}}
+                                                                            </span>
+                                                                        </div>
+                                                                        <div class="col"> </div>
+                                                                        <div class="col"></div>
+                                                                    </div>
+                                                                </ng-container>
+                                                                <ng-template #visitante>
+                                                                    <div class="row align-items-start"
+                                                                        style="border: solid 2px darkcyan">
+                                                                        <div class="col"></div>
+                                                                        <div class="col"></div>
+                                                                        <div class="col">
+                                                                            <span class="match">
+                                                                                <i class="fa fa-soccer-ball-o"></i>
+                                                                                {{goleadores.player}}
+                                                                                <span
+                                                                                    style="color: red; padding-left: 5px; padding-right: 5px;">
+                                                                                    <b> {{goleadores.time}}'
+                                                                                        {{goleadores.extra}}</b>
+                                                                                </span>
+                                                                                {{goleadores.type}}
+                                                                                {{goleadores.detail}}
+                                                                            </span>
+                                                                        </div>
+                                                                    </div>
+                                                                </ng-template>
+                                                            </ng-container>
+                                                        </ng-container>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-dark"
+                                                            data-bs-dismiss="modal">Cerrar</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <ng-template #sinResultados>
+                        <p> No hubo partidos en el dia de ayer</p>
                     </ng-template>
                 </div>
                 <div class="tab-pane fade show active" id="hoy" role="tabpanel" aria-labelledby="hoy-tab">
                     <div *ngIf="b_metropolitana.length > 0; else sinResultado">
                         <h2>{{b_metropolitana[0].cup_name}}</h2>
-                        <table class="table table-striped table-hover table-dark">
-                            <thead class="table-light">
+                        <table class="table table-striped table-hover table-light">
+                            <thead class="table-dark">
                                 <tr>
                                     <th class="col-1">Hora</th>
                                     <th class="col-3">Locales</th>
                                     <th class="col-2">Resultado</th>
                                     <th class="col-3">Visitantes</th>
                                     <th class="col-1">Tiempo</th>
+                                    <th class="col-1">Goles</th>
                                 </tr>
                             </thead>
                             <tbody *ngFor="let partido of b_metropolitana; let i = index" [attr.data-index]="i">
@@ -163,14 +284,233 @@
                                     <td class="resultado">{{partido.home_goals}} - {{partido.away_goals}}</td>
                                     <td style="text-align: left;"> <img src="{{partido.away_logo}}" alt="" style="height: 30px;"> {{partido.away_name}} </td>
                                     <td>{{partido.time}}</td>
+                                    <td>
+                                        <!-- Button trigger modal -->
+                                        <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                                            [attr.data-bs-target]="'#exampleModal'+partido.fixture_id"
+                                            (click)="matchEvent(partido.fixture_id)"> <i class="fa fa-plus-circle"></i>
+                                        </button>
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="exampleModal{{partido.fixture_id}}" tabindex="-1"
+                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header bg-dark text-white">
+                                                        <h1 class="modal-title fs-5" id="exampleModalLabel"> {{partido.cup_name}}</h1>
+                                                        <button type="button" class="btn-close bg-danger text-white" data-bs-dismiss="modal"
+                                                            aria-label="Close" ></button>
+                                                    </div>
+                                                    <div class="modal-body bg-light text-dark">
+                                                        <h3>{{partido.round}}</h3>
+                                                        <div class="row align-items-start">
+                                                            <div class="col">
+                                                                <img src="{{partido.home_logo}}" alt=""
+                                                                    style="height: 50px;"><br>
+                                                                {{partido.home_name}}
+                                                            </div>
+                                                            <div class="col" style="font-size: 32px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; padding-top: 10%;">
+                                                               {{partido.home_goals}} - {{partido.away_goals}}
+                                                            </div>
+                                                            <div class="col">
+                                                                <img src="{{partido.away_logo}}" alt=""
+                                                                    style="height: 50px;"><br>
+                                                                {{partido.away_name}}
+                                                            </div>
+                                                        </div>
+                                                        <div class="row align-items-start">
+                                                            <div class="col" style="text-align: center;">
+                                                               <b>Partido Finalizado</b> <br>
+                                                                {{partido.stadium}}
+
+                                                            </div>
+                                                        </div>
+                                                        <ng-container *ngFor="let goleadores of goles">
+                                                            <ng-container
+                                                                *ngIf="partido.fixture_id == goleadores.fixture_id">
+                                                                <ng-container
+                                                                    *ngIf="goleadores.team_name == partido.home_name; else visitante">
+                                                                    <div class="row align-items-start"
+                                                                        style="border: solid 2px darkcyan">
+                                                                        <div class="col">
+                                                                            <span class="match">
+                                                                                <i class="fa fa-soccer-ball-o"></i>
+                                                                                {{goleadores.player}} -
+                                                                                <span
+                                                                                    style="color: red; padding-left: 5px; padding-right: 5px;">
+                                                                                    <b> {{goleadores.time}}'
+                                                                                        {{goleadores.extra}}</b>
+                                                                                </span>
+                                                                                {{goleadores.type}}
+                                                                                {{goleadores.detail}}
+                                                                            </span>
+                                                                        </div>
+                                                                        <div class="col"> </div>
+                                                                        <div class="col"></div>
+                                                                    </div>
+                                                                </ng-container>
+                                                                <ng-template #visitante>
+                                                                    <div class="row align-items-start"
+                                                                        style="border: solid 2px darkcyan">
+                                                                        <div class="col"></div>
+                                                                        <div class="col"></div>
+                                                                        <div class="col">
+                                                                            <span class="match">
+                                                                                <i class="fa fa-soccer-ball-o"></i>
+                                                                                {{goleadores.player}}
+                                                                                <span
+                                                                                    style="color: red; padding-left: 5px; padding-right: 5px;">
+                                                                                    <b> {{goleadores.time}}'
+                                                                                        {{goleadores.extra}}</b>
+                                                                                </span>
+                                                                                {{goleadores.type}}
+                                                                                {{goleadores.detail}}
+                                                                            </span>
+                                                                        </div>
+                                                                    </div>
+                                                                </ng-template>
+                                                            </ng-container>
+                                                        </ng-container>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-danger"
+                                                            data-bs-dismiss="modal">Cerrar</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                     <ng-template #sinResultado>
-                        <h2> No hay partidos en el dia de hoy </h2>
+                        <p> No hay partidos en el dia de hoy b metro</p>
+                    </ng-template>
+                    <div *ngIf="primera_a.length > 0; else sinResultado">
+                        <h2>{{primera_a[0].cup_name}}</h2>
+                        <table class="table table-striped table-hover table-light">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th class="col-1">Hora</th>
+                                    <th class="col-3">Locales</th>
+                                    <th class="col-2">Resultado</th>
+                                    <th class="col-3">Visitantes</th>
+                                    <th class="col-1">Tiempo</th>
+                                    <th class="col-1">Goles</th>
+                                </tr>
+                            </thead>
+                            <tbody *ngFor="let partido of primera_a; let i = index" [attr.data-index]="i">
+                                <tr *ngIf="partido.date[0] == hoy">
+                                    <td class="hora">{{partido.date | date:"HH:mm" }} hs</td>
+                                    <td style="text-align: right;"> {{partido.home_name}} <img src="{{partido.home_logo}}" alt="" style="height: 30px;"> </td>
+                                    <td class="resultado">{{partido.home_goals}} - {{partido.away_goals}}</td>
+                                    <td style="text-align: left;"> <img src="{{partido.away_logo}}" alt="" style="height: 30px;"> {{partido.away_name}} </td>
+                                    <td>{{partido.time}}</td>
+                                    <td>
+                                        <!-- Button trigger modal -->
+                                        <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                                            [attr.data-bs-target]="'#exampleModal'+partido.fixture_id"
+                                            (click)="matchEvent(partido.fixture_id)"> <i class="fa fa-plus-circle"></i>
+                                        </button>
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="exampleModal{{partido.fixture_id}}" tabindex="-1"
+                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header bg-dark text-white">
+                                                        <h1 class="modal-title fs-5" id="exampleModalLabel"> {{partido.cup_name}}</h1>
+                                                        <button type="button" class="btn-close bg-danger text-white" data-bs-dismiss="modal"
+                                                            aria-label="Close" ></button>
+                                                    </div>
+                                                    <div class="modal-body bg-light text-dark">
+                                                        <h3>{{partido.round}}</h3>
+                                                        <div class="row align-items-start">
+                                                            <div class="col">
+                                                                <img src="{{partido.home_logo}}" alt=""
+                                                                    style="height: 50px;"><br>
+                                                                {{partido.home_name}}
+                                                            </div>
+                                                            <div class="col" style="font-size: 32px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; padding-top: 10%;">
+                                                               {{partido.home_goals}} - {{partido.away_goals}}
+                                                            </div>
+                                                            <div class="col">
+                                                                <img src="{{partido.away_logo}}" alt=""
+                                                                    style="height: 50px;"><br>
+                                                                {{partido.away_name}}
+                                                            </div>
+                                                        </div>
+                                                        <div class="row align-items-start">
+                                                            <div class="col" style="text-align: center;">
+                                                               <b>Partido Finalizado</b> <br>
+                                                                {{partido.stadium}}
+
+                                                            </div>
+                                                        </div>
+                                                        <ng-container *ngFor="let goleadores of goles">
+                                                            <ng-container
+                                                                *ngIf="partido.fixture_id == goleadores.fixture_id">
+                                                                <ng-container
+                                                                    *ngIf="goleadores.team_name == partido.home_name; else visitante">
+                                                                    <div class="row align-items-start"
+                                                                        style="border: solid 2px darkcyan">
+                                                                        <div class="col">
+                                                                            <span class="match">
+                                                                                <i class="fa fa-soccer-ball-o"></i>
+                                                                                {{goleadores.player}} -
+                                                                                <span
+                                                                                    style="color: red; padding-left: 5px; padding-right: 5px;">
+                                                                                    <b> {{goleadores.time}}'
+                                                                                        {{goleadores.extra}}</b>
+                                                                                </span>
+                                                                                {{goleadores.type}}
+                                                                                {{goleadores.detail}}
+                                                                            </span>
+                                                                        </div>
+                                                                        <div class="col"> </div>
+                                                                        <div class="col"></div>
+                                                                    </div>
+                                                                </ng-container>
+                                                                <ng-template #visitante>
+                                                                    <div class="row align-items-start"
+                                                                        style="border: solid 2px darkcyan">
+                                                                        <div class="col"></div>
+                                                                        <div class="col"></div>
+                                                                        <div class="col">
+                                                                            <span class="match">
+                                                                                <i class="fa fa-soccer-ball-o"></i>
+                                                                                {{goleadores.player}}
+                                                                                <span
+                                                                                    style="color: red; padding-left: 5px; padding-right: 5px;">
+                                                                                    <b> {{goleadores.time}}'
+                                                                                        {{goleadores.extra}}</b>
+                                                                                </span>
+                                                                                {{goleadores.type}}
+                                                                                {{goleadores.detail}}
+                                                                            </span>
+                                                                        </div>
+                                                                    </div>
+                                                                </ng-template>
+                                                            </ng-container>
+                                                        </ng-container>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-danger"
+                                                            data-bs-dismiss="modal">Cerrar</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <ng-template #sinResultado>
+                        <p> No hay partidos en el dia de hoy primera</p>
                     </ng-template>
                 </div>
+
+
                 <div class="tab-pane fade" id="mañana" role="tabpanel" aria-labelledby="mañana-tab">
                     <div *ngIf="b_metropolitana.length > 0; else sinResultad">
                         <h2>{{b_metropolitana[0].cup_name}}</h2>
@@ -196,7 +536,32 @@
                         </table>
                     </div>
                     <ng-template #sinResultad>
-                        <h2> No hay partidos para el dia de mañana </h2>
+                        <p> No hay partidos para el dia de mañana </p>
+                    </ng-template>
+                    <div *ngIf="primera_a.length > 0; else sinResultad">
+                        <h2>{{primera_a[0].cup_name}}</h2>
+                        <table class="table table-striped table-hover table-light">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th class="col-3">Hora</th>
+                                    <th class="col-4" style="text-align: right;">Locales</th>
+                                    <th class="col-1">VS</th>
+                                    <th class="col-4" style="text-align: left;">Visitantes</th>
+
+                                </tr>
+                            </thead>
+                            <tbody *ngFor="let partido of primera_a; let i = index" [attr.data-index]="i">
+                                <tr *ngIf="partido.date[0] == manana">
+                                    <td class="hora">{{partido.date | date:"HH:mm" }} hs</td>
+                                    <td style="text-align: right;"> {{partido.home_name}} <img src="{{partido.home_logo}}" alt="" style="height: 30px;"> </td>
+                                    <td class="resultado">-</td>
+                                    <td style="text-align: left;"> <img src="{{partido.away_logo}}" alt="" style="height: 30px;"> {{partido.away_name}} </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <ng-template #sinResultad>
+                        <p> No hay partidos para el dia de mañana </p>
                     </ng-template>
                 </div>
             </div>

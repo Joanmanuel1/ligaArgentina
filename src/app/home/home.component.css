@@ -11,14 +11,14 @@ h1{
 }
 
 h2{
-  color: aliceblue;
-  background-color: black;
+  color: black;
+  background-color: snow;
   text-align: center;
 }
 
 tr{
   text-align: center;
-
+  margin-top: 20px;
 }
 
 .resultado{
@@ -33,7 +33,7 @@ span{
 .hora{
   font-size: 20px;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  color: rgb(236, 175, 83) !important;
+  color: rgb(0, 85, 62) !important;
 }
 
 .match{

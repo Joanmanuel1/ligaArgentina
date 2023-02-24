@@ -20,21 +20,39 @@
                             <th class="col-md-auto" style="color:lightseagreen">GF</th>
                             <th class="col-md-auto" style="color: lightcoral">GC</th>
                             <th class="col-md-auto" style="color: rgb(14, 240, 188)">+-</th>
+                            <th class="col-md-auto">F</th>
                         </tr>
                     </thead>
                     <tbody *ngFor="let equipos of b_metropolitana; let i = index" [attr.data-index]="i">
                         <tr>
                             <td class="">{{i+1}}</td>
-                            <td scope="" style="text-align: left !important;"><img src="{{equipos.logo}}" alt="" class="img-posiciones">
+                            <td scope="" style="text-align: left !important;"><img src="{{equipos.logo}}" alt=""
+                                    class="img-posiciones">
                                 {{equipos.name}}</td>
                             <td class="">{{equipos.points}}</td>
-                            <td class="">2</td>
+                            <td class="">{{equipos.played}}</td>
                             <td class="" style="color: rgb(2, 87, 2)">{{equipos.win}}</td>
                             <td class="" style="color: rgb(173, 171, 171)">{{equipos.draw}}</td>
                             <td class="" style="color: red">{{equipos.lose}}</td>
                             <td class="" style="color:rgb(15, 72, 15)">{{equipos.for}}</td>
                             <td class="" style="color: rgb(143, 28, 28)">{{equipos.against}}</td>
-                            <td class="" style="color: rgb(0, 130, 123)">{{equipos.for - equipos.against}}</td>
+                            <td class="" style="color: rgb(0, 130, 123)">{{equipos.goalsDiff}}</td>
+                            <td>
+                                <ng-container *ngFor="let form of equipos.form">
+                                    <ng-container *ngIf="form == 'W' ">
+                                        <span
+                                            style="background-color: green; color: white; margin-right: 2px; padding: 3px; border: solid 1px black;">G</span>
+                                    </ng-container>
+                                    <ng-container *ngIf="form == 'D' ">
+                                        <span
+                                            style="background-color: orange; color: white; margin-right: 2px; padding: 3px; border: solid 1px black;">E</span>
+                                    </ng-container>
+                                    <ng-container *ngIf="form == 'L'">
+                                        <span
+                                            style="background-color: red; color: white; margin-right: 2px; padding: 3px; border: solid 1px black;">P</span>
+                                    </ng-container>
+                                </ng-container>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -126,5 +144,4 @@
             </div>
         </div>
     </div>
-
 </body>

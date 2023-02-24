@@ -12,6 +12,7 @@ export class HomeComponent implements OnInit {
   constructor(private route: RouterModule) { }
 
   b_metropolitana: any = [];
+  primera_a: any = [];
   goles: any = [];
   ayer: any = [];
   hoy: any = [];
@@ -19,6 +20,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.bMetropolitana();
+    this.primeraA();
     this.ayer = this.fechaDeAyer();
     this.hoy = this.fechaDeHoy();
     this.manana = this.fechaDeMañana();
@@ -65,6 +67,50 @@ export class HomeComponent implements OnInit {
         console.log(err);
       });
   }
+
+  primeraA() {
+    var ayer = this.fechaDeAyer();
+    var manana = this.fechaDeMañana();
+    fetch(`https://v3.football.api-sports.io/fixtures?league=128&season=2023&from=${ayer}&to=${manana}&timezone=America/Argentina/Buenos_Aires`, {
+      "method": "GET",
+      "headers": {
+        "x-rapidapi-host": "v3.football.api-sports.io",
+        "x-rapidapi-key": "2a4d321e462a454968098ab7e12fc3af"
+      }
+    })
+      .then(response => response.json())
+      .then((equipos) => {
+        console.log("equipos", equipos)
+        for (let i = 0; i < equipos.response.length; i++) {
+          this.primera_a.push({
+            home_id: equipos.response[i].teams.home.id,
+            home_name: equipos.response[i].teams.home.name,
+            home_logo: equipos.response[i].teams.home.logo,
+            away_id: equipos.response[i].teams.away.id,
+            away_name: equipos.response[i].teams.away.name,
+            away_logo: equipos.response[i].teams.away.logo,
+            home_goals:equipos.response[i].goals.home,
+            away_goals: equipos.response[i].goals.away,
+            date: equipos.response[i].fixture.date.split('T'),
+            time: equipos.response[i].fixture.status.elapsed,
+            fixture_id: equipos.response[i].fixture.id,
+            stadium: equipos.response[i].fixture.venue.name,
+            cup_logo: equipos.response[i].league.logo,
+            cup_name: equipos.response[i].league.name,
+            round: equipos.response[i].league.round,
+            season: equipos.response[i].league.season,
+
+          });
+        }
+        console.log("lista", this.primera_a)
+      })
+
+      .catch(err => {
+        console.log(err);
+      });
+  }
+
+  
 
 
   matchEvent(id:any){

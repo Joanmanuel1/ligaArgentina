@@ -116,6 +116,7 @@ export class PrimeraBComponent implements OnInit {
     })
       .then(response => response.json())
       .then((equipos) => {
+        console.log("equipos", equipos);
         for (let i = 0; i < equipos.response[0].league.standings[0].length; i++) {
           this.b_metropolitana.push({
             name: equipos.response[0].league.standings[0][i].team.name,
@@ -124,11 +125,15 @@ export class PrimeraBComponent implements OnInit {
             win: equipos.response[0].league.standings[0][i].all.win,
             draw: equipos.response[0].league.standings[0][i].all.draw,
             lose: equipos.response[0].league.standings[0][i].all.lose,
+            played: equipos.response[0].league.standings[0][i].all.played,
             against: equipos.response[0].league.standings[0][i].all.goals.against,
             for: equipos.response[0].league.standings[0][i].all.goals.for,
             league_logo: equipos.response[0].league.logo,
+            form: equipos.response[0].league.standings[0][i].form.split('',3),
+            goalsDiff: equipos.response[0].league.standings[0][i].goalsDiff,
           });
         }
+        console.log("lista", this.b_metropolitana);
       })
       .catch(err => {
         console.log(err);
