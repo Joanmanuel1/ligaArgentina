@@ -10,9 +10,15 @@ h1{
   color: aliceblue;
 }
 
-h2{
+.title-h2{
   color: black;
   background-color: snow;
+  text-align: center;
+}
+
+.title-h2-primera{
+  color: snow;
+  background-color: black;
   text-align: center;
 }
 
@@ -26,27 +32,25 @@ tr{
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
-span{
-  display: flex;
-}
-
 .hora{
   font-size: 20px;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   color: rgb(0, 85, 62) !important;
+  padding-left: 25px;
 }
 
 .match{
   font-family:cursive;
-  font-size: 12px;
-  text-align: center;
+  font-size: 10px;
   color: rgb(2, 85, 85);
-  padding: 3px;
 }
 
 .fa-soccer-ball-o{
-  color:rgb(0, 0, 65);
-  font-size: 22px;
+  color:rgb(0, 0, 4);
+  font-size: 14px;
   padding-right: 5px;
 }
 
+h2{
+  margin-top: 2%;
+}

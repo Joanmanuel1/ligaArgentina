@@ -1,5 +1,6 @@
-import { Component, OnInit  } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { type } from 'os';
 
 @Component({
   selector: 'app-home',
@@ -14,6 +15,8 @@ export class HomeComponent implements OnInit {
   b_metropolitana: any = [];
   primera_a: any = [];
   goles: any = [];
+  tarjetas: any = [];
+  cambios: any = [];
   ayer: any = [];
   hoy: any = [];
   manana: any = [];
@@ -47,10 +50,11 @@ export class HomeComponent implements OnInit {
             away_id: equipos.response[i].teams.away.id,
             away_name: equipos.response[i].teams.away.name,
             away_logo: equipos.response[i].teams.away.logo,
-            home_goals:equipos.response[i].goals.home,
+            home_goals: equipos.response[i].goals.home,
             away_goals: equipos.response[i].goals.away,
             date: equipos.response[i].fixture.date.split('T'),
             time: equipos.response[i].fixture.status.elapsed,
+            status: equipos.response[i].fixture.status.long,
             fixture_id: equipos.response[i].fixture.id,
             stadium: equipos.response[i].fixture.venue.name,
             cup_logo: equipos.response[i].league.logo,
@@ -89,10 +93,11 @@ export class HomeComponent implements OnInit {
             away_id: equipos.response[i].teams.away.id,
             away_name: equipos.response[i].teams.away.name,
             away_logo: equipos.response[i].teams.away.logo,
-            home_goals:equipos.response[i].goals.home,
+            home_goals: equipos.response[i].goals.home,
             away_goals: equipos.response[i].goals.away,
             date: equipos.response[i].fixture.date.split('T'),
             time: equipos.response[i].fixture.status.elapsed,
+            status: equipos.response[i].fixture.status.long,
             fixture_id: equipos.response[i].fixture.id,
             stadium: equipos.response[i].fixture.venue.name,
             cup_logo: equipos.response[i].league.logo,
@@ -110,10 +115,10 @@ export class HomeComponent implements OnInit {
       });
   }
 
-  
 
 
-  matchEvent(id:any){
+
+  matchEvent(id: any) {
     fetch(`https://v3.football.api-sports.io/fixtures/events?fixture=${id}`, {
       "method": "GET",
       "headers": {
@@ -123,20 +128,58 @@ export class HomeComponent implements OnInit {
     })
       .then(response => response.json())
       .then((match) => {
-        console.log("Partido", match)
+        console.log("Partido", match);
+        this.goles = [];
+        this.cambios = [];
+        this.tarjetas = [];
         for (let i = 0; i < match.response.length; i++) {
-          this.goles.push({
-            fixture_id:id,
-            time: match.response[i].time.elapsed,
-            extra: match.response[i].time.extra,
-            id: match.response[i].team.id,
-            team_name: match.response[i].team.name,
-            team_logo: match.response[i].team.logo,
-            player: match.response[i].player.name,
-            type: match.response[i].player.type,
-            detail: match.response[i].player.detail,
-          });
+          //push a goles a tarjetas, a sustitucion con un if(si es igual al type)
+          if(match.response[i].type == 'Goal'){
+            this.goles.push({
+              fixture_id: id,
+              time: match.response[i].time.elapsed,
+              extra: match.response[i].time.extra,
+              id: match.response[i].team.id,
+              team_name: match.response[i].team.name,
+              team_logo: match.response[i].team.logo,
+              player: match.response[i].player.name,
+              type: match.response[i].type,
+              detail: match.response[i].detail,
+            });
+          }
+          else if (match.response[i].type == 'Card') {
+            this.tarjetas.push({
+              fixture_id: id,
+              time: match.response[i].time.elapsed,
+              extra: match.response[i].time.extra,
+              id: match.response[i].team.id,
+              team_name: match.response[i].team.name,
+              team_logo: match.response[i].team.logo,
+              player: match.response[i].player.name,
+              type: match.response[i].type,
+              detail: match.response[i].detail,
+            });
+          }
+          else if (match.response[i].type == 'subst') {
+            this.cambios.push({
+              fixture_id: id,
+              time: match.response[i].time.elapsed,
+              extra: match.response[i].time.extra,
+              id: match.response[i].team.id,
+              team_name: match.response[i].team.name,
+              team_logo: match.response[i].team.logo,
+              player: match.response[i].player.name,
+              type: match.response[i].type,
+              detail: match.response[i].detail,
+            });
+          }
+
+          //no se hace el else porque queda el tipo VAR y resta averiguar si existen otros tipos
+
         }
+        console.log("Goless:", this.goles);
+        console.log("Tarjetas:", this.tarjetas);
+        console.log("Cambios:", this.cambios);
       })
 
       .catch(err => {
@@ -158,13 +201,13 @@ export class HomeComponent implements OnInit {
       var fecha = year + '-' + mes + '-' + dia;
       return fecha;
     }
-    else if(month < 10) {
+    else if (month < 10) {
       mes = "0" + month;
       var fecha = year + '-' + mes + '-' + day;
       return fecha;
     }
 
-    else if(day < 10){
+    else if (day < 10) {
       dia = "0" + day;
       var fecha = year + '-' + month + '-' + dia;
       return fecha;
