@@ -22,17 +22,18 @@ export class HomeComponent implements OnInit {
   manana: any = [];
 
   ngOnInit(): void {
-    this.bMetropolitana();
     this.primeraA();
+    this.bMetropolitana();
     this.ayer = this.fechaDeAyer();
     this.hoy = this.fechaDeHoy();
     this.manana = this.fechaDeMañana();
+
   }
 
   bMetropolitana() {
     var ayer = this.fechaDeAyer();
     var manana = this.fechaDeMañana();
-    fetch(`https://v3.football.api-sports.io/fixtures?league=131&season=2023&from=${ayer}&to=${manana}&timezone=America/Argentina/Buenos_Aires`, {
+    fetch(`https://v3.football.api-sports.io/fixtures?league=131&season=2023&from=${ayer}&to=2023-03-02&timezone=America/Argentina/Buenos_Aires`, {
       "method": "GET",
       "headers": {
         "x-rapidapi-host": "v3.football.api-sports.io",
@@ -42,33 +43,33 @@ export class HomeComponent implements OnInit {
       .then(response => response.json())
       .then((equipos) => {
         console.log("equipos", equipos)
-        for (let i = 0; i < equipos.response.length; i++) {
-          this.b_metropolitana.push({
-            home_id: equipos.response[i].teams.home.id,
-            home_name: equipos.response[i].teams.home.name,
-            home_logo: equipos.response[i].teams.home.logo,
-            away_id: equipos.response[i].teams.away.id,
-            away_name: equipos.response[i].teams.away.name,
-            away_logo: equipos.response[i].teams.away.logo,
-            home_goals: equipos.response[i].goals.home,
-            away_goals: equipos.response[i].goals.away,
-            date: equipos.response[i].fixture.date.split('T'),
-            time: equipos.response[i].fixture.status.elapsed,
-            status: equipos.response[i].fixture.status.long,
-            fixture_id: equipos.response[i].fixture.id,
-            stadium: equipos.response[i].fixture.venue.name,
-            cup_logo: equipos.response[i].league.logo,
-            cup_name: equipos.response[i].league.name,
-            round: equipos.response[i].league.round,
-            season: equipos.response[i].league.season,
+          for (let i = 0; i < equipos.response.length; i++) {
+            this.b_metropolitana.push({
+              home_id: equipos.response[i].teams.home.id,
+              home_name: equipos.response[i].teams.home.name,
+              home_logo: equipos.response[i].teams.home.logo,
+              away_id: equipos.response[i].teams.away.id,
+              away_name: equipos.response[i].teams.away.name,
+              away_logo: equipos.response[i].teams.away.logo,
+              home_goals: equipos.response[i].goals.home,
+              away_goals: equipos.response[i].goals.away,
+              date: equipos.response[i].fixture.date.split('T'),
+              time: equipos.response[i].fixture.status.elapsed,
+              status: equipos.response[i].fixture.status.long,
+              fixture_id: equipos.response[i].fixture.id,
+              stadium: equipos.response[i].fixture.venue.name,
+              logo: equipos.response[i].league.logo,
+              name: equipos.response[i].league.name,
+              round: equipos.response[i].league.round,
+              season: equipos.response[i].league.season,
 
-          });
-        }
-        console.log("lista", this.b_metropolitana)
+            });
+          }
+        console.log("b metro", this.b_metropolitana)
       })
 
       .catch(err => {
-        console.log(err);
+        console.log("Error", err);
       });
   }
 
@@ -100,14 +101,14 @@ export class HomeComponent implements OnInit {
             status: equipos.response[i].fixture.status.long,
             fixture_id: equipos.response[i].fixture.id,
             stadium: equipos.response[i].fixture.venue.name,
-            cup_logo: equipos.response[i].league.logo,
-            cup_name: equipos.response[i].league.name,
+            logo: equipos.response[i].league.logo,
+            name: equipos.response[i].league.name,
             round: equipos.response[i].league.round,
             season: equipos.response[i].league.season,
 
           });
         }
-        console.log("lista", this.primera_a)
+        console.log("primera", this.primera_a);
       })
 
       .catch(err => {
@@ -134,7 +135,7 @@ export class HomeComponent implements OnInit {
         this.tarjetas = [];
         for (let i = 0; i < match.response.length; i++) {
           //push a goles a tarjetas, a sustitucion con un if(si es igual al type)
-          if(match.response[i].type == 'Goal'){
+          if (match.response[i].type == 'Goal') {
             this.goles.push({
               fixture_id: id,
               time: match.response[i].time.elapsed,
