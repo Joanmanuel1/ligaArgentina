@@ -1,26 +1,43 @@
-tr {
+th {
     text-align: center;
+    font-size: 16px;
+}
+
+td {
+    text-align: center;
+    font-size: 12px;
 }
 
 body {
     font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: 18px;
+    font-size: 12px;
     background-image: url("../../assets/futbol.jpg");
-
 }
 
 h1 {
     text-align: center;
-    color: aliceblue;
 }
 
 h2 {
-    color: aliceblue;
-    background-color: black;
+    color:rgb(2, 80, 80);
+    background-color:#cff4fc;
     text-align: center;
+    font-size: 28x;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
 img{
+    height: 35px;
+    width: 35px;
+}
+
+.img-posiciones{
     height: 25px;
     width: 25px;
+}
+
+.goles{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 24px;
+    color: rgb(13, 12, 0);
 }

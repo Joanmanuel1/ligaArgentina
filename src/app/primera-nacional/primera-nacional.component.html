@@ -1,7 +1,283 @@
-<p>primera-nacional works!</p>
-<div class="container">
-    <div id="wg-api-football-standings" data-host="v3.football.api-sports.io"
-        data-key="2a4d321e462a454968098ab7e12fc3af" data-league="129" data-team="" data-season="2023" data-theme=""
-        data-show-errors="false" data-show-logos="true" class="wg_loader">
+<body>
+    <img src="../../assets/fondobnacional.png" alt="" style="width: 100%; height: 150px;">
+
+    <div class="container">
+        <div class="row align-items-start">
+            <div class="col-6">
+                <h2 style="margin-top: 3%;">Tabla de Posiciones Zona A</h2>
+                <table class="table table-hover table-info table-bordered">
+                    <thead class="table-dark">
+                        <tr>
+                            <th class="col-md-auto">#</th>
+                            <th class="col-md-auto">Equipo</th>
+                            <th class="col-md-auto">Pts</th>
+                            <th class="col-md-auto">PJ</th>
+                            <th class="col-md-auto" style="color: lightgreen;">G</th>
+                            <th class="col-md-auto" style="color: lightslategray">E</th>
+                            <th class="col-md-auto" style="color: rgb(248, 121, 140)">P</th>
+                            <th class="col-md-auto" style="color:lightseagreen">GF</th>
+                            <th class="col-md-auto" style="color: lightcoral">GC</th>
+                            <th class="col-md-auto" style="color: rgb(14, 240, 188)">+-</th>
+                            <th class="col-md-auto">F</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngFor="let equipos of b_nacional_grupo_a; let i = index" [attr.data-index]="i">
+                        <tr>
+                            <td class="">{{i+1}}</td>
+                            <td scope="" style="text-align: left !important;"><img src="{{equipos.logo}}" alt=""
+                                    class="img-posiciones">
+                                {{equipos.name}}</td>
+                            <td class="">{{equipos.points}}</td>
+                            <td class="">{{equipos.played}}</td>
+                            <td class="" style="color: rgb(2, 87, 2)">{{equipos.win}}</td>
+                            <td class="" style="color: rgb(173, 171, 171)">{{equipos.draw}}</td>
+                            <td class="" style="color: red">{{equipos.lose}}</td>
+                            <td class="" style="color:rgb(15, 72, 15)">{{equipos.for}}</td>
+                            <td class="" style="color: rgb(143, 28, 28)">{{equipos.against}}</td>
+                            <td class="" style="color: rgb(0, 130, 123)">{{equipos.goalsDiff}}</td>
+                            <td>
+                                <ng-container *ngFor="let form of equipos.form">
+                                    <ng-container *ngIf="form == 'W' ">
+                                        <span
+                                            style="background-color: green; color: white; margin-right: 2px; padding: 3px; border: solid 1px black;">G</span>
+                                    </ng-container>
+                                    <ng-container *ngIf="form == 'D' ">
+                                        <span
+                                            style="background-color: orange; color: white; margin-right: 2px; padding: 3px; border: solid 1px black;">E</span>
+                                    </ng-container>
+                                    <ng-container *ngIf="form == 'L'">
+                                        <span
+                                            style="background-color: red; color: white; margin-right: 2px; padding: 3px; border: solid 1px black;">P</span>
+                                    </ng-container>
+                                </ng-container>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h2 style="margin-top: 3%;">Tabla de Posiciones Zona B</h2>
+                <table class="table table-hover table-info table-bordered">
+                    <thead class="table-dark">
+                        <tr>
+                            <th class="col-md-auto">#</th>
+                            <th class="col-md-auto">Equipo</th>
+                            <th class="col-md-auto">Pts</th>
+                            <th class="col-md-auto">PJ</th>
+                            <th class="col-md-auto" style="color: lightgreen;">G</th>
+                            <th class="col-md-auto" style="color: lightslategray">E</th>
+                            <th class="col-md-auto" style="color: rgb(248, 121, 140)">P</th>
+                            <th class="col-md-auto" style="color:lightseagreen">GF</th>
+                            <th class="col-md-auto" style="color: lightcoral">GC</th>
+                            <th class="col-md-auto" style="color: rgb(14, 240, 188)">+-</th>
+                            <th class="col-md-auto">F</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngFor="let equipos of b_nacional_grupo_b; let i = index" [attr.data-index]="i">
+                        <tr>
+                            <td class="">{{i+1}}</td>
+                            <td scope="" style="text-align: left !important;"><img src="{{equipos.logo}}" alt=""
+                                    class="img-posiciones">
+                                {{equipos.name}}</td>
+                            <td class="">{{equipos.points}}</td>
+                            <td class="">{{equipos.played}}</td>
+                            <td class="" style="color: rgb(2, 87, 2)">{{equipos.win}}</td>
+                            <td class="" style="color: rgb(173, 171, 171)">{{equipos.draw}}</td>
+                            <td class="" style="color: red">{{equipos.lose}}</td>
+                            <td class="" style="color:rgb(15, 72, 15)">{{equipos.for}}</td>
+                            <td class="" style="color: rgb(143, 28, 28)">{{equipos.against}}</td>
+                            <td class="" style="color: rgb(0, 130, 123)">{{equipos.goalsDiff}}</td>
+                            <td>
+                                <ng-container *ngFor="let form of equipos.form">
+                                    <ng-container *ngIf="form == 'W' ">
+                                        <span
+                                            style="background-color: green; color: white; margin-right: 2px; padding: 3px; border: solid 1px black;">G</span>
+                                    </ng-container>
+                                    <ng-container *ngIf="form == 'D' ">
+                                        <span
+                                            style="background-color: orange; color: white; margin-right: 2px; padding: 3px; border: solid 1px black;">E</span>
+                                    </ng-container>
+                                    <ng-container *ngIf="form == 'L'">
+                                        <span
+                                            style="background-color: red; color: white; margin-right: 2px; padding: 3px; border: solid 1px black;">P</span>
+                                    </ng-container>
+                                </ng-container>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col-6">
+                <header style="margin-top: 3%;">
+                    <ul class="nav nav-pills justify-content-center">
+                        <li class="nav-item">
+                            <ng-container *ngIf="fecha_grupo_a < 2; else primeraFechaA">
+                                <button class="btn btn-dark" aria-current="page" (click)="fechaAnteriorGrupoA()" disabled> <i
+                                        class='fas fa-less-than'></i> Anterior </button>
+                            </ng-container>
+                            <ng-template #primeraFechaA>
+                                <button class="btn btn-dark" aria-current="page" (click)="fechaAnteriorGrupoA()"> <i
+                                        class='fas fa-less-than'></i> Anterior </button>
+                            </ng-template>
+                        </li>
+                        <span class="btn btn-light disabled" style="margin-right: 15px; margin-left: 15px;"> Fecha
+                            N°{{fecha_grupo_a}} </span>
+                        <li class="nav-item">
+                            <ng-container *ngIf="fecha_grupo_a < 37; else ultimaFechaA">
+                                <button class="btn btn-dark" (click)="fechaSiguienteGrupoA()"> Siguiente <i
+                                        class='fas fa-greater-than'></i></button>
+                            </ng-container>
+                            <ng-template #ultimaFechaA>
+                                <button class="btn btn-dark" (click)="fechaSiguienteGrupoA()" disabled> Siguiente <i
+                                        class='fas fa-greater-than'></i></button>
+                            </ng-template>
+                        </li>
+                    </ul>
+                </header>
+
+                <table class="table table-hover table-danger table-bordered" style="margin-top: 8px;">
+                    <tbody *ngFor="let partido of fixture_b_nacional_grupo_a; let i = index" [attr.data-index]="i">
+                        <ng-container *ngIf="partido.round == 'Group A - ' + fecha_grupo_a">
+                            <ng-container
+                                *ngIf="fixture_b_nacional_grupo_a[i].date == fixture_b_nacional_grupo_a[0].date ; else otros;">
+                                <tr *ngIf="i == 0">
+                                    <th COLSPAN="5" class="table-dark">{{partido.date | date:"EEEE d 'de' MMMM" |
+                                        titlecase
+                                        }}
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <td class="hora">{{partido.date | date:"HH:mm" }} hs</td>
+                                    <td style="text-align: right !important;">{{partido.home_name}} <img
+                                            src="{{partido.home_logo}}" alt="" style="padding-left: 5%;"></td>
+                                    <td class="goles">{{partido.home_goals}} - {{partido.away_goals}}</td>
+                                    <td style="text-align: left !important;"> <img src="{{partido.away_logo}}" alt=""
+                                            style="padding-right: 5%;">
+                                        {{partido.away_name}}
+                                    </td>
+                                    <ng-container *ngIf="partido.start == 'Match Finished'; else tiempo">
+                                        <td>Final</td>
+                                    </ng-container>
+                                    <ng-template #tiempo>
+                                        <td> {{partido.start_time}}</td>
+                                    </ng-template>
+                                </tr>
+                            </ng-container>
+                            <ng-template #otros>
+                                <tr *ngIf="fixture_b_nacional_grupo_a[i].date[0] != fixture_b_nacional_grupo_a[i-1].date[0]">
+                                    <th COLSPAN="5" class="table-dark">{{partido.date | date:"EEEE d 'de' MMMM" |
+                                        titlecase
+                                        }}
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <td class="hora">{{partido.date | date:"HH:mm" }} hs</td>
+                                    <td style="text-align: right !important;">{{partido.home_name}} <img class="img-fix"
+                                            src="{{partido.home_logo}}" alt="" style="padding-left: 5%;"></td>
+                                    <td class="goles">{{partido.home_goals}} - {{partido.away_goals}}</td>
+                                    <td style="text-align: left !important;"> <img class="img-fix"
+                                            src="{{partido.away_logo}}" alt="" style="padding-right: 5%;">
+                                        {{partido.away_name}}
+                                    </td>
+                                    <ng-container *ngIf="partido.start == 'Match Finished'; else tiempo">
+                                        <td>Final</td>
+                                    </ng-container>
+                                    <ng-template #tiempo>
+                                        <td> {{partido.start_time}}</td>
+                                    </ng-template>
+
+                                </tr>
+                            </ng-template>
+                        </ng-container>
+                    </tbody>
+                </table>
+
+
+                <header style="margin-top: 3%;">
+                    <ul class="nav nav-pills justify-content-center">
+                        <li class="nav-item">
+                            <ng-container *ngIf="fecha_grupo_b < 2; else primeraFechaB">
+                                <button class="btn btn-dark" aria-current="page" (click)="fechaAnteriorGrupoB()" disabled> <i
+                                        class='fas fa-less-than'></i> Anterior </button>
+                            </ng-container>
+                            <ng-template #primeraFechaB>
+                                <button class="btn btn-dark" aria-current="page" (click)="fechaAnteriorGrupoB()"> <i
+                                        class='fas fa-less-than'></i> Anterior </button>
+                            </ng-template>
+                        </li>
+                        <span class="btn btn-light disabled" style="margin-right: 15px; margin-left: 15px;"> Fecha
+                            N°{{fecha_grupo_b}} </span>
+                        <li class="nav-item">
+                            <ng-container *ngIf="fecha_grupo_b < 37; else ultimaFechaB">
+                                <button class="btn btn-dark" (click)="fechaSiguienteGrupoB()"> Siguiente <i
+                                        class='fas fa-greater-than'></i></button>
+                            </ng-container>
+                            <ng-template #ultimaFechaB>
+                                <button class="btn btn-dark" (click)="fechaSiguienteGrupoB()" disabled> Siguiente <i
+                                        class='fas fa-greater-than'></i></button>
+                            </ng-template>
+                        </li>
+                    </ul>
+                </header>
+
+                <table class="table table-hover table-danger table-bordered" style="margin-top: 8px;">
+                    <tbody *ngFor="let partido of fixture_b_nacional_grupo_b; let i = index" [attr.data-index]="i">
+                        <ng-container *ngIf="partido.round == 'Group B - ' + fecha_grupo_b">
+                            <ng-container
+                                *ngIf="fixture_b_nacional_grupo_b[i].date == fixture_b_nacional_grupo_b[0].date ; else otros;">
+                                <tr *ngIf="i == 0">
+                                    <th COLSPAN="5" class="table-dark">{{partido.date | date:"EEEE d 'de' MMMM" |
+                                        titlecase
+                                        }}
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <td class="hora">{{partido.date | date:"HH:mm" }} hs</td>
+                                    <td style="text-align: right !important;">{{partido.home_name}} <img
+                                            src="{{partido.home_logo}}" alt="" style="padding-left: 5%;"></td>
+                                    <td class="goles">{{partido.home_goals}} - {{partido.away_goals}}</td>
+                                    <td style="text-align: left !important;"> <img src="{{partido.away_logo}}" alt=""
+                                            style="padding-right: 5%;">
+                                        {{partido.away_name}}
+                                    </td>
+                                    <ng-container *ngIf="partido.start == 'Match Finished'; else tiempo">
+                                        <td>Final</td>
+                                    </ng-container>
+                                    <ng-template #tiempo>
+                                        <td> {{partido.start_time}}</td>
+                                    </ng-template>
+                                </tr>
+                            </ng-container>
+                            <ng-template #otros>
+                                <tr *ngIf="fixture_b_nacional_grupo_b[i].date[0] != fixture_b_nacional_grupo_b[i-1].date[0]">
+                                    <th COLSPAN="5" class="table-dark">{{partido.date | date:"EEEE d 'de' MMMM" |
+                                        titlecase
+                                        }}
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <td class="hora">{{partido.date | date:"HH:mm" }} hs</td>
+                                    <td style="text-align: right !important;">{{partido.home_name}} <img class="img-fix"
+                                            src="{{partido.home_logo}}" alt="" style="padding-left: 5%;"></td>
+                                    <td class="goles">{{partido.home_goals}} - {{partido.away_goals}}</td>
+                                    <td style="text-align: left !important;"> <img class="img-fix"
+                                            src="{{partido.away_logo}}" alt="" style="padding-right: 5%;">
+                                        {{partido.away_name}}
+                                    </td>
+                                    <ng-container *ngIf="partido.start == 'Match Finished'; else tiempo">
+                                        <td>Final</td>
+                                    </ng-container>
+                                    <ng-template #tiempo>
+                                        <td> {{partido.start_time}}</td>
+                                    </ng-template>
+
+                                </tr>
+                            </ng-template>
+                        </ng-container>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
     </div>
-</div>
+</body>

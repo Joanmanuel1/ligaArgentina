@@ -33,7 +33,7 @@ export class HomeComponent implements OnInit {
   bMetropolitana() {
     var ayer = this.fechaDeAyer();
     var manana = this.fechaDeMañana();
-    fetch(`https://v3.football.api-sports.io/fixtures?league=131&season=2023&from=${ayer}&to=2023-03-02&timezone=America/Argentina/Buenos_Aires`, {
+    fetch(`https://v3.football.api-sports.io/fixtures?league=131&season=2023&from=${ayer}&to=${manana}&timezone=America/Argentina/Buenos_Aires`, {
       "method": "GET",
       "headers": {
         "x-rapidapi-host": "v3.football.api-sports.io",
@@ -65,6 +65,7 @@ export class HomeComponent implements OnInit {
 
             });
           }
+          this.ordenarBMetro();
         console.log("b metro", this.b_metropolitana)
       })
 
@@ -108,6 +109,7 @@ export class HomeComponent implements OnInit {
 
           });
         }
+        this.ordenarPrimeraA();
         console.log("primera", this.primera_a);
       })
 
@@ -281,6 +283,22 @@ export class HomeComponent implements OnInit {
       var fecha = year + '-' + month + '-' + day;
       return fecha;
     }
+  }
+
+  ordenarBMetro() {
+    this.b_metropolitana.sort((x: any, y: any) => {
+      x = new Date(x.date),
+        y = new Date(y.date);
+      return x - y;
+    });
+  }
+
+  ordenarPrimeraA() {
+    this.primera_a.sort((x: any, y: any) => {
+      x = new Date(x.date),
+        y = new Date(y.date);
+      return x - y;
+    });
   }
 
 }

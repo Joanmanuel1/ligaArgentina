@@ -11,7 +11,6 @@ export class PrimeraBComponent implements OnInit {
 
   fixture_b_metropolitana: any = [];
   fecha: any;
-
   b_metropolitana: any = [];
 
   ngOnInit(): void {
@@ -44,25 +43,67 @@ export class PrimeraBComponent implements OnInit {
             away_goals: equipos.response[i].goals.away,
           });
         }
-        this.fixture_b_metropolitana.sort((x: any, y: any) => {
-          x = new Date(x.date),
-            y = new Date(y.date);
-          return x - y;
-        });
-
-        for (let i = 0; i < this.fixture_b_metropolitana.length; i++) {
-          var hoy = this.fechaDeHoy();
-          if (this.fixture_b_metropolitana[i].date > hoy) {
-            var numeroFecha = this.fixture_b_metropolitana[i].round.split('- ')
-            this.fecha = numeroFecha[1]
-            return numeroFecha;
-          }
-        }
+        this.ordenar();
+        this.traerFechaEnJuego();
 
       })
       .catch(err => {
         console.log(err);
       });
+  }
+
+  bMetropolitana() {
+    // Para la B Metro el id es el 131 y la posicion de standings es [0]
+    fetch("https://v3.football.api-sports.io/standings?league=131&season=2023", {
+      "method": "GET",
+      "headers": {
+        "x-rapidapi-host": "v3.football.api-sports.io",
+        "x-rapidapi-key": "2a4d321e462a454968098ab7e12fc3af"
+      }
+    })
+      .then(response => response.json())
+      .then((equipos) => {
+        console.log("equipos", equipos);
+        for (let i = 0; i < equipos.response[0].league.standings[0].length; i++) {
+          this.b_metropolitana.push({
+            name: equipos.response[0].league.standings[0][i].team.name,
+            logo: equipos.response[0].league.standings[0][i].team.logo,
+            points: equipos.response[0].league.standings[0][i].points,
+            win: equipos.response[0].league.standings[0][i].all.win,
+            draw: equipos.response[0].league.standings[0][i].all.draw,
+            lose: equipos.response[0].league.standings[0][i].all.lose,
+            played: equipos.response[0].league.standings[0][i].all.played,
+            against: equipos.response[0].league.standings[0][i].all.goals.against,
+            for: equipos.response[0].league.standings[0][i].all.goals.for,
+            league_logo: equipos.response[0].league.logo,
+            form: equipos.response[0].league.standings[0][i].form.split('', 3),
+            goalsDiff: equipos.response[0].league.standings[0][i].goalsDiff,
+          });
+        }
+        console.log("lista", this.b_metropolitana);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+
+  ordenar() {
+    this.fixture_b_metropolitana.sort((x: any, y: any) => {
+      x = new Date(x.date),
+        y = new Date(y.date);
+      return x - y;
+    });
+  }
+
+  traerFechaEnJuego() {
+    for (let i = 0; i < this.fixture_b_metropolitana.length; i++) {
+      var hoy = this.fechaDeHoy();
+      if (this.fixture_b_metropolitana[i].date > hoy) {
+        var numeroFecha = this.fixture_b_metropolitana[i].round.split('- ')
+        this.fecha = numeroFecha[1]
+        return numeroFecha;
+      }
+    }
   }
 
   fechaAnterior() {
@@ -103,41 +144,6 @@ export class PrimeraBComponent implements OnInit {
       var fecha = year + '-' + month + '-' + day;
       return fecha;
     }
-  }
-
-  bMetropolitana() {
-    // Para la B Metro el id es el 131 y la posicion de standings es [0]
-    fetch("https://v3.football.api-sports.io/standings?league=131&season=2023", {
-      "method": "GET",
-      "headers": {
-        "x-rapidapi-host": "v3.football.api-sports.io",
-        "x-rapidapi-key": "2a4d321e462a454968098ab7e12fc3af"
-      }
-    })
-      .then(response => response.json())
-      .then((equipos) => {
-        console.log("equipos", equipos);
-        for (let i = 0; i < equipos.response[0].league.standings[0].length; i++) {
-          this.b_metropolitana.push({
-            name: equipos.response[0].league.standings[0][i].team.name,
-            logo: equipos.response[0].league.standings[0][i].team.logo,
-            points: equipos.response[0].league.standings[0][i].points,
-            win: equipos.response[0].league.standings[0][i].all.win,
-            draw: equipos.response[0].league.standings[0][i].all.draw,
-            lose: equipos.response[0].league.standings[0][i].all.lose,
-            played: equipos.response[0].league.standings[0][i].all.played,
-            against: equipos.response[0].league.standings[0][i].all.goals.against,
-            for: equipos.response[0].league.standings[0][i].all.goals.for,
-            league_logo: equipos.response[0].league.logo,
-            form: equipos.response[0].league.standings[0][i].form.split('',3),
-            goalsDiff: equipos.response[0].league.standings[0][i].goalsDiff,
-          });
-        }
-        console.log("lista", this.b_metropolitana);
-      })
-      .catch(err => {
-        console.log(err);
-      });
   }
 
 
