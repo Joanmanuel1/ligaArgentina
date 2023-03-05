@@ -4,12 +4,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
-import { TomorrowComponent } from './tomorrow/tomorrow.component';
 import { RouterModule } from '@angular/router';
 import { FooterComponent } from './footer/footer.component';
-import { YesterdayComponent } from './yesterday/yesterday.component';
 import { StandingsComponent } from './standings/standings.component';
-import { FixtureComponent } from './fixture/fixture.component';
 
 import localePy from '@angular/common/locales/es-AR'
 import { registerLocaleData } from '@angular/common';
@@ -27,11 +24,8 @@ import { CommonModule } from '@angular/common';
   declarations: [
     AppComponent,
     HomeComponent,
-    TomorrowComponent,
     FooterComponent,
-    YesterdayComponent,
     StandingsComponent,
-    FixtureComponent,
     NavbarComponent,
     PrimeraAComponent,
     PrimeraNacionalComponent,
@@ -47,10 +41,7 @@ import { CommonModule } from '@angular/common';
     ReactiveFormsModule,
     RouterModule.forRoot([
       {path: '', component: HomeComponent},
-      {path: 'tomorrow', component: TomorrowComponent},
-      {path: 'yesterday', component: YesterdayComponent},
       {path: 'standings', component: StandingsComponent},
-      {path: 'fixture', component: FixtureComponent},
       {path: 'primera', component: PrimeraAComponent},
       {path: 'nacional', component: PrimeraNacionalComponent},
       {path: 'bmetro', component: PrimeraBComponent},
