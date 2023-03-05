@@ -2,7 +2,7 @@
     <img src="../../assets/fondobmetro.png" alt="Primera B Metropolitana" style="width: 100%; height: 100%;">
 
     <div class="container">
-        <h1> <img src="{{fixture_b_metropolitana[0].logo}}" alt=""
+        <h1> <img src="../../assets/logoprimerab2 (2).png"alt=""
                 style="width: 300px !important; height: 150px !important; margin-top: 5%;"></h1>
         <div class="row align-items-start">
             <div class="col-6">
@@ -25,11 +25,10 @@
                     </thead>
                     <tbody *ngFor="let equipos of b_metropolitana; let i = index" [attr.data-index]="i">
                         <tr>
-                            <td class="">{{i+1}}</td>
+                            <td class=""><b> {{i+1}} </b></td>
                             <td scope="" style="text-align: left !important;"><img src="{{equipos.logo}}" alt=""
-                                    class="img-posiciones">
-                                {{equipos.name}}</td>
-                            <td class="">{{equipos.points}}</td>
+                                    class="img-posiciones"> <b>{{equipos.name}} </b></td>
+                            <td class=""><b> {{equipos.points}} </b> </td>
                             <td class="">{{equipos.played}}</td>
                             <td class="" style="color: rgb(2, 87, 2)">{{equipos.win}}</td>
                             <td class="" style="color: rgb(173, 171, 171)">{{equipos.draw}}</td>
@@ -91,51 +90,44 @@
                             <ng-container
                                 *ngIf="fixture_b_metropolitana[i].date == fixture_b_metropolitana[0].date ; else otros;">
                                 <tr *ngIf="i == 0">
-                                    <th COLSPAN="5" class="table-dark">{{partido.date | date:"EEEE d 'de' MMMM" |
-                                        titlecase
-                                        }}
+                                    <th COLSPAN="5" class="table-dark"><b> {{partido.date | date:"EEEE d 'de' MMMM" |
+                                            titlecase
+                                            }} </b>
                                     </th>
                                 </tr>
                                 <tr>
-                                    <td class="hora">{{partido.date | date:"HH:mm" }} hs</td>
-                                    <td style="text-align: right !important;">{{partido.home_name}} <img
+                                    <td class="hora"><b> {{partido.date | date:"HH:mm" }} hs </b></td>
+                                    <td style="text-align: right !important;"><b> {{partido.home_name}} </b> <img
                                             src="{{partido.home_logo}}" alt="" style="padding-left: 5%;"></td>
                                     <td class="goles">{{partido.home_goals}} - {{partido.away_goals}}</td>
                                     <td style="text-align: left !important;"> <img src="{{partido.away_logo}}" alt=""
-                                            style="padding-right: 5%;">
-                                        {{partido.away_name}}
+                                            style="padding-right: 5%;"> <b>{{partido.away_name}} </b>
                                     </td>
-                                    <ng-container *ngIf="partido.start == 'Match Finished'; else tiempo">
-                                        <td>Final</td>
+                                    <ng-container *ngIf="partido.start == 'Match Finished'">
+                                        <td><b> Final</b> </td>
                                     </ng-container>
-                                    <ng-template #tiempo>
-                                        <td> {{partido.start_time}}</td>
-                                    </ng-template>
                                 </tr>
                             </ng-container>
                             <ng-template #otros>
                                 <tr *ngIf="fixture_b_metropolitana[i].date[0] != fixture_b_metropolitana[i-1].date[0]">
-                                    <th COLSPAN="5" class="table-dark">{{partido.date | date:"EEEE d 'de' MMMM" |
-                                        titlecase
-                                        }}
+                                    <th COLSPAN="5" class="table-dark"><b> {{partido.date | date:"EEEE d 'de' MMMM" |
+                                            titlecase
+                                            }} </b>
                                     </th>
                                 </tr>
                                 <tr>
-                                    <td class="hora">{{partido.date | date:"HH:mm" }} hs</td>
-                                    <td style="text-align: right !important;">{{partido.home_name}} <img class="img-fix"
-                                            src="{{partido.home_logo}}" alt="" style="padding-left: 5%;"></td>
+                                    <td class="hora"><b> {{partido.date | date:"HH:mm" }} hs </b> </td>
+                                    <td style="text-align: right !important;"><b> {{partido.home_name}} </b> <img
+                                            class="img-fix" src="{{partido.home_logo}}" alt=""
+                                            style="padding-left: 5%;"></td>
                                     <td class="goles">{{partido.home_goals}} - {{partido.away_goals}}</td>
                                     <td style="text-align: left !important;"> <img class="img-fix"
                                             src="{{partido.away_logo}}" alt="" style="padding-right: 5%;">
-                                        {{partido.away_name}}
+                                        <b>{{partido.away_name}} </b>
                                     </td>
-                                    <ng-container *ngIf="partido.start == 'Match Finished'; else tiempo">
+                                    <ng-container *ngIf="partido.start == 'Match Finished'">
                                         <td>Final</td>
                                     </ng-container>
-                                    <ng-template #tiempo>
-                                        <td> {{partido.start_time}}</td>
-                                    </ng-template>
-
                                 </tr>
                             </ng-template>
                         </ng-container>
@@ -143,5 +135,25 @@
                 </table>
             </div>
         </div>
-    </div>
+
+            <h3 style="display: flex; align-items: center; justify-content: center;"> <span
+                class="title-h2"> <b>Tabla de Goleadores </b> </span> </h3>
+                <table class="table table-striped table-hover table-light w-auto" style="display: flex; align-items: center; justify-content: center;">
+                    <thead class="table-dark">
+                        <tr>
+                            <th class="col-md-auto">#</th>
+                            <th class="col-md-auto">Jugadores</th>
+                            <th class="col-md-auto">Goles</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngFor="let goleadores of b_metropolitana_goleadores; let i = index" [attr.data-index]="i">
+                        <tr>
+                            <td class=""><b> {{i+1}} </b></td>
+                            <td scope="" style="text-align: left !important;"><img src="{{goleadores.logo}}" alt=""
+                                    class="img-posiciones"> <b>{{goleadores.name}} </b></td>
+                            <td class=""><b> {{goleadores.goals}} </b> </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 </body>

@@ -12,10 +12,12 @@ export class PrimeraBComponent implements OnInit {
   fixture_b_metropolitana: any = [];
   fecha: any;
   b_metropolitana: any = [];
+  b_metropolitana_goleadores: any = [];
 
   ngOnInit(): void {
     this.fixtureBMetropolitana();
     this.bMetropolitana();
+    this.bMetropolitanaGoleadores();
   }
 
   fixtureBMetropolitana() {
@@ -53,7 +55,6 @@ export class PrimeraBComponent implements OnInit {
   }
 
   bMetropolitana() {
-    // Para la B Metro el id es el 131 y la posicion de standings es [0]
     fetch("https://v3.football.api-sports.io/standings?league=131&season=2023", {
       "method": "GET",
       "headers": {
@@ -63,7 +64,6 @@ export class PrimeraBComponent implements OnInit {
     })
       .then(response => response.json())
       .then((equipos) => {
-        console.log("equipos", equipos);
         for (let i = 0; i < equipos.response[0].league.standings[0].length; i++) {
           this.b_metropolitana.push({
             name: equipos.response[0].league.standings[0][i].team.name,
@@ -80,7 +80,29 @@ export class PrimeraBComponent implements OnInit {
             goalsDiff: equipos.response[0].league.standings[0][i].goalsDiff,
           });
         }
-        console.log("lista", this.b_metropolitana);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+
+  bMetropolitanaGoleadores() {
+    fetch("https://v3.football.api-sports.io/players/topscorers?league=131&season=2023", {
+      "method": "GET",
+      "headers": {
+        "x-rapidapi-host": "v3.football.api-sports.io",
+        "x-rapidapi-key": "2a4d321e462a454968098ab7e12fc3af"
+      }
+    })
+      .then(response => response.json())
+      .then((equipos) => {
+        for (let i = 0; i < equipos.response.length; i++) {
+          this.b_metropolitana_goleadores.push({
+            name: equipos.response[i].player.name,
+            logo: equipos.response[i].statistics[0].team.logo,
+            goals: equipos.response[i].statistics[0].goals.total,
+          });
+        }
       })
       .catch(err => {
         console.log(err);

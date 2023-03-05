@@ -41,6 +41,7 @@ export class PrimeraAComponent implements OnInit {
             for: equipos.response[0].league.standings[1][i].all.goals.for,
             form: equipos.response[0].league.standings[1][i].form.split('',3),
             goalsDiff: equipos.response[0].league.standings[1][i].goalsDiff,
+            played: equipos.response[0].league.standings[1][i].all.played,
           });
         }
         console.log("Tabla", this.primera_a);
