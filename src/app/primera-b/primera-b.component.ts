@@ -96,7 +96,7 @@ export class PrimeraBComponent implements OnInit {
     })
       .then(response => response.json())
       .then((equipos) => {
-        for (let i = 0; i < equipos.response.length; i++) {
+        for (let i = 0; i < 8; i++) {
           this.b_metropolitana_goleadores.push({
             name: equipos.response[i].player.name,
             logo: equipos.response[i].statistics[0].team.logo,

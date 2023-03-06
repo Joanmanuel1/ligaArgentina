@@ -65,8 +65,16 @@ export class PrimeraNacionalComponent implements OnInit {
         }
         this.ordenarZonaA();
         this.traerfechaEnJuegoZonaA();
+       
+        
+
         this.ordenarZonaB();
         this.traerfechaEnJuegoZonaB();
+        console.log("a", this.fecha_grupo_a);
+        console.log("b", this.fecha_grupo_b);
+        console.log("a", this.fixture_b_nacional_grupo_a);
+        console.log("b", this.fixture_b_nacional_grupo_b);
+
       })
       .catch(err => {
         console.log(err);
@@ -173,7 +181,7 @@ export class PrimeraNacionalComponent implements OnInit {
   traerfechaEnJuegoZonaA() {
     for (let i = 0; i < this.fixture_b_nacional_grupo_a.length; i++) {
       var hoy = this.fechaDeHoy();
-      if (this.fixture_b_nacional_grupo_a[i].date > hoy) {
+      if (this.fixture_b_nacional_grupo_a[i].date > hoy && this.fixture_b_nacional_grupo_a[i].start == 'Not Started') {
         var numeroFecha = this.fixture_b_nacional_grupo_a[i].round.split('- ')
         this.fecha_grupo_a = numeroFecha[1]
         return numeroFecha;
@@ -184,7 +192,7 @@ export class PrimeraNacionalComponent implements OnInit {
   traerfechaEnJuegoZonaB() {
     for (let i = 0; i < this.fixture_b_nacional_grupo_b.length; i++) {
       var hoy = this.fechaDeHoy();
-      if (this.fixture_b_nacional_grupo_b[i].date > hoy) {
+      if (this.fixture_b_nacional_grupo_b[i].date > hoy && this.fixture_b_nacional_grupo_b[i].start == 'Not Started') {
         var numeroFecha = this.fixture_b_nacional_grupo_b[i].round.split('- ')
         this.fecha_grupo_b = numeroFecha[1]
         return numeroFecha;

@@ -5,7 +5,7 @@ th {
 
 td {
     text-align: center;
-    font-size: 12px;
+    font-size: 10px;
 }
 
 body {
@@ -27,8 +27,8 @@ h2 {
 }
 
 img{
-    height: 35px;
-    width: 40px;
+    height: 25px;
+    width: 30px;
 }
 
 .img-posiciones{
@@ -38,6 +38,6 @@ img{
 
 .goles{
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-size: 20px;
+    font-size: 18px;
     color: rgb(13, 12, 0);
 }
