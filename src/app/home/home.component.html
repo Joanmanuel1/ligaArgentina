@@ -102,7 +102,7 @@
                                                                                 (Penal)
                                                                             </span>
                                                                         </span>
-                                                                        ,
+                                                                        ;
                                                                     </ng-container>
                                                                 </ng-container>
                                                             </div>
@@ -119,15 +119,60 @@
                                                                                 (Penal)
                                                                             </span>
                                                                         </span>
-                                                                        ,
+                                                                        ;
                                                                     </ng-container>
                                                                 </ng-container>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-danger"
-                                                            data-bs-dismiss="modal">Cerrar</button>
+                                                        <div class="row align-items-start"
+                                                            style="border: solid 2px darkcyan">
+                                                            <span>Tarjetas <i class="fas fa-file"
+                                                                    style="color:yellow"></i> - <i class="fas fa-file"
+                                                                    style="color:red"></i></span>
+                                                            <div class="col">
+                                                                <ng-container *ngFor="let tarjeta of tarjetas">
+                                                                    <ng-container
+                                                                        *ngIf="tarjeta.team_name == partido.home_name">
+                                                                        <span class="match">
+                                                                            {{tarjeta.player}}
+                                                                            <b style="color: red"> {{tarjeta.time}}'
+                                                                                {{tarjeta.extra}}</b>
+                                                                            <i class="fas fa-file" style="color:yellow"
+                                                                                *ngIf="tarjeta.detail == 'Yellow Card'">
+                                                                            </i>
+                                                                            <i class="fas fa-file" style="color:red"
+                                                                                *ngIf="tarjeta.detail == 'Red Card'">
+                                                                            </i>
+                                                                        </span>
+                                                                        ;
+                                                                    </ng-container>
+                                                                </ng-container>
+                                                            </div>
+                                                            <div class="col">
+                                                                <ng-container *ngFor="let tarjeta of tarjetas">
+                                                                    <ng-container
+                                                                        *ngIf="tarjeta.team_name == partido.away_name">
+                                                                        <span class="match" style="text-align: right;">
+                                                                            {{tarjeta.player}}
+                                                                            <b style="color: red;">
+                                                                                {{tarjeta.time}}'
+                                                                                {{tarjeta.extra}}</b>
+                                                                            <i class="fas fa-file" style="color:yellow"
+                                                                                *ngIf="tarjeta.detail == 'Yellow Card'">
+                                                                            </i>
+                                                                            <i class="fas fa-file" style="color:red"
+                                                                                *ngIf="tarjeta.detail == 'Red Card'">
+                                                                            </i>
+                                                                        </span>
+                                                                        ;
+                                                                    </ng-container>
+                                                                </ng-container>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-dark"
+                                                                data-bs-dismiss="modal">Cerrar</button>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -175,7 +220,6 @@
                                                 <div class="modal-content">
                                                     <div class="modal-header bg-dark text-white">
                                                         <h1 class="modal-title fs-5" id="exampleModalLabel">
-
                                                             {{partido.name}}
                                                         </h1>
                                                         <button type="button" class="btn-close bg-danger text-white"
@@ -344,9 +388,7 @@
                                                 <div class="modal-content" style="width: 750px;">
                                                     <div class="modal-header bg-dark text-white">
                                                         <h1 class="modal-title fs-5" id="exampleModalLabel">
-
                                                             {{partido.name}}
-
                                                         </h1>
                                                         <button type="button" class="btn-close bg-danger text-white"
                                                             data-bs-dismiss="modal" aria-label="Close"></button>
@@ -371,9 +413,9 @@
                                                         </div>
                                                         <div class="row align-items-start">
                                                             <div class="col" style="text-align: center;">
-                                                                <b *ngIf="partido.status == 'Match Finished' ">Partido
-                                                                    Finalizado</b> <br>
+                                                                <b>Partido Finalizado</b> <br>
                                                                 {{partido.stadium}}
+
                                                             </div>
                                                         </div>
                                                         <div class="row align-items-start"
@@ -392,7 +434,7 @@
                                                                                 (Penal)
                                                                             </span>
                                                                         </span>
-                                                                        ;
+                                                                        ,
                                                                     </ng-container>
                                                                 </ng-container>
                                                             </div>
@@ -409,15 +451,60 @@
                                                                                 (Penal)
                                                                             </span>
                                                                         </span>
-                                                                        ;
+                                                                        ,
                                                                     </ng-container>
                                                                 </ng-container>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-danger"
-                                                            data-bs-dismiss="modal">Cerrar</button>
+                                                        <div class="row align-items-start"
+                                                            style="border: solid 2px darkcyan">
+                                                            <span>Tarjetas <i class="fas fa-file"
+                                                                    style="color:yellow"></i> - <i class="fas fa-file"
+                                                                    style="color:red"></i></span>
+                                                            <div class="col">
+                                                                <ng-container *ngFor="let tarjeta of tarjetas">
+                                                                    <ng-container
+                                                                        *ngIf="tarjeta.team_name == partido.home_name">
+                                                                        <span class="match">
+                                                                            {{tarjeta.player}}
+                                                                            <b style="color: red"> {{tarjeta.time}}'
+                                                                                {{tarjeta.extra}}</b>
+                                                                            <i class="fas fa-file" style="color:yellow"
+                                                                                *ngIf="tarjeta.detail == 'Yellow Card'">
+                                                                            </i>
+                                                                            <i class="fas fa-file" style="color:red"
+                                                                                *ngIf="tarjeta.detail == 'Red Card'">
+                                                                            </i>
+                                                                        </span>
+                                                                        ,
+                                                                    </ng-container>
+                                                                </ng-container>
+                                                            </div>
+                                                            <div class="col">
+                                                                <ng-container *ngFor="let tarjeta of tarjetas">
+                                                                    <ng-container
+                                                                        *ngIf="tarjeta.team_name == partido.away_name">
+                                                                        <span class="match" style="text-align: right;">
+                                                                            {{tarjeta.player}}
+                                                                            <b style="color: red;">
+                                                                                {{tarjeta.time}}'
+                                                                                {{tarjeta.extra}}</b>
+                                                                            <i class="fas fa-file" style="color:yellow"
+                                                                                *ngIf="tarjeta.detail == 'Yellow Card'">
+                                                                            </i>
+                                                                            <i class="fas fa-file" style="color:red"
+                                                                                *ngIf="tarjeta.detail == 'Red Card'">
+                                                                            </i>
+                                                                        </span>
+                                                                        ,
+                                                                    </ng-container>
+                                                                </ng-container>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-dark"
+                                                                data-bs-dismiss="modal">Cerrar</button>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -465,9 +552,7 @@
                                                 <div class="modal-content">
                                                     <div class="modal-header bg-dark text-white">
                                                         <h1 class="modal-title fs-5" id="exampleModalLabel">
-
                                                             {{partido.name}}
-
                                                         </h1>
                                                         <button type="button" class="btn-close bg-danger text-white"
                                                             data-bs-dismiss="modal" aria-label="Close"></button>

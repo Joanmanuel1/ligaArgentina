@@ -1,6 +1,5 @@
 <body>
     <img src="../../assets/fondobnacional.png" alt="" style="width: 100%; height: 150px;">
-
     <div class="container">
         <div class="row align-items-start">
             <div class="col-6">
@@ -21,7 +20,7 @@
                             <th class="col-md-auto">F</th>
                         </tr>
                     </thead>
-                    <tbody *ngFor="let equipos of b_nacional_grupo_a; let i = index" [attr.data-index]="i">
+                    <tbody *ngFor="let equipos of posiciones_grupo_a; let i = index" [attr.data-index]="i">
                         <tr>
                             <td class="">{{i+1}}</td>
                             <td scope="" style="text-align: left !important;"><img src="{{equipos.logo}}" alt=""
@@ -54,7 +53,6 @@
                         </tr>
                     </tbody>
                 </table>
-
                 <h2 style="margin-top: 3%;">Tabla de Posiciones Zona B</h2>
                 <table class="table table-hover table-info table-bordered">
                     <thead class="table-dark">
@@ -72,7 +70,7 @@
                             <th class="col-md-auto">F</th>
                         </tr>
                     </thead>
-                    <tbody *ngFor="let equipos of b_nacional_grupo_b; let i = index" [attr.data-index]="i">
+                    <tbody *ngFor="let equipos of posiciones_grupo_b; let i = index" [attr.data-index]="i">
                         <tr>
                             <td class="">{{i+1}}</td>
                             <td scope="" style="text-align: left !important;"><img src="{{equipos.logo}}" alt=""
@@ -106,14 +104,13 @@
                     </tbody>
                 </table>
             </div>
-
             <div class="col-6">
                 <header style="margin-top: 3%;">
                     <ul class="nav nav-pills justify-content-center">
                         <li class="nav-item">
                             <ng-container *ngIf="fecha_grupo_a < 2; else primeraFechaA">
-                                <button class="btn btn-dark" aria-current="page" (click)="fechaAnteriorGrupoA()" disabled> <i
-                                        class='fas fa-less-than'></i> Anterior </button>
+                                <button class="btn btn-dark" aria-current="page" (click)="fechaAnteriorGrupoA()"
+                                    disabled> <i class='fas fa-less-than'></i> Anterior </button>
                             </ng-container>
                             <ng-template #primeraFechaA>
                                 <button class="btn btn-dark" aria-current="page" (click)="fechaAnteriorGrupoA()"> <i
@@ -135,11 +132,10 @@
                     </ul>
                 </header>
 
-                <table class="table table-hover table-danger table-bordered" style="margin-top: 8px;">
-                    <tbody *ngFor="let partido of fixture_b_nacional_grupo_a; let i = index" [attr.data-index]="i">
+                <table class="table table-hover table-info table-bordered" style="margin-top: 8px;">
+                    <tbody *ngFor="let partido of fixture_grupo_a; let i = index" [attr.data-index]="i">
                         <ng-container *ngIf="partido.round == 'Group A - ' + fecha_grupo_a">
-                            <ng-container
-                                *ngIf="fixture_b_nacional_grupo_a[i].date == fixture_b_nacional_grupo_a[0].date ; else otros;">
+                            <ng-container *ngIf="fixture_grupo_a[i].date == fixture_grupo_a[0].date ; else otros;">
                                 <tr *ngIf="i == 0">
                                     <th COLSPAN="5" class="table-dark">{{partido.date | date:"EEEE d 'de' MMMM" |
                                         titlecase
@@ -164,7 +160,7 @@
                                 </tr>
                             </ng-container>
                             <ng-template #otros>
-                                <tr *ngIf="fixture_b_nacional_grupo_a[i].date[0] != fixture_b_nacional_grupo_a[i-1].date[0]">
+                                <tr *ngIf="fixture_grupo_a[i].date[0] != fixture_grupo_a[i-1].date[0]">
                                     <th COLSPAN="5" class="table-dark">{{partido.date | date:"EEEE d 'de' MMMM" |
                                         titlecase
                                         }}
@@ -191,14 +187,12 @@
                         </ng-container>
                     </tbody>
                 </table>
-
-
                 <header style="margin-top: 3%;">
                     <ul class="nav nav-pills justify-content-center">
                         <li class="nav-item">
                             <ng-container *ngIf="fecha_grupo_b < 2; else primeraFechaB">
-                                <button class="btn btn-dark" aria-current="page" (click)="fechaAnteriorGrupoB()" disabled> <i
-                                        class='fas fa-less-than'></i> Anterior </button>
+                                <button class="btn btn-dark" aria-current="page" (click)="fechaAnteriorGrupoB()"
+                                    disabled> <i class='fas fa-less-than'></i> Anterior </button>
                             </ng-container>
                             <ng-template #primeraFechaB>
                                 <button class="btn btn-dark" aria-current="page" (click)="fechaAnteriorGrupoB()"> <i
@@ -219,12 +213,10 @@
                         </li>
                     </ul>
                 </header>
-
-                <table class="table table-hover table-danger table-bordered" style="margin-top: 8px;">
-                    <tbody *ngFor="let partido of fixture_b_nacional_grupo_b; let i = index" [attr.data-index]="i">
+                <table class="table table-hover table-info table-bordered" style="margin-top: 8px;">
+                    <tbody *ngFor="let partido of fixture_grupo_b; let i = index" [attr.data-index]="i">
                         <ng-container *ngIf="partido.round == 'Group B - ' + fecha_grupo_b">
-                            <ng-container
-                                *ngIf="fixture_b_nacional_grupo_b[i].date == fixture_b_nacional_grupo_b[0].date ; else otros;">
+                            <ng-container *ngIf="fixture_grupo_b[i].date == fixture_grupo_b[0].date ; else otros;">
                                 <tr *ngIf="i == 0">
                                     <th COLSPAN="5" class="table-dark">{{partido.date | date:"EEEE d 'de' MMMM" |
                                         titlecase
@@ -249,7 +241,7 @@
                                 </tr>
                             </ng-container>
                             <ng-template #otros>
-                                <tr *ngIf="fixture_b_nacional_grupo_b[i].date[0] != fixture_b_nacional_grupo_b[i-1].date[0]">
+                                <tr *ngIf="fixture_grupo_b[i].date[0] != fixture_grupo_b[i-1].date[0]">
                                     <th COLSPAN="5" class="table-dark">{{partido.date | date:"EEEE d 'de' MMMM" |
                                         titlecase
                                         }}
@@ -270,13 +262,31 @@
                                     <ng-template #tiempo>
                                         <td> {{partido.start_time}}</td>
                                     </ng-template>
-
                                 </tr>
                             </ng-template>
                         </ng-container>
                     </tbody>
                 </table>
 
+                <h3> <span class="title-h2" style="margin-top: 5%;"> <b>Goleadores </b> </span> </h3>
+                <table class="table table-hover w-auto table-info">
+                    <thead class="table-dark">
+                        <tr>
+                            <th class="col-md-auto">#</th>
+                            <th class="col-md-auto" colspan="3">Jugadores</th>
+                            <th class="col-md-auto">Goles</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngFor="let goleador of goleadores; let i = index" [attr.data-index]="i">
+                        <tr>
+                            <td class="col-md-auto"><b> {{i+1}} </b></td>
+                            <td><img src="{{goleador.photo}}" alt="" class="foto-jugador"></td>
+                            <td><b>{{goleador.name}} </b></td>
+                            <td class="col-md-auto"><img src="{{goleador.logo}}" alt="" class="img-posiciones"> </td>
+                            <td class="col-md-auto"><b> {{goleador.goals}} </b> </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

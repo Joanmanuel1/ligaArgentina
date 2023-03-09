@@ -19,6 +19,7 @@ import { ChampionsLeagueComponent } from './champions-league/champions-league.co
 registerLocaleData(localePy, 'es');
 
 import { CommonModule } from '@angular/common';
+import { CopaArgentinaComponent } from './copa-argentina/copa-argentina.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { CommonModule } from '@angular/common';
     PrimeraBComponent,
     LibertadoresComponent,
     ChampionsLeagueComponent,
+    CopaArgentinaComponent,
 
   ],
   imports: [

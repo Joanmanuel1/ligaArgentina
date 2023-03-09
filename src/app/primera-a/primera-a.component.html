@@ -1,14 +1,12 @@
 <body>
     <img src="../../assets/fondoprimera.png" alt="Primera A" style="width: 100%; height: 100%;">
-
-
     <div class="container">
         <h1> <img src="../../assets/logoPrimera.png" alt=""
                 style="width: 300px !important; height: 150px !important; margin-top: 1%;"></h1>
         <div class="row align-items-start">
             <div class="col-6">
-                <h2 style="margin-top: 3%;">Tabla de Posiciones</h2>
-                <table class="table table-hover table-info table-bordered">
+                <h2 style="margin-top: 3%;"><span class="title-h2">Tabla de Posiciones </span></h2>
+                <table class="table table-hover table-bordered">
                     <thead class="table-dark">
                         <tr>
                             <th class="col-md-auto">#</th>
@@ -24,20 +22,20 @@
                             <th class="col-md-auto">F</th>
                         </tr>
                     </thead>
-                    <tbody *ngFor="let equipos of primera_a; let i = index" [attr.data-index]="i">
+                    <tbody *ngFor="let equipos of posiciones; let i = index" [attr.data-index]="i">
                         <tr>
-                            <td class=""><b> {{i+1}} </b> </td>
-                            <td scope="" style="text-align: left !important;"><img src="{{equipos.logo}}" alt=""
+                            <td class="col-md-auto"><b> {{i+1}} </b> </td>
+                            <td class="col-md-auto" style="text-align: left !important;"><img src="{{equipos.logo}}" alt=""
                                     class="img-posiciones"> <b>{{equipos.name}} </b>
                             </td>
-                            <td class=""><b> {{equipos.points}} </b> </td>
-                            <td class="">{{equipos.played}}</td>
-                            <td class="" style="color: rgb(2, 87, 2)">{{equipos.win}}</td>
-                            <td class="" style="color: rgb(173, 171, 171)">{{equipos.draw}}</td>
-                            <td class="" style="color: red">{{equipos.lose}}</td>
-                            <td class="" style="color:rgb(15, 72, 15)">{{equipos.for}}</td>
-                            <td class="" style="color: rgb(143, 28, 28)">{{equipos.against}}</td>
-                            <td class="" style="color: rgb(0, 130, 123)">{{equipos.goalsDiff}}</td>
+                            <td class="col-md-auto"><b> {{equipos.points}} </b> </td>
+                            <td class="col-md-auto">{{equipos.played}}</td>
+                            <td class="col-md-auto" style="color: rgb(2, 87, 2)">{{equipos.win}}</td>
+                            <td class="col-md-auto" style="color: rgb(173, 171, 171)">{{equipos.draw}}</td>
+                            <td class="col-md-auto" style="color: red">{{equipos.lose}}</td>
+                            <td class="col-md-auto" style="color:rgb(15, 72, 15)">{{equipos.for}}</td>
+                            <td class="col-md-auto" style="color: rgb(143, 28, 28)">{{equipos.against}}</td>
+                            <td class="col-md-auto" style="color: rgb(0, 130, 123)">{{equipos.goalsDiff}}</td>
                             <td>
                                 <ng-container *ngFor="let form of equipos.form">
                                     <ng-container *ngIf="form == 'W' ">
@@ -61,6 +59,40 @@
 
             <div class="col-6">
                 <header style="margin-top: 3%;">
+                    <div class="container text-center" style="margin-bottom: 5%;">
+                        <div class="row row-cols-auto">
+                            <button type="button" class="col fecha btn btn-light">1</button>
+                            <button type="button" class="col fecha btn btn-light">2</button>
+                            <button type="button" class="col fecha btn btn-light">3</button>
+                            <button type="button" class="col fecha btn btn-light">4</button>
+                            <button type="button" class="col fecha btn btn-light">5</button>
+                            <button type="button" class="col fecha btn btn-light">6</button>
+                            <button type="button" class="col fecha btn btn-light">7</button>
+                            <button type="button" class="col fecha btn btn-light">8</button>
+                            <button type="button" class="col fecha btn btn-light">9</button>
+                            <button type="button" class="col fecha btn btn-light">10</button>
+                            <button type="button" class="col fecha btn btn-light">11</button>
+                            <button type="button" class="col fecha btn btn-light">12</button>
+                            <button type="button" class="col fecha btn btn-light">13</button>
+                            <button type="button" class="col fecha btn btn-light">14</button>
+                            <button type="button" class="col fecha btn btn-light">15</button>
+                            <button type="button" class="col fecha btn btn-light">16</button>
+                            <button type="button" class="col fecha btn btn-light">17</button>
+                            <button type="button" class="col fecha btn btn-light">18</button>
+                            <button type="button" class="col fecha btn btn-light">19</button>
+                            <button type="button" class="col fecha btn btn-light">20</button>
+                            <button type="button" class="col fecha btn btn-light">21</button>
+                            <button type="button" class="col fecha btn btn-light">22</button>
+                            <button type="button" class="col fecha btn btn-light">23</button>
+                            <button type="button" class="col fecha btn btn-light">24</button>
+                            <button type="button" class="col fecha btn btn-light">25</button>
+                            <button type="button" class="col fecha btn btn-light">26</button>
+                            <button type="button" class="col fecha btn btn-light">27</button>
+                            <button type="button" class="col fecha btn btn-light">28</button>
+                        </div>
+                    </div>
+
+
                     <ul class="nav nav-pills justify-content-center">
                         <li class="nav-item">
                             <ng-container *ngIf="fecha < 2; else primeraFecha">
@@ -86,10 +118,10 @@
                         </li>
                     </ul>
                 </header>
-                <table class="table table-hover table-danger table-bordered" style="margin-top: 8px;">
-                    <tbody *ngFor="let partido of fixture_primera_a; let i = index" [attr.data-index]="i">
+                <table class="table table-hover table-bordered" style="margin-top: 8px;">
+                    <tbody *ngFor="let partido of fixture; let i = index" [attr.data-index]="i">
                         <ng-container *ngIf="partido.round == '1st Phase - ' + fecha">
-                            <ng-container *ngIf="fixture_primera_a[i].date == fixture_primera_a[0].date ; else otros;">
+                            <ng-container *ngIf="fixture[i].date == fixture[0].date ; else otros;">
                                 <tr *ngIf="i == 0">
                                     <th COLSPAN="5" class="table-dark">{{partido.date | date:"EEEE d 'de' MMMM" |
                                         titlecase
@@ -110,7 +142,7 @@
                                 </tr>
                             </ng-container>
                             <ng-template #otros>
-                                <tr *ngIf="fixture_primera_a[i].date[0] != fixture_primera_a[i-1].date[0]">
+                                <tr *ngIf="fixture[i].date[0] != fixture[i-1].date[0]">
                                     <th COLSPAN="5" class="table-dark"><b> {{partido.date | date:"EEEE d 'de' MMMM" |
                                             titlecase}} </b> </th>
                                 </tr>
@@ -118,7 +150,8 @@
                                     <td class="hora"><b> {{partido.date | date:"HH:mm" }} hs </b> </td>
                                     <td style="text-align: right !important;"><b> {{partido.home_name}} </b><img
                                             class="img-fix" src="{{partido.home_logo}}" alt=""
-                                            style="padding-left: 5%;"></td>
+                                            style="padding-left: 5%;">
+                                    </td>
                                     <td class="goles">{{partido.home_goals}} - {{partido.away_goals}}</td>
                                     <td style="text-align: left !important;"> <img class="img-fix"
                                             src="{{partido.away_logo}}" alt="" style="padding-right: 5%;">
@@ -136,6 +169,66 @@
                         </ng-container>
                     </tbody>
                 </table>
+
+                <ul class="nav nav-pills" id="myTab" role="tablist">
+                    <li class="goleadores-asistidores" role="presentation">
+                        <button class="nav-link active" id="goleadores-tab" data-bs-toggle="tab" data-bs-target="#goleadores"
+                            type="button" role="tab" aria-controls="goleadores"
+                            aria-selected="false" style="color:white; font-size: 16px;" >Goleadores</button>
+                    </li>
+                    <li class="goleadores-asistidores" role="presentation">
+                        <button class="nav-link" id="asistidores-tab" data-bs-toggle="tab" data-bs-target="#asistidores"
+                            type="button" role="tab" aria-controls="asistidores"
+                            aria-selected="false" style="color:white; font-size: 16px;">Asistidores</button>
+                    </li>
+                </ul>
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="goleadores" role="tabpanel" aria-labelledby="goleadores-tab" tabindex="0">
+                        <table class="table table-hover w-auto">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th class="col-md-auto">#</th>
+                                    <th class="col-md-auto" colspan="2">Jugadores</th>
+                                    <th class="col-md-auto" colspan="2" style="text-align: left;">Equipo</th>
+                                    <th class="col-md-auto">Goles</th>
+                                </tr>
+                            </thead>
+                            <tbody *ngFor="let goleador of goleadores; let i = index" [attr.data-index]="i">
+                                <tr>
+                                    <td class="col-md-auto"><b> {{i+1}} </b></td>
+                                    <td><img src="{{goleador.photo}}" alt="" class="foto-jugador"></td>
+                                    <td style="text-align: left; font-size: 12px !important;"><b>{{goleador.name}} </b></td>
+                                    <td class="col-md-auto"><img src="{{goleador.logo}}" alt="" class="img-posiciones"> </td>
+                                    <td style="text-align: left; font-size: 12px !important;"><b>{{goleador.team_name}} </b></td>
+                                    <td class="col-md-auto"><b> {{goleador.goals}} </b> </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="tab-pane fade" id="asistidores" role="tabpanel" aria-labelledby="asistidores-tab"
+                        tabindex="0">
+                        <table class="table table-hover w-auto ">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th class="col-md-auto">#</th>
+                                    <th class="col-md-auto" colspan="2">Jugadores</th>
+                                    <th class="col-md-auto" colspan="2" style="text-align: left;">Equipo</th>
+                                    <th class="col-md-auto">Goles</th>
+                                </tr>
+                            </thead>
+                            <tbody *ngFor="let asistidor of asistidores; let i = index" [attr.data-index]="i">
+                                <tr>
+                                    <td class="col-md-auto"><b> {{i+1}} </b></td>
+                                    <td><img src="{{asistidor.photo}}" alt="" class="foto-jugador"></td>
+                                    <td style="text-align: left; font-size: 12px !important;"><b>{{asistidor.name}} </b></td>
+                                    <td class="col-md-auto"><img src="{{asistidor.logo}}" alt="" class="img-posiciones"></td>
+                                    <td style="text-align: left; font-size: 12px !important;"><b>{{asistidor.team_name}} </b></td>
+                                    <td class="col-md-auto"><b> {{asistidor.assists}} </b> </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

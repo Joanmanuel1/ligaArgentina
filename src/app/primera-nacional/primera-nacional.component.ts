@@ -9,19 +9,21 @@ export class PrimeraNacionalComponent implements OnInit {
 
   constructor() { }
 
-  fixture_b_nacional_grupo_a: any = [];
-  fixture_b_nacional_grupo_b: any = [];
+  fixture_grupo_a: any = [];
+  fixture_grupo_b: any = [];
   fecha_grupo_a: any;
   fecha_grupo_b: any;
-  b_nacional_grupo_a: any = [];
-  b_nacional_grupo_b: any = [];
+  posiciones_grupo_a: any = [];
+  posiciones_grupo_b: any = [];
+  goleadores: any = [];
 
   ngOnInit(): void {
-    this.fixtureBNacional();
-    this.bNacional();
+    this.Fixture();
+    this.Posiciones();
+    this.Goleadores();
   }
 
-  fixtureBNacional() {
+  Fixture() {
     fetch(`https://v3.football.api-sports.io/fixtures?league=129&season=2023&timezone=America/Argentina/Buenos_Aires`, {
       "method": "GET",
       "headers": {
@@ -33,7 +35,7 @@ export class PrimeraNacionalComponent implements OnInit {
       .then((equipos) => {
         for (let i = 0; i < equipos.response.length; i++) {
           if (equipos.response[i].league.round.startsWith('Group A - ')) {
-            this.fixture_b_nacional_grupo_a.push({
+            this.fixture_grupo_a.push({
               date: equipos.response[i].fixture.date.split('T'),
               start: equipos.response[i].fixture.status.long,
               start_time: equipos.response[i].fixture.status.elapsed,
@@ -48,7 +50,7 @@ export class PrimeraNacionalComponent implements OnInit {
             });
           }
           else{
-            this.fixture_b_nacional_grupo_b.push({
+            this.fixture_grupo_b.push({
               date: equipos.response[i].fixture.date.split('T'),
               start: equipos.response[i].fixture.status.long,
               start_time: equipos.response[i].fixture.status.elapsed,
@@ -65,16 +67,8 @@ export class PrimeraNacionalComponent implements OnInit {
         }
         this.ordenarZonaA();
         this.traerfechaEnJuegoZonaA();
-       
-        
-
         this.ordenarZonaB();
         this.traerfechaEnJuegoZonaB();
-        console.log("a", this.fecha_grupo_a);
-        console.log("b", this.fecha_grupo_b);
-        console.log("a", this.fixture_b_nacional_grupo_a);
-        console.log("b", this.fixture_b_nacional_grupo_b);
-
       })
       .catch(err => {
         console.log(err);
@@ -129,7 +123,7 @@ export class PrimeraNacionalComponent implements OnInit {
     }
   }
 
-  bNacional() {
+  Posiciones() {
     fetch("https://v3.football.api-sports.io/standings?league=129&season=2023", {
       "method": "GET",
       "headers": {
@@ -140,7 +134,7 @@ export class PrimeraNacionalComponent implements OnInit {
       .then(response => response.json())
       .then((equipos) => {
         for (let i = 0; i < equipos.response[0].league.standings[0].length; i++) {
-          this.b_nacional_grupo_b.push({
+          this.posiciones_grupo_b.push({
             name: equipos.response[0].league.standings[0][i].team.name,
             logo: equipos.response[0].league.standings[0][i].team.logo,
             points: equipos.response[0].league.standings[0][i].points,
@@ -156,7 +150,7 @@ export class PrimeraNacionalComponent implements OnInit {
           });
         }
         for (let i = 0; i < equipos.response[0].league.standings[1].length; i++) {
-          this.b_nacional_grupo_a.push({
+          this.posiciones_grupo_a.push({
             name: equipos.response[0].league.standings[1][i].team.name,
             logo: equipos.response[0].league.standings[1][i].team.logo,
             points: equipos.response[0].league.standings[1][i].points,
@@ -178,11 +172,12 @@ export class PrimeraNacionalComponent implements OnInit {
   }
 
 
+
   traerfechaEnJuegoZonaA() {
-    for (let i = 0; i < this.fixture_b_nacional_grupo_a.length; i++) {
+    for (let i = 0; i < this.fixture_grupo_a.length; i++) {
       var hoy = this.fechaDeHoy();
-      if (this.fixture_b_nacional_grupo_a[i].date > hoy && this.fixture_b_nacional_grupo_a[i].start == 'Not Started') {
-        var numeroFecha = this.fixture_b_nacional_grupo_a[i].round.split('- ')
+      if (this.fixture_grupo_a[i].date > hoy && this.fixture_grupo_a[i].start == 'Not Started') {
+        var numeroFecha = this.fixture_grupo_a[i].round.split('- ')
         this.fecha_grupo_a = numeroFecha[1]
         return numeroFecha;
       }
@@ -190,10 +185,10 @@ export class PrimeraNacionalComponent implements OnInit {
   }
 
   traerfechaEnJuegoZonaB() {
-    for (let i = 0; i < this.fixture_b_nacional_grupo_b.length; i++) {
+    for (let i = 0; i < this.fixture_grupo_b.length; i++) {
       var hoy = this.fechaDeHoy();
-      if (this.fixture_b_nacional_grupo_b[i].date > hoy && this.fixture_b_nacional_grupo_b[i].start == 'Not Started') {
-        var numeroFecha = this.fixture_b_nacional_grupo_b[i].round.split('- ')
+      if (this.fixture_grupo_b[i].date > hoy && this.fixture_grupo_b[i].start == 'Not Started') {
+        var numeroFecha = this.fixture_grupo_b[i].round.split('- ')
         this.fecha_grupo_b = numeroFecha[1]
         return numeroFecha;
       }
@@ -201,18 +196,44 @@ export class PrimeraNacionalComponent implements OnInit {
   }
 
   ordenarZonaA() {
-    this.fixture_b_nacional_grupo_a.sort((x: any, y: any) => {
+    this.fixture_grupo_a.sort((x: any, y: any) => {
       x = new Date(x.date),
         y = new Date(y.date);
       return x - y;
     });
   }
   ordenarZonaB() {
-    this.fixture_b_nacional_grupo_b.sort((x: any, y: any) => {
+    this.fixture_grupo_b.sort((x: any, y: any) => {
       x = new Date(x.date),
         y = new Date(y.date);
       return x - y;
     });
   }
+
+
+  Goleadores() {
+    fetch("https://v3.football.api-sports.io/players/topscorers?league=129&season=2023", {
+      "method": "GET",
+      "headers": {
+        "x-rapidapi-host": "v3.football.api-sports.io",
+        "x-rapidapi-key": "2a4d321e462a454968098ab7e12fc3af"
+      }
+    })
+      .then(response => response.json())
+      .then((equipos) => {
+        for (let i = 0; i < 8; i++) {
+          this.goleadores.push({
+            name: equipos.response[i].player.name,
+            logo: equipos.response[i].statistics[0].team.logo,
+            goals: equipos.response[i].statistics[0].goals.total,
+            photo: equipos.response[i].player.photo,
+          });
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+
 
 }

@@ -9,18 +9,18 @@ import { RouterModule } from '@angular/router';
 export class PrimeraBComponent implements OnInit {
   constructor(private route: RouterModule) { }
 
-  fixture_b_metropolitana: any = [];
+  fixture: any = [];
   fecha: any;
-  b_metropolitana: any = [];
-  b_metropolitana_goleadores: any = [];
+  posiciones: any = [];
+  goleadores: any = [];
 
   ngOnInit(): void {
-    this.fixtureBMetropolitana();
-    this.bMetropolitana();
-    this.bMetropolitanaGoleadores();
+    this.Fixture();
+    this.Posiciones();
+    this.Goleadores();
   }
 
-  fixtureBMetropolitana() {
+  Fixture() {
     fetch(`https://v3.football.api-sports.io/fixtures?league=131&season=2023&timezone=America/Argentina/Buenos_Aires`, {
       "method": "GET",
       "headers": {
@@ -31,7 +31,7 @@ export class PrimeraBComponent implements OnInit {
       .then(response => response.json())
       .then((equipos) => {
         for (let i = 0; i < equipos.response.length; i++) {
-          this.fixture_b_metropolitana.push({
+          this.fixture.push({
             date: equipos.response[i].fixture.date.split('T'),
             start: equipos.response[i].fixture.status.long,
             start_time: equipos.response[i].fixture.status.elapsed,
@@ -54,7 +54,7 @@ export class PrimeraBComponent implements OnInit {
       });
   }
 
-  bMetropolitana() {
+  Posiciones() {
     fetch("https://v3.football.api-sports.io/standings?league=131&season=2023", {
       "method": "GET",
       "headers": {
@@ -65,7 +65,7 @@ export class PrimeraBComponent implements OnInit {
       .then(response => response.json())
       .then((equipos) => {
         for (let i = 0; i < equipos.response[0].league.standings[0].length; i++) {
-          this.b_metropolitana.push({
+          this.posiciones.push({
             name: equipos.response[0].league.standings[0][i].team.name,
             logo: equipos.response[0].league.standings[0][i].team.logo,
             points: equipos.response[0].league.standings[0][i].points,
@@ -86,7 +86,7 @@ export class PrimeraBComponent implements OnInit {
       });
   }
 
-  bMetropolitanaGoleadores() {
+  Goleadores() {
     fetch("https://v3.football.api-sports.io/players/topscorers?league=131&season=2023", {
       "method": "GET",
       "headers": {
@@ -96,11 +96,12 @@ export class PrimeraBComponent implements OnInit {
     })
       .then(response => response.json())
       .then((equipos) => {
-        for (let i = 0; i < 8; i++) {
-          this.b_metropolitana_goleadores.push({
+        for (let i = 0; i < 5; i++) {
+          this.goleadores.push({
             name: equipos.response[i].player.name,
             logo: equipos.response[i].statistics[0].team.logo,
             goals: equipos.response[i].statistics[0].goals.total,
+            photo: equipos.response[i].player.photo,
           });
         }
       })
@@ -110,7 +111,7 @@ export class PrimeraBComponent implements OnInit {
   }
 
   ordenar() {
-    this.fixture_b_metropolitana.sort((x: any, y: any) => {
+    this.fixture.sort((x: any, y: any) => {
       x = new Date(x.date),
         y = new Date(y.date);
       return x - y;
@@ -118,10 +119,10 @@ export class PrimeraBComponent implements OnInit {
   }
 
   traerFechaEnJuego() {
-    for (let i = 0; i < this.fixture_b_metropolitana.length; i++) {
+    for (let i = 0; i < this.fixture.length; i++) {
       var hoy = this.fechaDeHoy();
-      if (this.fixture_b_metropolitana[i].date > hoy) {
-        var numeroFecha = this.fixture_b_metropolitana[i].round.split('- ')
+      if (this.fixture[i].date > hoy) {
+        var numeroFecha = this.fixture[i].round.split('- ')
         this.fecha = numeroFecha[1]
         return numeroFecha;
       }

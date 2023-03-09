@@ -1,6 +1,6 @@
 th {
     text-align: center;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 td {
@@ -19,26 +19,57 @@ h1 {
 }
 
 h2 {
-    color:rgb(2, 80, 80);
-    background-color:#cff4fc;
     text-align: center;
     font-size: 28x;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
-img{
+.title-h2 {
+    color: rgb(0, 29, 29);
+    background-color: #cff4fc;
+}
+
+img {
     height: 25px;
     width: 35px;
 }
 
-.img-posiciones{
+.img-posiciones {
     height: 25px;
     width: 25px;
     margin-right: 10px;
 }
 
-.goles{
+.goles {
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-size: 18px;
     color: rgb(0, 0, 0);
+}
+
+.table {
+    background-color: #ffffff;
+}
+
+.foto-jugador {
+    border-radius: 50%;
+    height: 25px;
+    width: 35px;
+}
+
+.primero {
+    background-color: lightgreen;
+}
+
+.fecha {
+    margin: 2px;
+}
+
+.fecha:hover {
+    background-color: black;
+    color: white;
+}
+
+.goleadores-asistidores {
+    background-color: rgb(0, 0, 0) !important;
+    color: white !important;
 }

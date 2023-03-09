@@ -8,17 +8,22 @@ import { RouterModule } from '@angular/router';
 })
 export class PrimeraAComponent implements OnInit {
   fecha: any = 2;
-  primera_a: any = [];
-  fixture_primera_a: any = [];
+  posiciones: any = [];
+  fixture: any = [];
+  goleadores: any = [];
+  asistidores: any = [];
+
 
   constructor(private route: RouterModule) { }
 
   ngOnInit(): void {
-    this.primeraA();
-    this.fixturePrimeraA();
+    this.Posiciones();
+    this.Fixture();
+    this.Goleadores();
+    this.Asistidores();
   }
 
-  primeraA() {
+  Posiciones() {
     fetch("https://v3.football.api-sports.io/standings?league=128&season=2023", {
       "method": "GET",
       "headers": {
@@ -30,7 +35,7 @@ export class PrimeraAComponent implements OnInit {
       .then((equipos) => {
         console.log("eq", equipos);
         for (let i = 0; i < equipos.response[0].league.standings[1].length; i++) {
-          this.primera_a.push({
+          this.posiciones.push({
             name: equipos.response[0].league.standings[1][i].team.name,
             logo: equipos.response[0].league.standings[1][i].team.logo,
             points: equipos.response[0].league.standings[1][i].points,
@@ -44,14 +49,14 @@ export class PrimeraAComponent implements OnInit {
             played: equipos.response[0].league.standings[1][i].all.played,
           });
         }
-        console.log("Tabla", this.primera_a);
+        console.log("Tabla", this.posiciones);
       })
       .catch(err => {
         console.log(err);
       });
   }
 
-  fixturePrimeraA() {
+  Fixture() {
     fetch(`https://v3.football.api-sports.io/fixtures?league=128&season=2023&timezone=America/Argentina/Buenos_Aires`, {
       "method": "GET",
       "headers": {
@@ -63,7 +68,7 @@ export class PrimeraAComponent implements OnInit {
       .then((equipos) => {
         console.log("eq", equipos);
         for (let i = 0; i < equipos.response.length; i++) {
-          this.fixture_primera_a.push({
+          this.fixture.push({
             date: equipos.response[i].fixture.date.split('T'),
             start: equipos.response[i].fixture.status.long,
             start_time: equipos.response[i].fixture.status.elapsed,
@@ -77,18 +82,18 @@ export class PrimeraAComponent implements OnInit {
             away_goals: equipos.response[i].goals.away,
           });
         }
-        this.fixture_primera_a.sort((x: any, y: any) => {
+        this.fixture.sort((x: any, y: any) => {
           x = new Date(x.date),
             y = new Date(y.date);
           return x - y;
         });
 
-        console.log("fixture", this.fixture_primera_a);
+        console.log("fixture", this.fixture);
 
-        for (let i = 0; i < this.fixture_primera_a.length; i++) {
+        for (let i = 0; i < this.fixture.length; i++) {
           var hoy = this.fechaDeHoy();
-          if (this.fixture_primera_a[i].date > hoy) {
-            var numeroFecha = this.fixture_primera_a[i].round.split('- ')
+          if (this.fixture[i].date > hoy) {
+            var numeroFecha = this.fixture[i].round.split('- ')
             this.fecha = numeroFecha[1]
             console.log("fecha asignada",this.fecha);
             console.log("numero fgecha",numeroFecha);
@@ -97,6 +102,56 @@ export class PrimeraAComponent implements OnInit {
         }
 
 
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+
+  Goleadores() {
+    fetch("https://v3.football.api-sports.io/players/topscorers?league=128&season=2023", {
+      "method": "GET",
+      "headers": {
+        "x-rapidapi-host": "v3.football.api-sports.io",
+        "x-rapidapi-key": "2a4d321e462a454968098ab7e12fc3af"
+      }
+    })
+      .then(response => response.json())
+      .then((equipos) => {
+        for (let i = 0; i < 8; i++) {
+          this.goleadores.push({
+            name: equipos.response[i].player.name,
+            logo: equipos.response[i].statistics[0].team.logo,
+            team_name: equipos.response[i].statistics[0].team.name,
+            goals: equipos.response[i].statistics[0].goals.total,
+            photo: equipos.response[i].player.photo,
+          });
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+
+  Asistidores() {
+    fetch("https://v3.football.api-sports.io/players/topassists?league=128&season=2023", {
+      "method": "GET",
+      "headers": {
+        "x-rapidapi-host": "v3.football.api-sports.io",
+        "x-rapidapi-key": "2a4d321e462a454968098ab7e12fc3af"
+      }
+    })
+      .then(response => response.json())
+      .then((equipos) => {
+        for (let i = 0; i < 8; i++) {
+          this.asistidores.push({
+            name: equipos.response[i].player.name,
+            logo: equipos.response[i].statistics[0].team.logo,
+            team_name: equipos.response[i].statistics[0].team.name,
+            assists: equipos.response[i].statistics[0].goals.assists,
+            photo: equipos.response[i].player.photo,
+          });
+        }
       })
       .catch(err => {
         console.log(err);
