@@ -1,1 +1,598 @@
-<p>copa-argentina works!</p>
+<body>
+    <img src="../../assets/fondoCopaArgenttina.png" alt="Primera A" style="width: 100%; height: 100%;">
+
+    <div class="container-fluid">
+
+        <h1> <img src="../../assets/copaArgenttina.png" alt=""
+                style="width: 300px !important; height: 150px !important; margin-top: 1%;"></h1>
+
+        <div class="row">
+            <div class="col-2">
+                <h5>32avos de Final</h5>
+                <ng-container *ngIf="treintaydosavos.length == 0; else Treintaydosavos">
+                    <div class="row align-items-start"
+                        style="text-align: center; border: 2px solid black;background-color: blanchedalmond;">
+                        <div class="col-4">
+                            <img class="logo-diagrama" src="../../assets/incognita.png" alt=""><br>
+                        </div>
+                        <div class="col-4"
+                            style="font-size: 16px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; background-color: black; color: white;">
+                            -
+                        </div>
+                        <div class="col-4">
+                            <img class="logo-diagrama" src="../../assets/incognita.png" alt=""><br>
+                        </div>
+                    </div>
+                </ng-container>
+                <ng-template #Treintaydosavos>
+                    <ng-container *ngFor="let partido of treintaydosavos">
+                        <ng-container *ngIf="partido.round == '1st Round' ">
+                            <div class="row align-items-start"
+                                style="text-align: center; border: 2px solid black; margin-bottom: 25px; background-color: blanchedalmond;">
+                                <div class="col-4">
+                                    <img class="logo-diagrama" src="{{partido.home_logo}}" alt=""><br>
+                                </div>
+                                <div class="col-4"
+                                    style="font-size: 16px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; background-color: black; color: white;">
+                                    {{partido.home_goals}} - {{partido.away_goals}}
+                                </div>
+                                <div class="col-4">
+                                    <img class="logo-diagrama" src="{{partido.away_logo}}" alt=""><br>
+                                </div>
+                            </div>
+                        </ng-container>
+                    </ng-container>
+
+                </ng-template>
+            </div>
+
+            <div class="col-2">
+                <h5 style="margin-bottom: 35px;">16avos de Final</h5>
+                <div class="row align-items-start"
+                    style="text-align: center; border: 2px solid black; margin-bottom: 79px; background-color: blanchedalmond;">
+                    <div class="col-4">
+                        <img class="logo-diagrama" src="{{treintaydosavos[1].home_logo}}" alt=""><br>
+                    </div>
+                    <div class="col-4"
+                        style="font-size: 16px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; background-color: black; color: white;">
+                        {{treintaydosavos[2].home_goals}} - {{treintaydosavos[1].away_goals}}
+                    </div>
+                    <div class="col-4">
+                        <img class="logo-diagrama" src="{{treintaydosavos[1].away_logo}}" alt=""><br>
+                    </div>
+                </div>
+                <div class="row align-items-start"
+                    style="text-align: center; border: 2px solid black; margin-bottom: 79px; background-color: blanchedalmond;">
+                    <div class="col-4">
+                        <img class="logo-diagrama" src="{{treintaydosavos[2].home_logo}}" alt=""><br>
+                    </div>
+                    <div class="col-4"
+                        style="font-size: 16px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; background-color: black; color: white;">
+                        {{treintaydosavos[2].home_goals}} - {{treintaydosavos[2].away_goals}}
+                    </div>
+                    <div class="col-4">
+                        <img class="logo-diagrama" src="{{treintaydosavos[2].away_logo}}" alt=""><br>
+                    </div>
+                </div>
+                <div class="row align-items-start"
+                    style="text-align: center; border: 2px solid black; margin-bottom: 79px; background-color: blanchedalmond;">
+                    <div class="col-4">
+                        <img class="logo-diagrama" src="{{treintaydosavos[2].home_logo}}" alt=""><br>
+                    </div>
+                    <div class="col-4"
+                        style="font-size: 16px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; background-color: black; color: white;">
+                        {{treintaydosavos[2].home_goals}} - {{treintaydosavos[2].away_goals}}
+                    </div>
+                    <div class="col-4">
+                        <img class="logo-diagrama" src="{{treintaydosavos[2].away_logo}}" alt=""><br>
+                    </div>
+                </div>
+                <div class="row align-items-start"
+                    style="text-align: center; border: 2px solid black; margin-bottom: 79px; background-color: blanchedalmond;">
+                    <div class="col-4">
+                        <img class="logo-diagrama" src="{{treintaydosavos[2].home_logo}}" alt=""><br>
+                    </div>
+                    <div class="col-4"
+                        style="font-size: 16px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; background-color: black; color: white;">
+                        {{treintaydosavos[2].home_goals}} - {{treintaydosavos[2].away_goals}}
+                    </div>
+                    <div class="col-4">
+                        <img class="logo-diagrama" src="{{treintaydosavos[2].away_logo}}" alt=""><br>
+                    </div>
+                </div>
+                <div class="row align-items-start"
+                    style="text-align: center; border: 2px solid black; margin-bottom: 79px; background-color: blanchedalmond;">
+                    <div class="col-4">
+                        <img class="logo-diagrama" src="{{treintaydosavos[2].home_logo}}" alt=""><br>
+                    </div>
+                    <div class="col-4"
+                        style="font-size: 16px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; background-color: black; color: white;">
+                        {{treintaydosavos[2].home_goals}} - {{treintaydosavos[2].away_goals}}
+                    </div>
+                    <div class="col-4">
+                        <img class="logo-diagrama" src="{{treintaydosavos[2].away_logo}}" alt=""><br>
+                    </div>
+                </div>
+                <div class="row align-items-start"
+                    style="text-align: center; border: 2px solid black; margin-bottom: 79px; background-color: blanchedalmond;">
+                    <div class="col-4">
+                        <img class="logo-diagrama" src="{{treintaydosavos[2].home_logo}}" alt=""><br>
+                    </div>
+                    <div class="col-4"
+                        style="font-size: 16px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; background-color: black; color: white;">
+                        {{treintaydosavos[2].home_goals}} - {{treintaydosavos[2].away_goals}}
+                    </div>
+                    <div class="col-4">
+                        <img class="logo-diagrama" src="{{treintaydosavos[2].away_logo}}" alt=""><br>
+                    </div>
+                </div>
+                <div class="row align-items-start"
+                    style="text-align: center; border: 2px solid black; margin-bottom: 79px; background-color: blanchedalmond;">
+                    <div class="col-4">
+                        <img class="logo-diagrama" src="{{treintaydosavos[2].home_logo}}" alt=""><br>
+                    </div>
+                    <div class="col-4"
+                        style="font-size: 16px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; background-color: black; color: white;">
+                        {{treintaydosavos[2].home_goals}} - {{treintaydosavos[2].away_goals}}
+                    </div>
+                    <div class="col-4">
+                        <img class="logo-diagrama" src="{{treintaydosavos[2].away_logo}}" alt=""><br>
+                    </div>
+                </div>
+                <div class="row align-items-start"
+                    style="text-align: center; border: 2px solid black; margin-bottom: 79px; background-color: blanchedalmond;">
+                    <div class="col-4">
+                        <img class="logo-diagrama" src="{{treintaydosavos[2].home_logo}}" alt=""><br>
+                    </div>
+                    <div class="col-4"
+                        style="font-size: 16px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; background-color: black; color: white;">
+                        {{treintaydosavos[2].home_goals}} - {{treintaydosavos[2].away_goals}}
+                    </div>
+                    <div class="col-4">
+                        <img class="logo-diagrama" src="{{treintaydosavos[2].away_logo}}" alt=""><br>
+                    </div>
+                </div>
+                <div class="row align-items-start"
+                    style="text-align: center; border: 2px solid black; margin-bottom: 79px; background-color: blanchedalmond;">
+                    <div class="col-4">
+                        <img class="logo-diagrama" src="{{treintaydosavos[2].home_logo}}" alt=""><br>
+                    </div>
+                    <div class="col-4"
+                        style="font-size: 16px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; background-color: black; color: white;">
+                        {{treintaydosavos[2].home_goals}} - {{treintaydosavos[2].away_goals}}
+                    </div>
+                    <div class="col-4">
+                        <img class="logo-diagrama" src="{{treintaydosavos[2].away_logo}}" alt=""><br>
+                    </div>
+                </div>
+                <div class="row align-items-start"
+                    style="text-align: center; border: 2px solid black; margin-bottom: 79px; background-color: blanchedalmond;">
+                    <div class="col-4">
+                        <img class="logo-diagrama" src="{{treintaydosavos[2].home_logo}}" alt=""><br>
+                    </div>
+                    <div class="col-4"
+                        style="font-size: 16px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; background-color: black; color: white;">
+                        {{treintaydosavos[2].home_goals}} - {{treintaydosavos[2].away_goals}}
+                    </div>
+                    <div class="col-4">
+                        <img class="logo-diagrama" src="{{treintaydosavos[2].away_logo}}" alt=""><br>
+                    </div>
+                </div>
+                <div class="row align-items-start"
+                    style="text-align: center; border: 2px solid black; margin-bottom: 79px; background-color: blanchedalmond;">
+                    <div class="col-4">
+                        <img class="logo-diagrama" src="{{treintaydosavos[2].home_logo}}" alt=""><br>
+                    </div>
+                    <div class="col-4"
+                        style="font-size: 16px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; background-color: black; color: white;">
+                        {{treintaydosavos[2].home_goals}} - {{treintaydosavos[2].away_goals}}
+                    </div>
+                    <div class="col-4">
+                        <img class="logo-diagrama" src="{{treintaydosavos[2].away_logo}}" alt=""><br>
+                    </div>
+                </div>
+                <div class="row align-items-start"
+                    style="text-align: center; border: 2px solid black; margin-bottom: 79px; background-color: blanchedalmond;">
+                    <div class="col-4">
+                        <img class="logo-diagrama" src="{{treintaydosavos[2].home_logo}}" alt=""><br>
+                    </div>
+                    <div class="col-4"
+                        style="font-size: 16px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; background-color: black; color: white;">
+                        {{treintaydosavos[2].home_goals}} - {{treintaydosavos[2].away_goals}}
+                    </div>
+                    <div class="col-4">
+                        <img class="logo-diagrama" src="{{treintaydosavos[2].away_logo}}" alt=""><br>
+                    </div>
+                </div>
+                <div class="row align-items-start"
+                    style="text-align: center; border: 2px solid black; margin-bottom: 79px; background-color: blanchedalmond;">
+                    <div class="col-4">
+                        <img class="logo-diagrama" src="{{treintaydosavos[2].home_logo}}" alt=""><br>
+                    </div>
+                    <div class="col-4"
+                        style="font-size: 16px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; background-color: black; color: white;">
+                        {{treintaydosavos[2].home_goals}} - {{treintaydosavos[2].away_goals}}
+                    </div>
+                    <div class="col-4">
+                        <img class="logo-diagrama" src="{{treintaydosavos[2].away_logo}}" alt=""><br>
+                    </div>
+                </div>
+                <div class="row align-items-start"
+                    style="text-align: center; border: 2px solid black; margin-bottom: 79px; background-color: blanchedalmond;">
+                    <div class="col-4">
+                        <img class="logo-diagrama" src="{{treintaydosavos[2].home_logo}}" alt=""><br>
+                    </div>
+                    <div class="col-4"
+                        style="font-size: 16px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; background-color: black; color: white;">
+                        {{treintaydosavos[2].home_goals}} - {{treintaydosavos[2].away_goals}}
+                    </div>
+                    <div class="col-4">
+                        <img class="logo-diagrama" src="{{treintaydosavos[2].away_logo}}" alt=""><br>
+                    </div>
+                </div>
+                <div class="row align-items-start"
+                    style="text-align: center; border: 2px solid black; margin-bottom: 79px; background-color: blanchedalmond;">
+                    <div class="col-4">
+                        <img class="logo-diagrama" src="{{treintaydosavos[2].home_logo}}" alt=""><br>
+                    </div>
+                    <div class="col-4"
+                        style="font-size: 16px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; background-color: black; color: white;">
+                        {{treintaydosavos[2].home_goals}} - {{treintaydosavos[2].away_goals}}
+                    </div>
+                    <div class="col-4">
+                        <img class="logo-diagrama" src="{{treintaydosavos[2].away_logo}}" alt=""><br>
+                    </div>
+                </div>
+                <div class="row align-items-start"
+                    style="text-align: center; border: 2px solid black; margin-bottom: 79px; background-color: blanchedalmond;">
+                    <div class="col-4">
+                        <img class="logo-diagrama" src="{{treintaydosavos[2].home_logo}}" alt=""><br>
+                    </div>
+                    <div class="col-4"
+                        style="font-size: 16px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; background-color: black; color: white;">
+                        {{treintaydosavos[2].home_goals}} - {{treintaydosavos[2].away_goals}}
+                    </div>
+                    <div class="col-4">
+                        <img class="logo-diagrama" src="{{treintaydosavos[2].away_logo}}" alt=""><br>
+                    </div>
+                </div>
+            </div>
+            <div class="col-2">
+                <h5 style="margin-bottom: 85px;">8vos de Final</h5>
+
+                <div class="row align-items-start"
+                    style="text-align: center; border: 2px solid black; margin-bottom: 187px; background-color: blanchedalmond;">
+                    <div class="col-4">
+                        <img class="logo-diagrama" src="{{treintaydosavos[3].home_logo}}" alt=""><br>
+                    </div>
+                    <div class="col-4"
+                        style="font-size: 16px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; background-color: black; color: white;">
+                        {{treintaydosavos[3].home_goals}} - {{treintaydosavos[3].away_goals}}
+                    </div>
+                    <div class="col-4">
+                        <img class="logo-diagrama" src="{{treintaydosavos[3].away_logo}}" alt=""><br>
+                    </div>
+                </div>
+                <div class="row align-items-start"
+                    style="text-align: center; border: 2px solid black; margin-bottom: 187px; background-color: blanchedalmond;">
+                    <div class="col-4">
+                        <img class="logo-diagrama" src="{{treintaydosavos[3].home_logo}}" alt=""><br>
+                    </div>
+                    <div class="col-4"
+                        style="font-size: 16px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; background-color: black; color: white;">
+                        {{treintaydosavos[3].home_goals}} - {{treintaydosavos[3].away_goals}}
+                    </div>
+                    <div class="col-4">
+                        <img class="logo-diagrama" src="{{treintaydosavos[3].away_logo}}" alt=""><br>
+                    </div>
+                </div>
+                <div class="row align-items-start"
+                    style="text-align: center; border: 2px solid black; margin-bottom: 187px; background-color: blanchedalmond;">
+                    <div class="col-4">
+                        <img class="logo-diagrama" src="{{treintaydosavos[3].home_logo}}" alt=""><br>
+                    </div>
+                    <div class="col-4"
+                        style="font-size: 16px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; background-color: black; color: white;">
+                        {{treintaydosavos[3].home_goals}} - {{treintaydosavos[3].away_goals}}
+                    </div>
+                    <div class="col-4">
+                        <img class="logo-diagrama" src="{{treintaydosavos[3].away_logo}}" alt=""><br>
+                    </div>
+                </div>
+                <div class="row align-items-start"
+                    style="text-align: center; border: 2px solid black; margin-bottom: 187px; background-color: blanchedalmond;">
+                    <div class="col-4">
+                        <img class="logo-diagrama" src="{{treintaydosavos[3].home_logo}}" alt=""><br>
+                    </div>
+                    <div class="col-4"
+                        style="font-size: 16px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; background-color: black; color: white;">
+                        {{treintaydosavos[3].home_goals}} - {{treintaydosavos[3].away_goals}}
+                    </div>
+                    <div class="col-4">
+                        <img class="logo-diagrama" src="{{treintaydosavos[3].away_logo}}" alt=""><br>
+                    </div>
+                </div>
+                <div class="row align-items-start"
+                    style="text-align: center; border: 2px solid black; margin-bottom: 187px; background-color: blanchedalmond;">
+                    <div class="col-4">
+                        <img class="logo-diagrama" src="{{treintaydosavos[3].home_logo}}" alt=""><br>
+                    </div>
+                    <div class="col-4"
+                        style="font-size: 16px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; background-color: black; color: white;">
+                        {{treintaydosavos[3].home_goals}} - {{treintaydosavos[3].away_goals}}
+                    </div>
+                    <div class="col-4">
+                        <img class="logo-diagrama" src="{{treintaydosavos[3].away_logo}}" alt=""><br>
+                    </div>
+                </div>
+                <div class="row align-items-start"
+                    style="text-align: center; border: 2px solid black; margin-bottom: 187px; background-color: blanchedalmond;">
+                    <div class="col-4">
+                        <img class="logo-diagrama" src="{{treintaydosavos[3].home_logo}}" alt=""><br>
+                    </div>
+                    <div class="col-4"
+                        style="font-size: 16px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; background-color: black; color: white;">
+                        {{treintaydosavos[3].home_goals}} - {{treintaydosavos[3].away_goals}}
+                    </div>
+                    <div class="col-4">
+                        <img class="logo-diagrama" src="{{treintaydosavos[3].away_logo}}" alt=""><br>
+                    </div>
+                </div>
+                <div class="row align-items-start"
+                    style="text-align: center; border: 2px solid black; margin-bottom: 187px; background-color: blanchedalmond;">
+                    <div class="col-4">
+                        <img class="logo-diagrama" src="{{treintaydosavos[3].home_logo}}" alt=""><br>
+                    </div>
+                    <div class="col-4"
+                        style="font-size: 16px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; background-color: black; color: white;">
+                        {{treintaydosavos[3].home_goals}} - {{treintaydosavos[3].away_goals}}
+                    </div>
+                    <div class="col-4">
+                        <img class="logo-diagrama" src="{{treintaydosavos[3].away_logo}}" alt=""><br>
+                    </div>
+                </div>
+                <div class="row align-items-start"
+                    style="text-align: center; border: 2px solid black; margin-bottom: 187px; background-color: blanchedalmond;">
+                    <div class="col-4">
+                        <img class="logo-diagrama" src="{{treintaydosavos[3].home_logo}}" alt=""><br>
+                    </div>
+                    <div class="col-4"
+                        style="font-size: 16px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; background-color: black; color: white;">
+                        {{treintaydosavos[3].home_goals}} - {{treintaydosavos[3].away_goals}}
+                    </div>
+                    <div class="col-4">
+                        <img class="logo-diagrama" src="{{treintaydosavos[3].away_logo}}" alt=""><br>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-2">
+                <h5 style="margin-bottom: 185px;">4tos de Final</h5>
+
+                <div class="row align-items-start"
+                    style="text-align: center; border: 2px solid black; margin-bottom: 410px; background-color: blanchedalmond;">
+                    <div class="col-4">
+                        <img class="logo-diagrama" src="{{treintaydosavos[0].home_logo}}" alt=""><br>
+                    </div>
+                    <div class="col-4"
+                        style="font-size: 16px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; background-color: black; color: white;">
+                        {{treintaydosavos[0].home_goals}} - {{treintaydosavos[0].away_goals}}
+                    </div>
+                    <div class="col-4">
+                        <img class="logo-diagrama" src="{{treintaydosavos[0].away_logo}}" alt=""><br>
+                    </div>
+                </div>
+                <div class="row align-items-start"
+                    style="text-align: center; border: 2px solid black; margin-bottom: 410px; background-color: blanchedalmond;">
+                    <div class="col-4">
+                        <img class="logo-diagrama" src="{{treintaydosavos[0].home_logo}}" alt=""><br>
+                    </div>
+                    <div class="col-4"
+                        style="font-size: 16px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; background-color: black; color: white;">
+                        {{treintaydosavos[0].home_goals}} - {{treintaydosavos[0].away_goals}}
+                    </div>
+                    <div class="col-4">
+                        <img class="logo-diagrama" src="{{treintaydosavos[0].away_logo}}" alt=""><br>
+                    </div>
+                </div>
+                <div class="row align-items-start"
+                    style="text-align: center; border: 2px solid black; margin-bottom: 410px; background-color: blanchedalmond;">
+                    <div class="col-4">
+                        <img class="logo-diagrama" src="{{treintaydosavos[0].home_logo}}" alt=""><br>
+                    </div>
+                    <div class="col-4"
+                        style="font-size: 16px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; background-color: black; color: white;">
+                        {{treintaydosavos[0].home_goals}} - {{treintaydosavos[0].away_goals}}
+                    </div>
+                    <div class="col-4">
+                        <img class="logo-diagrama" src="{{treintaydosavos[0].away_logo}}" alt=""><br>
+                    </div>
+                </div>
+                <div class="row align-items-start"
+                    style="text-align: center; border: 2px solid black; margin-bottom: 410px; background-color: blanchedalmond;">
+                    <div class="col-4">
+                        <img class="logo-diagrama" src="{{treintaydosavos[0].home_logo}}" alt=""><br>
+                    </div>
+                    <div class="col-4"
+                        style="font-size: 16px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; background-color: black; color: white;">
+                        {{treintaydosavos[0].home_goals}} - {{treintaydosavos[0].away_goals}}
+                    </div>
+                    <div class="col-4">
+                        <img class="logo-diagrama" src="{{treintaydosavos[0].away_logo}}" alt=""><br>
+                    </div>
+                </div>
+            </div>
+            <div class="col-2">
+                <h5 style="margin-bottom: 415px;">Semifinal</h5>
+                <ng-container *ngIf="semifinal.length == 0; else Semifinal">
+                    <div class="row align-items-start"
+                        style="text-align: center; border: 2px solid black; margin-bottom: 820px;background-color: blanchedalmond;">
+                        <div class="col-4">
+                            <img class="logo-diagrama" src="../../assets/incognita.png" alt=""><br>
+                        </div>
+                        <div class="col-4"
+                            style="font-size: 16px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; background-color: black; color: white;">
+                            -
+                        </div>
+                        <div class="col-4">
+                            <img class="logo-diagrama" src="../../assets/incognita.png" alt=""><br>
+                        </div>
+                    </div>
+                    <div class="row align-items-start"
+                        style="text-align: center; border: 2px solid black; background-color: blanchedalmond;">
+                        <div class="col-4">
+                            <img class="logo-diagrama" src="../../assets/incognita.png" alt=""><br>
+                        </div>
+                        <div class="col-4"
+                            style="font-size: 16px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; background-color: black; color: white;">
+                            -
+                        </div>
+                        <div class="col-4">
+                            <img class="logo-diagrama" src="../../assets/incognita.png" alt=""><br>
+                        </div>
+                    </div>
+                </ng-container>
+                <ng-template #Semifinal>
+                    <ng-container *ngFor="let partido of semifinal;">
+                        <ng-container ngIf="{{partido.round}} == 'Finals' ">
+                            <div class="row align-items-start"
+                                style="text-align: center; border: 2px solid black;background-color: blanchedalmond;">
+                                <div class="col-4">
+                                    <img class="logo-diagrama" src="{{partido.home_logo}}" alt=""><br>
+                                </div>
+                                <div class="col-4"
+                                    style="font-size: 16px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; background-color: black; color: white;">
+                                    {{partido.home_goals}} - {{partido.away_goals}}
+                                </div>
+                                <div class="col-4">
+                                    <img class="logo-diagrama" src="{{partido.away_logo}}" alt=""><br>
+                                </div>
+                            </div>
+                        </ng-container>
+                    </ng-container>
+                </ng-template>
+            </div>
+            <div class="col-2">
+                <h5 style="margin-bottom: 815px;">Final</h5>
+                <ng-container *ngIf="final.length == 0; else Final">
+                    <div class="row align-items-start"
+                        style="text-align: center; border: 2px solid black;background-color: blanchedalmond;">
+                        <div class="col-4">
+                            <img class="logo-diagrama" src="../../assets/incognita.png" alt=""><br>
+                        </div>
+                        <div class="col-4"
+                            style="font-size: 16px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; background-color: black; color: white;">
+                            -
+                        </div>
+                        <div class="col-4">
+                            <img class="logo-diagrama" src="../../assets/incognita.png" alt=""><br>
+                        </div>
+                    </div>
+                </ng-container>
+                <ng-template #Final>
+                    <ng-container *ngFor="let partido of final;">
+                        <ng-container ngIf="{{partido.round}} == 'Finals' ">
+                            <div class="row align-items-start"
+                                style="text-align: center; border: 2px solid black;background-color: blanchedalmond;">
+                                <div class="col-4">
+                                    <img class="logo-diagrama" src="{{partido.home_logo}}" alt=""><br>
+                                </div>
+                                <div class="col-4"
+                                    style="font-size: 16px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; background-color: black; color: white;">
+                                    {{partido.home_goals}} - {{partido.away_goals}}
+                                </div>
+                                <div class="col-4">
+                                    <img class="logo-diagrama" src="{{partido.away_logo}}" alt=""><br>
+                                </div>
+                            </div>
+                        </ng-container>
+                    </ng-container>
+                </ng-template>
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+
+
+    <div class="container">
+        <header style="margin-top: 3%;">
+            <ul class="nav nav-pills justify-content-center">
+                <li class="nav-item">
+                    <ng-container *ngIf="fecha < 2; else primeraFecha">
+                        <button class="btn btn-dark" aria-current="page" (click)="FechaAnterior()" disabled> <i
+                                class='fas fa-less-than'></i> Anterior </button>
+                    </ng-container>
+                    <ng-template #primeraFecha>
+                        <button class="btn btn-dark" aria-current="page" (click)="FechaAnterior()"> <i
+                                class='fas fa-less-than'></i> Anterior </button>
+                    </ng-template>
+                </li>
+                <span class="btn btn-light disabled" style="margin-right: 15px; margin-left: 15px;"> Fecha
+                    N°{{fecha}} </span>
+                <li class="nav-item">
+                    <ng-container *ngIf="fecha < 6; else ultimaFecha">
+                        <button class="btn btn-dark" (click)="FechaSiguiente()"> Siguiente <i
+                                class='fas fa-greater-than'></i></button>
+                    </ng-container>
+                    <ng-template #ultimaFecha>
+                        <button class="btn btn-dark" (click)="FechaSiguiente()" disabled> Siguiente <i
+                                class='fas fa-greater-than'></i></button>
+                    </ng-template>
+                </li>
+            </ul>
+        </header>
+        <table class="table table-hover table-bordered" style="margin-top: 8px;">
+            <tbody *ngFor="let partido of treintaydosavos; let i = index" [attr.data-index]="i">
+                <ng-container *ngIf="partido.round == fecha + 'st Round' ">
+                    <ng-container *ngIf="treintaydosavos[i].date == treintaydosavos[0].date ; else otros;">
+                        <tr *ngIf="i == 0">
+                            <th COLSPAN="5">{{partido.date | date:"EEEE d 'de' MMMM" |
+                                titlecase
+                                }}
+                            </th>
+                        </tr>
+                        <tr>
+                            <td class="hora"><b> {{partido.date | date:"HH:mm" }} hs </b> </td>
+                            <td style="text-align: right !important;"><b> {{partido.home_name}} </b> <img
+                                    src="{{partido.home_logo}}" alt="" style="padding-left: 5%;"></td>
+                            <td class="goles"> {{partido.home_goals}} - {{partido.away_goals}} </td>
+                            <td style="text-align: left !important;"> <img src="{{partido.away_logo}}" alt=""
+                                    style="padding-right: 5%;"> <b>{{partido.away_name}} </b>
+                            </td>
+                            <ng-container *ngIf="partido.start == 'Match Finished'">
+                                <td><b>Final </b> </td>
+                            </ng-container>
+                        </tr>
+                    </ng-container>
+                    <ng-template #otros>
+                        <tr *ngIf="treintaydosavos[i].date[0] != treintaydosavos[i-1].date[0]">
+                            <th COLSPAN="5"><b> {{partido.date | date:"EEEE d 'de' MMMM" |
+                                    titlecase}} </b> </th>
+                        </tr>
+                        <tr>
+                            <td class="hora"><b> {{partido.date | date:"HH:mm" }} hs </b> </td>
+                            <td style="text-align: right !important;"><b> {{partido.home_name}} </b><img
+                                    src="{{partido.home_logo}}" alt="" style="padding-left: 5%;">
+                            </td>
+                            <td class="goles">{{partido.home_goals}} - {{partido.away_goals}}</td>
+                            <td style="text-align: left !important;"> <img src="{{partido.away_logo}}" alt=""
+                                    style="padding-right: 5%;">
+                                <b>{{partido.away_name}} </b>
+                            </td>
+                            <ng-container *ngIf="partido.start == 'Match Finished'; else tiempo">
+                                <td><b> Final</b> </td>
+                            </ng-container>
+                            <ng-template #tiempo>
+                                <td> {{partido.start_time}}</td>
+                            </ng-template>
+                        </tr>
+                    </ng-template>
+                </ng-container>
+            </tbody>
+        </table>
+    </div>
+</body>

@@ -12,14 +12,27 @@ import { type } from 'os';
 export class HomeComponent implements OnInit {
   constructor(private route: RouterModule) { }
 
-  b_metropolitana: any = [];
-  primera_a: any = [];
+  primera_ayer: any = [];
+  primera_hoy: any = [];
+  primera_manana: any = [];
+  nacional_ayer: any = [];
+  nacional_hoy: any = [];
+  nacional_manana: any = [];
+  metropolitana_ayer: any = [];
+  metropolitana_hoy: any = [];
+  metropolitana_manana: any = [];
+  copa_argentina_ayer: any = [];
+  copa_argentina_hoy: any = [];
+  copa_argentina_manana: any = [];
+
   goles: any = [];
   tarjetas: any = [];
   cambios: any = [];
+
   ayer: any = [];
   hoy: any = [];
   manana: any = [];
+  fecha: any = [];
 
   ngOnInit(): void {
     this.primeraA();
@@ -44,29 +57,76 @@ export class HomeComponent implements OnInit {
       .then((equipos) => {
         console.log("equipos", equipos)
           for (let i = 0; i < equipos.response.length; i++) {
-            this.b_metropolitana.push({
-              home_id: equipos.response[i].teams.home.id,
-              home_name: equipos.response[i].teams.home.name,
-              home_logo: equipos.response[i].teams.home.logo,
-              away_id: equipos.response[i].teams.away.id,
-              away_name: equipos.response[i].teams.away.name,
-              away_logo: equipos.response[i].teams.away.logo,
-              home_goals: equipos.response[i].goals.home,
-              away_goals: equipos.response[i].goals.away,
-              date: equipos.response[i].fixture.date.split('T'),
-              time: equipos.response[i].fixture.status.elapsed,
-              status: equipos.response[i].fixture.status.long,
-              fixture_id: equipos.response[i].fixture.id,
-              stadium: equipos.response[i].fixture.venue.name,
-              logo: equipos.response[i].league.logo,
-              name: equipos.response[i].league.name,
-              round: equipos.response[i].league.round,
-              season: equipos.response[i].league.season,
-
-            });
+            var dia = equipos.response[i].fixture.date.split('T');
+            if(dia[0] == ayer ){
+              this.metropolitana_ayer.push({
+                home_id: equipos.response[i].teams.home.id,
+                home_name: equipos.response[i].teams.home.name,
+                home_logo: equipos.response[i].teams.home.logo,
+                away_id: equipos.response[i].teams.away.id,
+                away_name: equipos.response[i].teams.away.name,
+                away_logo: equipos.response[i].teams.away.logo,
+                home_goals: equipos.response[i].goals.home,
+                away_goals: equipos.response[i].goals.away,
+                date: equipos.response[i].fixture.date.split('T'),
+                time: equipos.response[i].fixture.status.elapsed,
+                status: equipos.response[i].fixture.status.long,
+                fixture_id: equipos.response[i].fixture.id,
+                stadium: equipos.response[i].fixture.venue.name,
+                logo: equipos.response[i].league.logo,
+                name: equipos.response[i].league.name,
+                round: equipos.response[i].league.round.split('- '),
+                season: equipos.response[i].league.season,
+              });
+            }
+            else if(dia[0] == manana ){
+              this.metropolitana_manana.push({
+                home_id: equipos.response[i].teams.home.id,
+                home_name: equipos.response[i].teams.home.name,
+                home_logo: equipos.response[i].teams.home.logo,
+                away_id: equipos.response[i].teams.away.id,
+                away_name: equipos.response[i].teams.away.name,
+                away_logo: equipos.response[i].teams.away.logo,
+                home_goals: equipos.response[i].goals.home,
+                away_goals: equipos.response[i].goals.away,
+                date: equipos.response[i].fixture.date.split('T'),
+                time: equipos.response[i].fixture.status.elapsed,
+                status: equipos.response[i].fixture.status.long,
+                fixture_id: equipos.response[i].fixture.id,
+                stadium: equipos.response[i].fixture.venue.name,
+                logo: equipos.response[i].league.logo,
+                name: equipos.response[i].league.name,
+                round: equipos.response[i].league.round.split('- '),
+                season: equipos.response[i].league.season,
+              }); 
+            }
+            else {
+              this.metropolitana_hoy.push({
+                home_id: equipos.response[i].teams.home.id,
+                home_name: equipos.response[i].teams.home.name,
+                home_logo: equipos.response[i].teams.home.logo,
+                away_id: equipos.response[i].teams.away.id,
+                away_name: equipos.response[i].teams.away.name,
+                away_logo: equipos.response[i].teams.away.logo,
+                home_goals: equipos.response[i].goals.home,
+                away_goals: equipos.response[i].goals.away,
+                date: equipos.response[i].fixture.date.split('T'),
+                time: equipos.response[i].fixture.status.elapsed,
+                status: equipos.response[i].fixture.status.long,
+                fixture_id: equipos.response[i].fixture.id,
+                stadium: equipos.response[i].fixture.venue.name,
+                logo: equipos.response[i].league.logo,
+                name: equipos.response[i].league.name,
+                round: equipos.response[i].league.round.split('- '),
+                season: equipos.response[i].league.season,
+              }); 
+            }
+            
           }
           this.ordenarBMetro();
-        console.log("b metro", this.b_metropolitana)
+        console.log("b metro", this.metropolitana_ayer);
+        console.log("b metro", this.metropolitana_hoy);
+        console.log("b metro", this.metropolitana_manana);
       })
 
       .catch(err => {
@@ -88,29 +148,75 @@ export class HomeComponent implements OnInit {
       .then((equipos) => {
         console.log("equipos", equipos)
         for (let i = 0; i < equipos.response.length; i++) {
-          this.primera_a.push({
-            home_id: equipos.response[i].teams.home.id,
-            home_name: equipos.response[i].teams.home.name,
-            home_logo: equipos.response[i].teams.home.logo,
-            away_id: equipos.response[i].teams.away.id,
-            away_name: equipos.response[i].teams.away.name,
-            away_logo: equipos.response[i].teams.away.logo,
-            home_goals: equipos.response[i].goals.home,
-            away_goals: equipos.response[i].goals.away,
-            date: equipos.response[i].fixture.date.split('T'),
-            time: equipos.response[i].fixture.status.elapsed,
-            status: equipos.response[i].fixture.status.long,
-            fixture_id: equipos.response[i].fixture.id,
-            stadium: equipos.response[i].fixture.venue.name,
-            logo: equipos.response[i].league.logo,
-            name: equipos.response[i].league.name,
-            round: equipos.response[i].league.round,
-            season: equipos.response[i].league.season,
-
-          });
+          var dia = equipos.response[i].fixture.date.split('T');
+          if(dia[0] == ayer ){
+            this.primera_ayer.push({
+              home_id: equipos.response[i].teams.home.id,
+              home_name: equipos.response[i].teams.home.name,
+              home_logo: equipos.response[i].teams.home.logo,
+              away_id: equipos.response[i].teams.away.id,
+              away_name: equipos.response[i].teams.away.name,
+              away_logo: equipos.response[i].teams.away.logo,
+              home_goals: equipos.response[i].goals.home,
+              away_goals: equipos.response[i].goals.away,
+              date: equipos.response[i].fixture.date.split('T'),
+              time: equipos.response[i].fixture.status.elapsed,
+              status: equipos.response[i].fixture.status.long,
+              fixture_id: equipos.response[i].fixture.id,
+              stadium: equipos.response[i].fixture.venue.name,
+              logo: equipos.response[i].league.logo,
+              name: equipos.response[i].league.name,
+              round: equipos.response[i].league.round.split('- '),
+              season: equipos.response[i].league.season,
+            });
+          }
+          else if(dia[0] == manana ){
+            this.primera_manana.push({
+              home_id: equipos.response[i].teams.home.id,
+              home_name: equipos.response[i].teams.home.name,
+              home_logo: equipos.response[i].teams.home.logo,
+              away_id: equipos.response[i].teams.away.id,
+              away_name: equipos.response[i].teams.away.name,
+              away_logo: equipos.response[i].teams.away.logo,
+              home_goals: equipos.response[i].goals.home,
+              away_goals: equipos.response[i].goals.away,
+              date: equipos.response[i].fixture.date.split('T'),
+              time: equipos.response[i].fixture.status.elapsed,
+              status: equipos.response[i].fixture.status.long,
+              fixture_id: equipos.response[i].fixture.id,
+              stadium: equipos.response[i].fixture.venue.name,
+              logo: equipos.response[i].league.logo,
+              name: equipos.response[i].league.name,
+              round: equipos.response[i].league.round.split('- '),
+              season: equipos.response[i].league.season,
+            }); 
+          }
+          else {
+            this.primera_hoy.push({
+              home_id: equipos.response[i].teams.home.id,
+              home_name: equipos.response[i].teams.home.name,
+              home_logo: equipos.response[i].teams.home.logo,
+              away_id: equipos.response[i].teams.away.id,
+              away_name: equipos.response[i].teams.away.name,
+              away_logo: equipos.response[i].teams.away.logo,
+              home_goals: equipos.response[i].goals.home,
+              away_goals: equipos.response[i].goals.away,
+              date: equipos.response[i].fixture.date.split('T'),
+              time: equipos.response[i].fixture.status.elapsed,
+              status: equipos.response[i].fixture.status.long,
+              fixture_id: equipos.response[i].fixture.id,
+              stadium: equipos.response[i].fixture.venue.name,
+              logo: equipos.response[i].league.logo,
+              name: equipos.response[i].league.name,
+              round: equipos.response[i].league.round.split('- '),
+              season: equipos.response[i].league.season,
+            }); 
+          }
         }
         this.ordenarPrimeraA();
-        console.log("primera", this.primera_a);
+        console.log("b metro", this.primera_ayer);
+        console.log("b metro", this.primera_hoy);
+        console.log("b metro", this.primera_manana);
       })
 
       .catch(err => {
@@ -132,9 +238,6 @@ export class HomeComponent implements OnInit {
       .then(response => response.json())
       .then((match) => {
         console.log("Partido", match);
-        this.goles = [];
-        this.cambios = [];
-        this.tarjetas = [];
         for (let i = 0; i < match.response.length; i++) {
           //push a goles a tarjetas, a sustitucion con un if(si es igual al type)
           if (match.response[i].type == 'Goal') {
@@ -286,7 +389,7 @@ export class HomeComponent implements OnInit {
   }
 
   ordenarBMetro() {
-    this.b_metropolitana.sort((x: any, y: any) => {
+    this.metropolitana_ayer.sort((x: any, y: any) => {
       x = new Date(x.date),
         y = new Date(y.date);
       return x - y;
@@ -294,7 +397,7 @@ export class HomeComponent implements OnInit {
   }
 
   ordenarPrimeraA() {
-    this.primera_a.sort((x: any, y: any) => {
+    this.primera_ayer.sort((x: any, y: any) => {
       x = new Date(x.date),
         y = new Date(y.date);
       return x - y;

@@ -25,8 +25,9 @@ h2 {
 }
 
 .title-h2 {
-    color: rgb(0, 29, 29);
-    background-color: #cff4fc;
+    color: rgb(0, 0, 0);
+    background-color: #ffffff;
+    opacity:50%;
 }
 
 img {

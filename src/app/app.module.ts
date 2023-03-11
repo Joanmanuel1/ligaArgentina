@@ -48,7 +48,8 @@ import { CopaArgentinaComponent } from './copa-argentina/copa-argentina.componen
       {path: 'nacional', component: PrimeraNacionalComponent},
       {path: 'bmetro', component: PrimeraBComponent},
       {path: 'libertadores', component: LibertadoresComponent},
-      {path: 'championsleague', component: ChampionsLeagueComponent},
+      {path: 'championsLeague', component: ChampionsLeagueComponent},
+      {path: 'copaArgentina', component: CopaArgentinaComponent},
     ]),
   ],
   providers: [

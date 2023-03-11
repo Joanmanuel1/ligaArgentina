@@ -19,33 +19,43 @@ h1 {
 }
 
 h2 {
-    color:rgb(2, 80, 80);
-    background-color:#cff4fc;
+    color: rgb(0, 0, 0);
+    background-color: rgb(255, 255, 255);
     text-align: center;
+    opacity: 50%;
     font-size: 28x;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
-img{
+img {
     height: 35px;
     width: 35px;
 }
 
-.img-posiciones{
+.img-posiciones {
     height: 25px;
     width: 25px;
     margin-right: 10px;
 }
 
-.goles{
+.goles {
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-size: 24px;
     color: rgb(13, 12, 0);
 }
 
-.title-h2{
-    color: snow;
-    background-color: black;
+.title-h2 {
+    color: rgb(0, 0, 0);
+    background-color: rgb(255, 255, 255);
     text-align: center;
-  }
-  
+    opacity: 50%;
+}
+
+.fecha {
+    margin: 2px;
+}
+
+.fecha:hover {
+    background-color: black;
+    color: white;
+}

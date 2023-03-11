@@ -11,8 +11,8 @@ export class PrimeraNacionalComponent implements OnInit {
 
   fixture_grupo_a: any = [];
   fixture_grupo_b: any = [];
-  fecha_grupo_a: any;
-  fecha_grupo_b: any;
+  fecha_grupo_a: any = 1;
+  fecha_grupo_b:any = 1;
   posiciones_grupo_a: any = [];
   posiciones_grupo_b: any = [];
   goleadores: any = [];
@@ -74,6 +74,15 @@ export class PrimeraNacionalComponent implements OnInit {
         console.log(err);
       });
   }
+
+  FechaNumeroGrupoA(numero:string){
+    this.fecha_grupo_a = parseInt(numero);
+  }
+
+  FechaNumeroGrupoB(numero:string){
+    this.fecha_grupo_b = parseInt(numero);
+  }
+
 
   fechaAnteriorGrupoA() {
     this.fecha_grupo_a = parseInt(this.fecha_grupo_a) - 1;

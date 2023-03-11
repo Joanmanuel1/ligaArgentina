@@ -7,7 +7,7 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./primera-a.component.css']
 })
 export class PrimeraAComponent implements OnInit {
-  fecha: any = 2;
+  fecha: any = 1;
   posiciones: any = [];
   fixture: any = [];
   goleadores: any = [];
@@ -91,7 +91,7 @@ export class PrimeraAComponent implements OnInit {
         console.log("fixture", this.fixture);
 
         for (let i = 0; i < this.fixture.length; i++) {
-          var hoy = this.fechaDeHoy();
+          var hoy = this.FechaDeHoy();
           if (this.fixture[i].date > hoy) {
             var numeroFecha = this.fixture[i].round.split('- ')
             this.fecha = numeroFecha[1]
@@ -158,16 +158,19 @@ export class PrimeraAComponent implements OnInit {
       });
   }
 
+  FechaNumero(numero:string){
+    this.fecha = parseInt(numero);
+  }
 
-  fechaAnterior() {
+  FechaAnterior() {
     this.fecha = parseInt(this.fecha) - 1;
   }
 
-  fechaSiguiente() {
+  FechaSiguiente() {
     this.fecha = parseInt(this.fecha) + 1;
   }
 
-  fechaDeHoy() {
+  FechaDeHoy() {
     const today = new Date();
     var day = today.getDate();
     var month = today.getMonth() + 1;

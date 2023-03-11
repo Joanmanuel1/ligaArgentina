@@ -10,7 +10,7 @@ export class PrimeraBComponent implements OnInit {
   constructor(private route: RouterModule) { }
 
   fixture: any = [];
-  fecha: any;
+  fecha: any = 1;
   posiciones: any = [];
   goleadores: any = [];
 
@@ -169,5 +169,8 @@ export class PrimeraBComponent implements OnInit {
     }
   }
 
+  FechaNumero(numero: string) {
+    this.fecha = parseInt(numero);
+  }
 
 }
